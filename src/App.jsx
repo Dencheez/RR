@@ -125,7 +125,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <LanguageProvider>
-      <Router>
+      <Router basename="/RR">
         <div className="App relative transition-colors duration-300">
           <AnimatedRoutes />
           <AIBot />
