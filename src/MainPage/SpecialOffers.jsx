@@ -14,7 +14,7 @@ const offerData = [
     taglineKey: "offer1Tagline",
     headlineKey: "offer1Headline",
     descKey: "offer1Desc",
-    img: `${base}ThePalmVilla.png`,
+    img: `${import.meta.env.BASE_URL}ThePalmVilla.png`,
     propertyId: 1,
   },
   {
@@ -24,7 +24,7 @@ const offerData = [
     taglineKey: "offer2Tagline",
     headlineKey: "offer2Headline",
     descKey: "offer2Desc",
-    img: `${base}SKYLINE.png`,
+    img: `${import.meta.env.BASE_URL}SKYLINE.png`,
     propertyId: 2,
   },
   {
@@ -34,7 +34,7 @@ const offerData = [
     taglineKey: "offer3Tagline",
     headlineKey: "offer3Headline",
     descKey: "offer3Desc",
-    img: `${base}3ProductCard.jpg`,
+    img: `${import.meta.env.BASE_URL}3ProductCard.jpg`,
     propertyId: 3,
   },
 ];
@@ -48,7 +48,6 @@ const tagColors = {
 
 
 function SpecialOffers() {
-  const base = import.meta.env.BASE_URL;
 
   const navigate = useNavigate();
   const { t, isDark } = useLanguage();
