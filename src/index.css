@@ -1,0 +1,115 @@
+/* ─── Theme Variables ─── */
+:root,
+html.dark-theme {
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #0a0a0a;
+  --bg-card: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.35);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-mid: rgba(255, 255, 255, 0.12);
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+  color-scheme: dark;
+}
+
+html.light-theme {
+  --bg-primary: #f7f4ef;
+  --bg-secondary: #eeebe5;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: rgba(0, 0, 0, 0.58);
+  --text-muted: rgba(0, 0, 0, 0.38);
+  --border: rgba(0, 0, 0, 0.07);
+  --border-mid: rgba(0, 0, 0, 0.12);
+  --surface: rgba(0, 0, 0, 0.04);
+  --surface-hover: rgba(0, 0, 0, 0.07);
+  color-scheme: light;
+}
+
+/* ─── Base ─── */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.25s ease;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+}
+
+.menu-button:focus {
+  background: #c9a227;
+  border-radius: 24px;
+}
+
+/* ─── Scrollbar ─── */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ─── Light theme input/select overrides ─── */
+html.light-theme input::placeholder,
+html.light-theme textarea::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+html.light-theme input,
+html.light-theme textarea,
+html.light-theme select {
+  color: #1a1a1a;
+}
+
+/* ─── Native Dropdown Styling ─── */
+select option {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  padding: 12px;
+}
+
+/* For dark mode specifically to fix the white background issue */
+html.dark-theme select option {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Custom Select styling to remove default blue highlight on some browsers */
+select:focus {
+  outline: none;
+  border-color: #c9a227;
+}
