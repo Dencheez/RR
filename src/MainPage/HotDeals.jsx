@@ -17,10 +17,10 @@ function HotDeals() {
   const [isAddPropertyOpen, setIsAddPropertyOpen] = useState(false);
 
   const houses = [
-    { id: 1, title: "The Palms Villa", price: "SAR 3.2M", detail: "Integrated community living by ROSHN", img: "/ThePalmVilla.png", location: "Al Malqa District, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Villas" },
-    { id: 2, title: "Skyline Apartments", price: "SAR 3.2M", detail: "Premium waterfront residences", img: "/SKYLINE.png", location: "KAFD, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Apartments" },
-    { id: 3, title: "Al Narjis Heights", price: "SAR 2.6M", detail: "Modern living at its finest", img: "/3ProductCard.jpg", location: "Al Narjis, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Estates" },
-    { id: 4, title: "Almaty Residences", price: "SAR 2.6M", detail: "Cherry blossoms and temples.", img: "/VillaComplex.png", location: "Al Malqa District, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Villas" },
+    { id: 1, title: "The Palms Villa", price: "SAR 3.2M", detail: "Integrated community living by ROSHN", img: "RR/ThePalmVilla.png", location: "Al Malqa District, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Villas" },
+    { id: 2, title: "Skyline Apartments", price: "SAR 3.2M", detail: "Premium waterfront residences", img: "RR/SKYLINE.png", location: "KAFD, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Apartments" },
+    { id: 3, title: "Al Narjis Heights", price: "SAR 2.6M", detail: "Modern living at its finest", img: "RR/3ProductCard.jpg", location: "Al Narjis, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Estates" },
+    { id: 4, title: "Almaty Residences", price: "SAR 2.6M", detail: "Cherry blossoms and temples.", img: "RR/VillaComplex.png", location: "Al Malqa District, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Villas" },
   ];
 
   const categories = [

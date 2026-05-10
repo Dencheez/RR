@@ -1,34 +1,24 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, ChevronDown, Map, LayoutList, Sliders, X } from "lucide-react";
+import { ChevronDown, Map, LayoutList, } from "lucide-react";
 import { useLanguage } from "../components/LanguageContext";
 
 export const MapSearchForm = ({
-  action, setAction,
   propType, setPropType,
   rooms, setRooms,
-  locationQuery, setLocationQuery,
+  locationQuery,
   priceFrom, setPriceFrom,
   priceTo, setPriceTo,
   hasPhoto, setHasPhoto,
   isNew, setIsNew,
   fromOwner, setFromOwner,
-  isCommercial, setIsCommercial,
   onSearch,
   isMapView, onToggleView,
   resultsCount,
   // New Advanced Props
-  houseType, setHouseType,
   floorFrom, setFloorFrom,
   floorTo, setFloorTo,
-  yearFrom, setYearFrom,
-  yearTo, setYearTo,
-  notFirstFloor, setNotFirstFloor,
-  notLastFloor, setNotLastFloor,
   totalAreaFrom, setTotalAreaFrom,
   totalAreaTo, setTotalAreaTo,
-  kitchenAreaFrom, setKitchenAreaFrom,
-  kitchenAreaTo, setKitchenAreaTo,
   residentialComplex, setResidentialComplex
 }) => {
   const { t, isDark } = useLanguage();

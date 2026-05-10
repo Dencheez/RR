@@ -57,7 +57,7 @@ export const SearchHeader = ({ setModalType }) => {
         <div className="flex-shrink-0">
           <Link to="/">
             <img
-              src="/RiyadhRoof_Logo.png"
+              src="RR/RiyadhRoof_Logo.png"
               alt="logo"
               className={`w-12 transition-all ${!isDark ? "brightness-1" : ""}`}
             />

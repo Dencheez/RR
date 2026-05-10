@@ -6,11 +6,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 // Mock data for properties grouped by type
 const propertyData = {
     villas: [
-        { id: 1, name: "The Palms Villa", price: "3.2M SAR", img: "/ThePalmVilla.png" },
-        { id: 4, name: "Almaty Residences", price: "4.1M SAR", img: "/VillaComplex.png" },
-        { id: 5, name: "Luxury Estate", price: "5.5M SAR", img: "/ThePalmVilla.png" },
-        { id: 6, name: "Modern Oasis", price: "3.8M SAR", img: "/VillaComplex.png" },
-        { id: 7, name: "Desert Rose Villa", price: "4.2M SAR", img: "/ThePalmVilla.png" },
+        { id: 1, name: "The Palms Villa", price: "3.2M SAR", img: "RR/ThePalmVilla.png" },
+        { id: 4, name: "Almaty Residences", price: "4.1M SAR", img: "RR/VillaComplex.png" },
+        { id: 5, name: "Luxury Estate", price: "5.5M SAR", img: "RR/ThePalmVilla.png" },
+        { id: 6, name: "Modern Oasis", price: "3.8M SAR", img: "RR/VillaComplex.png" },
+        { id: 7, name: "Desert Rose Villa", price: "4.2M SAR", img: "RR/ThePalmVilla.png" },
     ],
     apartments: [
         { id: 2, name: "Skyline Apartments", price: "2.8M SAR", img: "/SKYLINE.png" },

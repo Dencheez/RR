@@ -74,7 +74,7 @@ const Header = () => {
           {/* Логотип */}
           <a href="/" className="flex items-center shrink-0">
             <img
-              src="/RiyadhRoof_Logo.png"
+              src="RR/RiyadhRoof_Logo.png"
               alt="RiyadhRoof"
               className="w-14 md:w-[72px] transition-all duration-300"
             />

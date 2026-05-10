@@ -13,7 +13,7 @@ const offerData = [
     taglineKey: "offer1Tagline",
     headlineKey: "offer1Headline",
     descKey: "offer1Desc",
-    img: "/ThePalmVilla.png",
+    img: "RR/ThePalmVilla.png",
     propertyId: 1,
   },
   {
@@ -23,7 +23,7 @@ const offerData = [
     taglineKey: "offer2Tagline",
     headlineKey: "offer2Headline",
     descKey: "offer2Desc",
-    img: "/SKYLINE.png",
+    img: "RR/SKYLINE.png",
     propertyId: 2,
   },
   {
@@ -33,7 +33,7 @@ const offerData = [
     taglineKey: "offer3Tagline",
     headlineKey: "offer3Headline",
     descKey: "offer3Desc",
-    img: "/3ProductCard.jpg",
+    img: "RR/3ProductCard.jpg",
     propertyId: 3,
   },
 ];

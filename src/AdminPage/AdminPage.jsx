@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Plus, Building, Users, Settings, Trash2, Edit2 } from 'lucide-react';
 import { useLanguage } from '../components/LanguageContext';
 import AddPropertyModal from '../components/AddPropertyModal';
@@ -68,7 +67,7 @@ const AdminPage = () => {
           <div className="p-8 border-b border-inherit flex justify-between items-center">
             <h2 className={`text-xl font-bold ${text}`}>Recent Properties</h2>
           </div>
-          
+
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
