@@ -19,10 +19,10 @@ function HotDeals() {
 
 
   const houses = [
-    { id: 1, title: "The Palms Villa", price: "SAR 3.2M", detail: "Integrated community living by ROSHN", img: `${base}RR/ThePalmVilla.png`, location: "Al Malqa District, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Villas" },
-    { id: 2, title: "Skyline Apartments", price: "SAR 3.2M", detail: "Premium waterfront residences", img: `${base}RR/SKYLINE.png`, location: "KAFD, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Apartments" },
-    { id: 3, title: "Al Narjis Heights", price: "SAR 2.6M", detail: "Modern living at its finest", img: `${base}RR/3ProductCard.jpg`, location: "Al Narjis, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Estates" },
-    { id: 4, title: "Almaty Residences", price: "SAR 2.6M", detail: "Cherry blossoms and temples.", img: `${base}RR/VillaComplex.png`, location: "Al Malqa District, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Villas" },
+    { id: 1, title: "The Palms Villa", price: "SAR 3.2M", detail: "Integrated community living by ROSHN", img: `${base}ThePalmVilla.png`, location: "Al Malqa District, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Villas" },
+    { id: 2, title: "Skyline Apartments", price: "SAR 3.2M", detail: "Premium waterfront residences", img: `${base}SKYLINE.png`, location: "KAFD, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Apartments" },
+    { id: 3, title: "Al Narjis Heights", price: "SAR 2.6M", detail: "Modern living at its finest", img: `${base}3ProductCard.jpg`, location: "Al Narjis, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Estates" },
+    { id: 4, title: "Almaty Residences", price: "SAR 2.6M", detail: "Cherry blossoms and temples.", img: `${base}VillaComplex.png`, location: "Al Malqa District, Riyadh", bedrooms: 5, bathrooms: 4, soldPercent: 75, square: 120, category: "Villas" },
   ];
 
   const categories = [
