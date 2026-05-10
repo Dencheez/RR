@@ -1,3 +1,4 @@
+export const base = "/RR/";
 export const properties = [
   {
     id: 1,
@@ -6,9 +7,9 @@ export const properties = [
     status: "Available",
     price: "2.0M",
     priceFull: "SAR 2,000,000",
-    image: "/ThePalmVilla.png",
+    image: `${base}ThePalmVilla.png`,
     images: [
-      "RR/ThePalmVilla.png",
+      `${base}ThePalmVilla.png`,
       "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200"
     ],
@@ -31,9 +32,9 @@ export const properties = [
     status: "Available",
     price: "15,000 / mo",
     priceFull: "SAR 15,000 per month",
-    image: "RR/SKYLINE.png",
+    image: `${base}SKYLINE.png`,
     images: [
-      "RR/SKYLINE.png",
+      `${base}SKYLINE.png`,
       "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
     ],

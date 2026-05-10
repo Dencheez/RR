@@ -3,30 +3,32 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../components/LanguageContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+const base = import.meta.env.BASE_URL;
 // Mock data for properties grouped by type
 const propertyData = {
     villas: [
-        { id: 1, name: "The Palms Villa", price: "3.2M SAR", img: "RR/ThePalmVilla.png" },
-        { id: 4, name: "Almaty Residences", price: "4.1M SAR", img: "RR/VillaComplex.png" },
-        { id: 5, name: "Luxury Estate", price: "5.5M SAR", img: "RR/ThePalmVilla.png" },
-        { id: 6, name: "Modern Oasis", price: "3.8M SAR", img: "RR/VillaComplex.png" },
-        { id: 7, name: "Desert Rose Villa", price: "4.2M SAR", img: "RR/ThePalmVilla.png" },
+        { id: 1, name: "The Palms Villa", price: "3.2M SAR", img: `${base}ThePalmVilla.png` },
+        { id: 4, name: "Almaty Residences", price: "4.1M SAR", img: `${base}VillaComplex.png` },
+        { id: 5, name: "Luxury Estate", price: "5.5M SAR", img: `${base}ThePalmVilla.png` },
+        { id: 6, name: "Modern Oasis", price: "3.8M SAR", img: `${base}VillaComplex.png` },
+        { id: 7, name: "Desert Rose Villa", price: "4.2M SAR", img: `${base}ThePalmVilla.png` },
     ],
     apartments: [
-        { id: 2, name: "Skyline Apartments", price: "2.8M SAR", img: "/SKYLINE.png" },
-        { id: 3, name: "Al Narjis Heights", price: "2.6M SAR", img: "/3ProductCard.jpg" },
-        { id: 8, name: "Downtown Studio", price: "1.2M SAR", img: "/SKYLINE.png" },
-        { id: 9, name: "KAFD Premium", price: "3.5M SAR", img: "/3ProductCard.jpg" },
-        { id: 10, name: "Olia Residence", price: "2.1M SAR", img: "/SKYLINE.png" },
+        { id: 2, name: "Skyline Apartments", price: "2.8M SAR", img: `${base}SKYLINE.png` },
+        { id: 3, name: "Al Narjis Heights", price: "2.6M SAR", img: `${base}3ProductCard.jpg` },
+        { id: 8, name: "Downtown Studio", price: "1.2M SAR", img: `${base}SKYLINE.png` },
+        { id: 9, name: "KAFD Premium", price: "3.5M SAR", img: `${base}3ProductCard.jpg` },
+        { id: 10, name: "Olia Residence", price: "2.1M SAR", img: `${base}SKYLINE.png` },
     ],
     commercial: [
-        { id: 11, name: "King Abdullah Tower", price: "15M SAR", img: "/SKYLINE.png" },
-        { id: 12, name: "Business Hub", price: "8M SAR", img: "/3ProductCard.jpg" },
-        { id: 13, name: "Retail Space A", price: "2.5M SAR", img: "/VillaComplex.png" },
-        { id: 14, name: "Office Complex", price: "12M SAR", img: "/SKYLINE.png" },
-        { id: 15, name: "Boutique Store", price: "1.8M SAR", img: "/3ProductCard.jpg" },
+        { id: 11, name: "King Abdullah Tower", price: "15M SAR", img: `${base}SKYLINE.png` },
+        { id: 12, name: "Business Hub", price: "8M SAR", img: `${base}3ProductCard.jpg` },
+        { id: 13, name: "Retail Space A", price: "2.5M SAR", img: `${base}VillaComplex.png` },
+        { id: 14, name: "Office Complex", price: "12M SAR", img: `${base}SKYLINE.png` },
+        { id: 15, name: "Boutique Store", price: "1.8M SAR", img: `${base}3ProductCard.jpg` },
     ]
 };
+
 
 const PropertyCard = ({ item, title, isDark, navigate, textColor, mutedColor }) => {
     const [liked, setLiked] = useState(false);

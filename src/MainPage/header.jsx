@@ -12,6 +12,8 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const base = import.meta.env.BASE_URL;
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,7 +76,7 @@ const Header = () => {
           {/* Логотип */}
           <a href="/" className="flex items-center shrink-0">
             <img
-              src="RR/RiyadhRoof_Logo.png"
+              src={`${base}RiyadhRoof_Logo.png`}
               alt="RiyadhRoof"
               className="w-14 md:w-[72px] transition-all duration-300"
             />
@@ -166,7 +168,7 @@ const Header = () => {
         <div className={`fixed inset-0 z-[150] flex flex-col xl:hidden ${isDark ? 'bg-[#0a0a0a]' : 'bg-white'}`}>
           {/* Шапка меню */}
           <div className={`flex justify-between items-center px-6 py-5 border-b ${isDark ? 'border-white/5' : 'border-black/8'}`}>
-            <img src="/RiyadhRoof_Logo.png" alt="logo" className="w-16" />
+            <img src={`${base}RiyadhRoof_Logo.png`} alt="logo" className="w-16" />
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className={`w-11 h-11 rounded-full flex items-center justify-center

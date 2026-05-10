@@ -50,6 +50,7 @@ export const SearchHeader = ({ setModalType }) => {
       navigate(link.href);
     }
   };
+  const base = import.meta.env.BASE_URL;
 
   return (
     <header className={`fixed top-0 left-0 w-full z-[110] border-b transition-colors duration-300 ${headerBg}`}>
@@ -57,7 +58,7 @@ export const SearchHeader = ({ setModalType }) => {
         <div className="flex-shrink-0">
           <Link to="/">
             <img
-              src="RR/RiyadhRoof_Logo.png"
+              src={`${base}RiyadhRoof_Logo.png`}
               alt="logo"
               className={`w-12 transition-all ${!isDark ? "brightness-1" : ""}`}
             />

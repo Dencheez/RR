@@ -120,6 +120,7 @@ export default function SearchResult({ isMapView }) {
   const toggleSave = (id) => {
     setSavedIds((prev) => prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]);
   };
+  const base = import.meta.env.BASE_URL;
 
   // Mock Data
   const buildings = [
@@ -128,7 +129,7 @@ export default function SearchResult({ isMapView }) {
       name: "Al Malqa Luxury Villa",
       status: "Available",
       price: 2,
-      image: "RR/ThePalmVilla.png",
+      image: `${base}ThePalmVilla.png`,
       bedrooms: 3,
       bathrooms: 2,
       beds: 4,
@@ -146,7 +147,7 @@ export default function SearchResult({ isMapView }) {
       name: "KAFD Sky Penthouse",
       status: "Available",
       price: 15000,
-      image: "RR/SKYLINE.png",
+      image: `${base}SKYLINE.png`,
       bedrooms: 2,
       bathrooms: 2,
       beds: 2,
@@ -164,7 +165,7 @@ export default function SearchResult({ isMapView }) {
       name: "Al Narjis Modern Loft",
       status: "Available",
       price: 8500,
-      image: "RR/3ProductCard.jpg",
+      image: `${base}3ProductCard.jpg`,
       bedrooms: 1,
       bathrooms: 1,
       beds: 1,
@@ -200,7 +201,7 @@ export default function SearchResult({ isMapView }) {
       name: "Al Malqa Luxury Villa",
       status: "Available",
       price: 2,
-      image: "RR/ThePalmVilla.png",
+      image: `${base}ThePalmVilla.png`,
       bedrooms: 3,
       bathrooms: 2,
       beds: 4,
@@ -218,7 +219,7 @@ export default function SearchResult({ isMapView }) {
       name: "Al Malqa Luxury Villa",
       status: "Available",
       price: 2,
-      image: "RR/ThePalmVilla.png",
+      image: `${base}ThePalmVilla.png`,
       bedrooms: 3,
       bathrooms: 2,
       beds: 4,

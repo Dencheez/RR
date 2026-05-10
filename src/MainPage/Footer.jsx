@@ -3,6 +3,7 @@ import { Facebook, Instagram, Twitter } from "../components/Icons";
 import { useLanguage } from "../components/LanguageContext";
 import { motion } from 'framer-motion';
 
+
 const Footer = () => {
   const { t, isDark } = useLanguage();
   const bg = isDark ? "bg-[#0d0d0d] text-white border-white/5" : "bg-white text-[#1a1a1a] border-black/8";
@@ -11,6 +12,7 @@ const Footer = () => {
   const borderDiv = isDark ? "border-white/5" : "border-black/8";
   const iconBorder = isDark ? "border-white/10 hover:border-[#c9a227]" : "border-black/10 hover:border-[#c9a227]";
   const bottomText = isDark ? "text-gray-500 hover:text-white" : "text-gray-500 hover:text-[#1a1a1a]";
+  const base = import.meta.env.BASE_URL;
 
   return (
     <footer className={`pt-10 pb-10 px-4 md:px-20 border-t transition-colors duration-300 ${bg}`}>
@@ -20,7 +22,7 @@ const Footer = () => {
           {/* Первая колонка */}
           <div className="col-span-1 flex flex-col gap-4">
             <img
-              src="/RiyadhRoof_Logo.png"
+              src={`${base}RiyadhRoof_Logo.png`}
               alt="Logo"
               className={`w-[180px] md:w-[210px] h-auto object-contain mx-auto md:mx-0`}
             />
