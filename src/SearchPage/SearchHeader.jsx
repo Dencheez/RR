@@ -27,7 +27,6 @@ export const SearchHeader = ({ setModalType }) => {
   const bottomNavLinks = [
     { icon: Home, label: t('navSale'), href: '/search?action=buy' },
     { icon: Key, label: t('navRent'), href: '/search?action=rent' },
-    { icon: Building2, label: t('navNewBuildings'), href: '/search?new=1' },
     { icon: Map, label: t('navMap'), href: '/map?type=villa' },
     { icon: ChartNoAxesCombined, label: t('Analytics'), href: '/analytics' },
   ];

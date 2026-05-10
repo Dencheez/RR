@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../components/LanguageContext";
 import { ChevronLeft, ChevronRight, Plus, Tag } from "lucide-react";
 import AddPropertyModal from "../components/AddPropertyModal";
-const base = import.meta.env.BASE_URL;
 
 
 // Offer data — uses translation keys, resolved with t() in render
@@ -49,6 +48,8 @@ const tagColors = {
 
 
 function SpecialOffers() {
+  const base = import.meta.env.BASE_URL;
+
   const navigate = useNavigate();
   const { t, isDark } = useLanguage();
   const [isAddPropertyOpen, setIsAddPropertyOpen] = useState(false);
