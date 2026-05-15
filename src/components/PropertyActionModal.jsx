@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Phone, Mail, User, Info, CheckCircle2, Building2 } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
 
 const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
-  const { t, isDark } = useLanguage();
+  const { t } = useLanguage();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
@@ -17,10 +16,10 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
 
   if (!isOpen) return null;
 
-  const bg = isDark ? "bg-[#0d0d0d] border-white/10" : "bg-white border-black/10";
-  const inputBg = isDark ? "bg-white/5 border-white/10 text-white" : "bg-black/5 border-black/10 text-[#1a1a1a]";
-  const textMuted = isDark ? "text-white/40" : "text-black/40";
-  const titleColor = isDark ? "text-white" : "text-[#1a1a1a]";
+  const bg = "bg-white border-black/10";
+  const inputBg = "bg-black/5 border-black/10 text-[#1a1a1a]";
+  const textMuted = "text-black/40";
+  const titleColor = "text-[#1a1a1a]";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,33 +30,23 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
   };
 
   return (
-    <AnimatePresence>
       <div className="fixed inset-0 z-[200] flex items-end md:items-center justify-center p-0 md:p-6">
-        {/* Backdrop */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+        <div
           onClick={onClose}
           className="absolute inset-0 bg-black/80 backdrop-blur-md"
         />
 
-        {/* Modal Content */}
-        <motion.div
-          initial={{ opacity: 0, y: "100%" }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: "100%" }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        <div
           className={`relative w-full max-w-[600px] max-h-[90vh] md:max-h-[85vh] rounded-t-[40px] md:rounded-[40px] border-t md:border shadow-2xl overflow-y-auto no-scrollbar pb-10 md:pb-0 ${bg}`}
         >
           {/* Mobile Handle */}
           <div className="w-full flex justify-center pt-4 pb-2 md:hidden">
-            <div className={`w-12 h-1.5 rounded-full ${isDark ? 'bg-white/20' : 'bg-black/20'}`} />
+            <div className="w-12 h-1.5 rounded-full bg-black/20" />
           </div>
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-8 right-8 z-10 p-2 rounded-full hover:bg-black/10 transition-colors"
+            className="absolute top-8 right-8 z-10 p-2 rounded-full hover:bg-black/10"
           >
             <X size={24} className={titleColor} />
           </button>
@@ -86,7 +75,7 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
                         required
                         type="text"
                         placeholder="John Doe"
-                        className={`w-full pl-12 pr-6 py-4 rounded-2xl border transition-all focus:border-[#c9a227] outline-none ${inputBg}`}
+                        className={`w-full pl-12 pr-6 py-4 rounded-2xl border outline-none ${inputBg}`}
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                       />
@@ -100,7 +89,7 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
                         required
                         type="tel"
                         placeholder="+966 --- --- ---"
-                        className={`w-full pl-12 pr-6 py-4 rounded-2xl border transition-all focus:border-[#c9a227] outline-none ${inputBg}`}
+                        className={`w-full pl-12 pr-6 py-4 rounded-2xl border outline-none ${inputBg}`}
                         value={formData.phone}
                         onChange={(e) => setFormData({...formData, phone: e.target.value})}
                       />
@@ -116,7 +105,7 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
                       required
                       type="email"
                       placeholder="john@example.com"
-                      className={`w-full pl-12 pr-6 py-4 rounded-2xl border transition-all focus:border-[#c9a227] outline-none ${inputBg}`}
+                      className={`w-full pl-12 pr-6 py-4 rounded-2xl border outline-none ${inputBg}`}
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                     />
@@ -129,7 +118,7 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
                       <label className={`text-[10px] font-black uppercase tracking-widest ml-4 ${textMuted}`}>{t('moveInDate')}</label>
                       <input
                         type="date"
-                        className={`w-full px-6 py-4 rounded-2xl border transition-all focus:border-[#c9a227] outline-none ${inputBg}`}
+                        className={`w-full px-6 py-4 rounded-2xl border outline-none ${inputBg}`}
                         value={formData.moveInDate}
                         onChange={(e) => setFormData({...formData, moveInDate: e.target.value})}
                       />
@@ -137,7 +126,7 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
                     <div className="space-y-2">
                       <label className={`text-[10px] font-black uppercase tracking-widest ml-4 ${textMuted}`}>{t('duration')}</label>
                       <select 
-                        className={`w-full px-6 py-4 rounded-2xl border transition-all focus:border-[#c9a227] outline-none appearance-none ${inputBg}`}
+                        className={`w-full px-6 py-4 rounded-2xl border outline-none appearance-none ${inputBg}`}
                         value={formData.duration}
                         onChange={(e) => setFormData({...formData, duration: e.target.value})}
                       >
@@ -153,7 +142,7 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
                   <label className={`text-[10px] font-black uppercase tracking-widest ml-4 ${textMuted}`}>{t('message')} ({t('optional')})</label>
                   <textarea
                     rows="3"
-                    className={`w-full px-6 py-4 rounded-2xl border transition-all focus:border-[#c9a227] outline-none resize-none ${inputBg}`}
+                    className={`w-full px-6 py-4 rounded-2xl border outline-none resize-none ${inputBg}`}
                     placeholder="I am interested in this property..."
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
@@ -162,7 +151,7 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
 
                 <div className={`p-4 rounded-2xl bg-[#c9a227]/10 border border-[#c9a227]/20 flex gap-4 items-center mb-4`}>
                     <Info size={20} className="text-[#c9a227] shrink-0" />
-                    <p className={`text-[10px] font-bold leading-relaxed ${isDark ? 'text-white/60' : 'text-black/60'}`}>
+                    <p className="text-[10px] font-bold leading-relaxed text-black/60">
                         {type === 'buy' 
                             ? "By submitting, you agree to our privacy policy. An agent will contact you within 24 hours to discuss financing and viewing options."
                             : "Rental terms subject to credit check. By submitting this request, you initiate a preliminary inquiry for the selected dates."
@@ -172,7 +161,7 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
 
                 <button
                   type="submit"
-                  className="w-full py-5 bg-[#c9a227] text-white rounded-2xl font-black uppercase tracking-[0.2em] text-xs shadow-xl shadow-[#c9a227]/30 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  className="w-full py-5 bg-[#c9a227] text-white rounded-2xl font-black uppercase tracking-[0.2em] text-xs shadow-xl shadow-[#c9a227]/30"
                 >
                   {type === 'buy' ? t('Submit Buy Request') : t('Submit Rent Request')}
                 </button>
@@ -180,13 +169,11 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
             </div>
           ) : (
             <div className="p-20 text-center">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
+              <div
                 className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center text-white mx-auto mb-8 shadow-2xl shadow-green-500/30"
               >
                 <CheckCircle2 size={48} />
-              </motion.div>
+              </div>
               <h2 className={`text-4xl font-black tracking-tight mb-4 ${titleColor}`}>{t('Success')}!</h2>
               <p className={`text-lg mb-10 ${textMuted}`}>{t('requestReceivedMessage') || "Your request has been received. Our luxury concierge will reach out to you shortly."}</p>
               <button
@@ -197,9 +184,8 @@ const PropertyActionModal = ({ isOpen, onClose, type, property }) => {
               </button>
             </div>
           )}
-        </motion.div>
+        </div>
       </div>
-    </AnimatePresence>
   );
 };
 

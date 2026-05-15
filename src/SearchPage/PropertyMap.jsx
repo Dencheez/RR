@@ -8,15 +8,14 @@ import { useLanguage } from '../components/LanguageContext';
 
 // Custom Toolbar Component
 const MapToolbar = ({ onDrawPolygon, onClear, hasPolygon }) => {
-    const { isDark } = useLanguage();
 
     const btnBase = "w-10 h-10 flex items-center justify-center transition-all duration-200 border-b last:border-b-0";
-    const bgClass = isDark ? "bg-[#1a1a1a] border-white/10" : "bg-white border-black/10";
-    const iconColor = isDark ? "text-white/70 hover:text-white" : "text-black/60 hover:text-black";
+    const bgClass = "bg-white border-black/10";
+    const iconColor = "text-black/60 hover:text-black";
     const activeClass = "text-[#c9a227]";
 
     return (
-        <div className="absolute top-4 right-4 z-[1000] flex flex-col rounded-xl overflow-hidden shadow-2xl border border-black/5 dark:border-white/5">
+        <div className="absolute top-4 right-4 z-[1000] flex flex-col rounded-xl overflow-hidden shadow-2xl border border-black/5">
             <button
                 onClick={onDrawPolygon}
                 className={`${btnBase} ${bgClass} ${iconColor} hover:bg-[#c9a227]/10 relative`}
@@ -50,7 +49,6 @@ function MapResizer() {
 export default function PropertyMap({ buildings, onPolygonChange }) {
     const featureGroupRef = useRef(null);
     const [hasPolygon, setHasPolygon] = useState(false);
-    const { isDark } = useLanguage();
     const mapRef = useRef(null);
 
     const onCreated = (e) => {
@@ -100,13 +98,13 @@ export default function PropertyMap({ buildings, onPolygonChange }) {
                 .leaflet-draw-toolbar { display: none !important; }
                 .leaflet-draw-actions { display: none !important; }
                 .custom-popup .leaflet-popup-content-wrapper {
-                    background: ${isDark ? '#1a1a1a' : 'white'};
-                    color: ${isDark ? 'white' : 'black'};
+                    background: white;
+                    color: black;
                     border-radius: 16px;
                     padding: 0;
                 }
                 .custom-popup .leaflet-popup-tip {
-                    background: ${isDark ? '#1a1a1a' : 'white'};
+                    background: white;
                 }
                 `}
             </style>
@@ -119,10 +117,7 @@ export default function PropertyMap({ buildings, onPolygonChange }) {
             >
                 <MapResizer />
                 <TileLayer
-                    url={isDark
-                        ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-                        : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    }
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; RiyadhRoof'
                 />
 

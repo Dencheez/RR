@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import * as turf from '@turf/turf';
 import { SearchHeader } from "./SearchHeader";
 import { SearchCard } from "./SearchCard";
-import { MapSearchForm } from "./MapSearchForm";
+import { Form } from "../components/Form";
 import { useLanguage } from "../components/LanguageContext";
 import PropertyMap from "./PropertyMap";
 import { Flame, ArrowUpDown } from "lucide-react";
 
-export default function SearchResult({ isMapView }) {
+export default function SearchResult({ isMapView, hideForm }) {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { t, isDark } = useLanguage();
+  const { t } = useLanguage();
 
   const [savedIds, setSavedIds] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -74,8 +73,8 @@ export default function SearchResult({ isMapView }) {
     setResidentialComplex(searchParams.get('residentialComplex') || '');
   }, [searchParams]);
 
-  const pageBg = isDark ? "bg-[#0d0d0d]" : "bg-[#f7f5f0]";
-  const titleColor = isDark ? "text-white" : "text-[#1a1a1a]";
+  const pageBg = "bg-white";
+  const titleColor = "text-[#1a1a1a]";
 
   const handleSearch = () => {
     const params = new URLSearchParams();
@@ -107,7 +106,8 @@ export default function SearchResult({ isMapView }) {
 
     if (isMapView) {
       setTimeout(() => {
-        document.getElementById('results-list')?.scrollIntoView({ behavior: 'smooth' });
+        const el = document.getElementById('results-list');
+        if (el) el.scrollIntoView({ block: 'start' });
       }, 100);
     }
   };
@@ -128,19 +128,27 @@ export default function SearchResult({ isMapView }) {
       id: 1,
       name: "Al Malqa Luxury Villa",
       status: "Available",
-      price: 2,
+      price: 2500000,
       image: `${base}ThePalmVilla.png`,
       bedrooms: 3,
       bathrooms: 2,
       beds: 4,
       area: 350,
+      kitchenArea: 25,
       location: "Al Malqa District • Riyadh",
       features: "Private Pool • Garden • Smart Home",
       distance: 5.5,
-      category: "Villas",
+      category: "villas",
       type: "For Sale",
       coords: [24.7836, 46.6153],
-      date: "2024-05-08"
+      date: "2024-05-08",
+      houseType: "brick",
+      floor: 1,
+      totalFloors: 2,
+      year: 2020,
+      hasPhoto: true,
+      isNew: true,
+      fromOwner: false,
     },
     {
       id: 2,
@@ -152,13 +160,21 @@ export default function SearchResult({ isMapView }) {
       bathrooms: 2,
       beds: 2,
       area: 150,
+      kitchenArea: 15,
       location: "KAFD • Riyadh",
       features: "City View • High Floor • Premium",
       distance: 2.0,
-      category: "Penthouses",
+      category: "apartments",
       type: "For rent",
       coords: [24.7618, 46.6402],
-      date: "2024-05-07"
+      date: "2024-05-07",
+      houseType: "monolith",
+      floor: 45,
+      totalFloors: 50,
+      year: 2022,
+      hasPhoto: true,
+      isNew: true,
+      fromOwner: true,
     },
     {
       id: 6,
@@ -170,67 +186,47 @@ export default function SearchResult({ isMapView }) {
       bathrooms: 1,
       beds: 1,
       area: 85,
+      kitchenArea: 12,
       location: "Al Narjis • Riyadh",
       features: "Modern Loft • High Ceilings",
       distance: 12.0,
-      category: "Apartments",
+      category: "apartments",
       type: "For rent",
       coords: [24.8210, 46.6850],
-      date: "2024-05-09"
+      date: "2024-05-09",
+      houseType: "monolith",
+      floor: 3,
+      totalFloors: 5,
+      year: 2021,
+      hasPhoto: true,
+      isNew: false,
+      fromOwner: false,
     },
     {
       id: 3,
       name: "Diplomatic Quarter Estate",
       status: "Sold",
-      price: 5.0,
+      price: 5000000,
       image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&q=80&w=1000",
       bedrooms: 5,
       bathrooms: 6,
       beds: 6,
       area: 600,
+      kitchenArea: 40,
       location: "DQ • Riyadh",
       features: "Security • Large Plot • Guest House",
       distance: 10.0,
-      category: "Estates",
+      category: "villas",
       type: "For Sale",
       coords: [24.6750, 46.6250],
-      date: "2024-05-06"
-    },
-    {
-      id: 4,
-      name: "Al Malqa Luxury Villa",
-      status: "Available",
-      price: 2,
-      image: `${base}ThePalmVilla.png`,
-      bedrooms: 3,
-      bathrooms: 2,
-      beds: 4,
-      area: 350,
-      location: "Al Malqa District • Riyadh",
-      features: "Private Pool • Garden • Smart Home",
-      distance: 5.5,
-      category: "Villas",
-      type: "For Sale",
-      coords: [24.7836, 46.6153],
-      date: "2024-05-08"
-    },
-    {
-      id: 5,
-      name: "Al Malqa Luxury Villa",
-      status: "Available",
-      price: 2,
-      image: `${base}ThePalmVilla.png`,
-      bedrooms: 3,
-      bathrooms: 2,
-      beds: 4,
-      area: 350,
-      location: "Al Malqa District • Riyadh",
-      features: "Private Pool • Garden • Smart Home",
-      distance: 5.5,
-      category: "Villas",
-      type: "For Sale",
-      coords: [24.7836, 46.6153],
-      date: "2024-05-08"
+      date: "2024-05-06",
+      houseType: "brick",
+      floor: 1,
+      totalFloors: 2,
+      year: 2015,
+      hasPhoto: true,
+      isNew: false,
+      fromOwner: true,
     },
   ];
 
@@ -240,8 +236,48 @@ export default function SearchResult({ isMapView }) {
       const matchesAction = action === 'buy' ? b.type === "For Sale" : b.type === "For rent";
       if (!matchesAction) return false;
 
-      if (rooms && b.bedrooms.toString() !== rooms) return false;
+      // Property Type
       if (propType && b.category.toLowerCase() !== propType.toLowerCase()) return false;
+
+      // Rooms
+      if (rooms) {
+        if (rooms === '5+') {
+          if (b.bedrooms < 5) return false;
+        } else if (b.bedrooms.toString() !== rooms) {
+          return false;
+        }
+      }
+
+      // Price Range
+      if (priceFrom && b.price < parseInt(priceFrom)) return false;
+      if (priceTo && b.price > parseInt(priceTo)) return false;
+
+      // Photo
+      if (hasPhoto && !b.hasPhoto) return false;
+
+      // New Buildings
+      if (isNew && !b.isNew) return false;
+
+      // From Owner
+      if (fromOwner && !b.fromOwner) return false;
+
+      // Advanced Filters
+      if (houseType && b.houseType !== houseType) return false;
+      if (floorFrom && b.floor < parseInt(floorFrom)) return false;
+      if (floorTo && b.floor > parseInt(floorTo)) return false;
+      if (notFirstFloor && b.floor === 1) return false;
+      if (notLastFloor && b.floor === b.totalFloors) return false;
+      if (yearFrom && b.year < parseInt(yearFrom)) return false;
+      if (yearTo && b.year > parseInt(yearTo)) return false;
+      if (totalAreaFrom && b.area < parseInt(totalAreaFrom)) return false;
+      if (totalAreaTo && b.area > parseInt(totalAreaTo)) return false;
+      if (kitchenAreaFrom && b.kitchenArea < parseInt(kitchenAreaFrom)) return false;
+      if (kitchenAreaTo && b.kitchenArea > parseInt(kitchenAreaTo)) return false;
+      if (residentialComplex && !b.location.toLowerCase().includes(residentialComplex.toLowerCase())) return false;
+
+      // Location
+      if (locationQuery && !b.location.toLowerCase().includes(locationQuery.toLowerCase())) return false;
+
       return true;
     });
 
@@ -255,7 +291,7 @@ export default function SearchResult({ isMapView }) {
     }
 
     return result;
-  }, [buildings, rooms, propType, action, sortBy]);
+  }, [buildings, rooms, propType, action, sortBy, priceFrom, priceTo, hasPhoto, isNew, fromOwner, houseType, floorFrom, floorTo, yearFrom, yearTo, notFirstFloor, notLastFloor, totalAreaFrom, totalAreaTo, kitchenAreaFrom, kitchenAreaTo, residentialComplex, locationQuery]);
 
   // Reset page when filters change
   useEffect(() => {
@@ -280,40 +316,42 @@ export default function SearchResult({ isMapView }) {
   ];
 
   return (
-    <div className={`min-h-screen font-sans transition-colors duration-300 ${pageBg}`}>
+    <div className={`min-h-screen font-sans ${pageBg}`}>
       <SearchHeader />
 
       <main className="max-w-[1440px] mx-auto px-4 md:px-10 pt-28 pb-20">
 
         {/* TOP SEARCH FORM */}
-        <MapSearchForm
-          action={action} setAction={setAction}
-          propType={propType} setPropType={setPropType}
-          rooms={rooms} setRooms={setRooms}
-          locationQuery={locationQuery} setLocationQuery={setLocationQuery}
-          priceFrom={priceFrom} setPriceFrom={setPriceFrom}
-          priceTo={priceTo} setPriceTo={setPriceTo}
-          hasPhoto={hasPhoto} setHasPhoto={setHasPhoto}
-          isNew={isNew} setIsNew={setIsNew}
-          fromOwner={fromOwner} setFromOwner={setFromOwner}
-          isCommercial={isCommercial} setIsCommercial={setIsCommercial}
-          onSearch={handleSearch}
-          isMapView={isMapView} onToggleView={handleToggleView}
-          resultsCount={filteredBuildings.length}
-          // New Advanced Props
-          houseType={houseType} setHouseType={setHouseType}
-          floorFrom={floorFrom} setFloorFrom={setFloorFrom}
-          floorTo={floorTo} setFloorTo={setFloorTo}
-          yearFrom={yearFrom} setYearFrom={setYearFrom}
-          yearTo={yearTo} setYearTo={setYearTo}
-          notFirstFloor={notFirstFloor} setNotFirstFloor={setNotFirstFloor}
-          notLastFloor={notLastFloor} setNotLastFloor={setNotLastFloor}
-          totalAreaFrom={totalAreaFrom} setTotalAreaFrom={setTotalAreaFrom}
-          totalAreaTo={totalAreaTo} setTotalAreaTo={setTotalAreaTo}
-          kitchenAreaFrom={kitchenAreaFrom} setKitchenAreaFrom={setKitchenAreaFrom}
-          kitchenAreaTo={kitchenAreaTo} setKitchenAreaTo={setKitchenAreaTo}
-          residentialComplex={residentialComplex} setResidentialComplex={setResidentialComplex}
-        />
+        {!hideForm && (
+          <Form
+            action={action} setAction={setAction}
+            propType={propType} setPropType={setPropType}
+            rooms={rooms} setRooms={setRooms}
+            locationQuery={locationQuery} setLocationQuery={setLocationQuery}
+            priceFrom={priceFrom} setPriceFrom={setPriceFrom}
+            priceTo={priceTo} setPriceTo={setPriceTo}
+            hasPhoto={hasPhoto} setHasPhoto={setHasPhoto}
+            isNew={isNew} setIsNew={setIsNew}
+            fromOwner={fromOwner} setFromOwner={setFromOwner}
+            isCommercial={isCommercial} setIsCommercial={setIsCommercial}
+            onSearch={handleSearch}
+            isMapView={isMapView} onToggleView={handleToggleView}
+            resultsCount={filteredBuildings.length}
+            // New Advanced Props
+            houseType={houseType} setHouseType={setHouseType}
+            floorFrom={floorFrom} setFloorFrom={setFloorFrom}
+            floorTo={floorTo} setFloorTo={setFloorTo}
+            yearFrom={yearFrom} setYearFrom={setYearFrom}
+            yearTo={yearTo} setYearTo={setYearTo}
+            notFirstFloor={notFirstFloor} setNotFirstFloor={setNotFirstFloor}
+            notLastFloor={notLastFloor} setNotLastFloor={setNotLastFloor}
+            totalAreaFrom={totalAreaFrom} setTotalAreaFrom={setTotalAreaFrom}
+            totalAreaTo={totalAreaTo} setTotalAreaTo={setTotalAreaTo}
+            kitchenAreaFrom={kitchenAreaFrom} setKitchenAreaFrom={setKitchenAreaFrom}
+            kitchenAreaTo={kitchenAreaTo} setKitchenAreaTo={setKitchenAreaTo}
+            residentialComplex={residentialComplex} setResidentialComplex={setResidentialComplex}
+          />
+        )}
 
         <div className="flex flex-col lg:flex-row gap-10 mt-10">
 
@@ -327,7 +365,7 @@ export default function SearchResult({ isMapView }) {
                   {action === 'buy' ? t('navSale') : t('navRent')} {t('hotDealsSubtitle')}
                 </h1>
                 <p className={`text-sm opacity-50 ${titleColor}`}>
-                  {t('Ads Found')}: {filteredBuildings.length}
+                  {t('foundAds')}: {filteredBuildings.length}
                 </p>
               </div>
             </div>
@@ -347,8 +385,8 @@ export default function SearchResult({ isMapView }) {
                   onClick={() => setSortBy(sort.id)}
                   className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all
                       ${sortBy === sort.id
-                      ? 'bg-[#c9a227] text-white shadow-lg scale-105'
-                      : `bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 ${titleColor} opacity-60 hover:opacity-100`}`}
+                      ? 'bg-[#c9a227] text-white scale-105'
+                      : `bg-black/5 hover:bg-black/10 ${titleColor} opacity-60 hover:opacity-100`}`}
                 >
                   {sort.label}
                 </button>
@@ -358,7 +396,7 @@ export default function SearchResult({ isMapView }) {
             {/* Results Section */}
             {isMapView ? (
               <div className="flex flex-col gap-8">
-                <div className={`w-full h-[600px] rounded-[32px] overflow-hidden border ${isDark ? 'border-white/10' : 'border-black/10'}`}>
+                <div className="w-full h-[600px] rounded-[32px] overflow-hidden border border-black/10">
                   <PropertyMap buildings={filteredBuildings} onPolygonChange={setPolygonFilter} />
                 </div>
                 <div id="results-list" className="flex flex-col gap-6">
@@ -374,9 +412,10 @@ export default function SearchResult({ isMapView }) {
                         key={page}
                         onClick={() => {
                           setCurrentPage(page);
-                          document.getElementById('results-list')?.scrollIntoView({ behavior: 'smooth' });
+                          const el = document.getElementById('results-list');
+                          if (el) el.scrollIntoView({ block: 'start' });
                         }}
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm transition-all
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm
                             ${page === currentPage ? 'bg-[#c9a227] text-white shadow-lg' : `bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 ${titleColor}`}`}
                       >
                         {page}
@@ -401,10 +440,10 @@ export default function SearchResult({ isMapView }) {
                         key={page}
                         onClick={() => {
                           setCurrentPage(page);
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                          window.scrollTo({ top: 0 });
                         }}
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm transition-all
-                            ${page === currentPage ? 'bg-[#c9a227] text-white shadow-lg' : `bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 ${titleColor}`}`}
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm
+                            ${page === currentPage ? 'bg-[#c9a227] text-white' : `bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 ${titleColor}`}`}
                       >
                         {page}
                       </button>
@@ -418,7 +457,7 @@ export default function SearchResult({ isMapView }) {
           {/* RIGHT SIDEBAR: Hot Offers (Hidden on Map View) */}
           {!isMapView && (
             <div className="w-full lg:w-[320px] shrink-0">
-              <div className={` top-28 p-6 rounded-3xl border ${isDark ? 'bg-[#1a1a1a] border-white/5' : 'bg-white border-black/5'}`}>
+              <div className=" top-28 p-6 rounded-3xl border bg-white border-black/5">
                 <div className="flex items-center gap-2 mb-6">
                   <Flame className="text-[#c9a227]" size={20} />
                   <h2 className={`text-xl font-black uppercase tracking-tight ${titleColor}`}>{t('hotOffers')}</h2>
@@ -432,7 +471,7 @@ export default function SearchResult({ isMapView }) {
                       onClick={() => navigate(`/property/${offer.id}`)}
                     >
                       <div className="flex gap-4">
-                        <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 border border-black/5 dark:border-white/5">
+                        <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 border border-black/5">
                           <img src={offer.image} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                         </div>
                         <div className="flex flex-col justify-center">

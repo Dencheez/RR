@@ -193,7 +193,6 @@ export const translations = {
     yearlyGrowth: "Yearly Growth",
     villaSales: "Villa Sales",
     villaRentals: "Villa Rentals",
-    available: "Available",
     forSale: "For Sale",
     forRent: "For Rent",
     liveData: "Live Market Data",
@@ -217,6 +216,8 @@ export const translations = {
     Location: "Location",
     Riyadh: "Riyadh",
     AboutProperty: "About Property",
+    Jan: "Jan", Feb: "Feb", Mar: "Mar", Apr: "Apr", May: "May", Jun: "Jun",
+    Jul: "Jul", Aug: "Aug", Sep: "Sep", Oct: "Oct", Nov: "Nov", Dec: "Dec",
 
   },
   RU: {
@@ -310,7 +311,7 @@ export const translations = {
     navNewBuildings: "Новостройки",
     navSpecialOffers: "Спецпредложения",
     returnToProjects: "Вернуться",
-    avaible: "Доступный",
+    available: "Доступно",
     availableProperties: "Доступные виллы",
 
     salePrice: "Цена продажи",
@@ -414,7 +415,6 @@ export const translations = {
     yearlyGrowth: "Годовой рост",
     villaSales: "Продажа вилл",
     villaRentals: "Аренда вилл",
-    available: "Доступно",
     forSale: "Продажа",
     forRent: "Аренда",
     liveData: "Живые данные рынка",
@@ -423,6 +423,8 @@ export const translations = {
     units: "ед.",
     projectedGrowth: "Прогноз роста рынка",
     marketPrediction: "Прогноз рынка указывает на сильный рост на 15% в северном секторе Эр-Рияда к 4 кварталу 2025 года.",
+    Jan: "Янв", Feb: "Фев", Mar: "Мар", Apr: "Апр", May: "Май", Jun: "Июн",
+    Jul: "Июл", Aug: "Авг", Sep: "Сен", Oct: "Окт", Nov: "Ноя", Dec: "Дек",
   },
   AR: {
     login: "تسجيل الدخول",
@@ -591,8 +593,8 @@ export const translations = {
 
     from: 'من',
     to: 'إلى',
-
-
+    Jan: "يناير", Feb: "فبراير", Mar: "مارس", Apr: "أبريل", May: "مايو", Jun: "يونيو",
+    Jul: "يوليو", Aug: "أغسطس", Sep: "سبتمبر", Oct: "أكتوبر", Nov: "نوفمبر", Dec: "ديسمبر",
   },
   ES: {
     login: "Acceso",
@@ -712,6 +714,8 @@ export const translations = {
     yearlyGrowth: "Crecimiento Anual",
     villaSales: "Ventas de Villas",
     villaRentals: "Alquiler de Villas",
+    Jan: "Ene", Feb: "Feb", Mar: "Mar", Apr: "Abr", May: "May", Jun: "Jun",
+    Jul: "Jul", Aug: "Ago", Sep: "Sep", Oct: "Oct", Nov: "Nov", Dec: "Dic",
   },
   PT: {
     login: "Conectarse",
@@ -831,6 +835,8 @@ export const translations = {
     yearlyGrowth: "Crescimento Anual",
     villaSales: "Vendas de Villas",
     villaRentals: "Aluguéis de Villas",
+    Jan: "Jan", Feb: "Fev", Mar: "Mar", Apr: "Abr", May: "Mai", Jun: "Jun",
+    Jul: "Jul", Aug: "Ago", Sep: "Set", Oct: "Out", Nov: "Nov", Dec: "Dez",
   },
   FR: {
     login: "Connexion",
@@ -950,6 +956,8 @@ export const translations = {
     hotDealsCommercial: "Commercial",
     hotDealsRooms: "Chambres",
     hotDealsViewAll: "Voir tout",
+    Jan: "Jan", Feb: "Fév", Mar: "Mar", Apr: "Avr", May: "Mai", Jun: "Jun",
+    Jul: "Jul", Aug: "Aoû", Sep: "Sep", Oct: "Oct", Nov: "Nov", Dec: "Déc",
   },
   HI: {
     login: "लॉगिन करें",
@@ -1069,22 +1077,13 @@ export const translations = {
     hotDealsCommercial: "व्यावसायिक",
     hotDealsRooms: "कमरे",
     hotDealsViewAll: "सब देखें",
+    Jan: "जनवरी", Feb: "फरवरी", Mar: "मार्च", Apr: "अप्रैल", May: "मई", Jun: "जून",
+    Jul: "जुलाई", Aug: "अगस्त", Sep: "सितंबर", Oct: "अक्टूबर", Nov: "नवंबर", Dec: "दिसंबर",
   }
 };
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState("EN");
-  const [isDark, setIsDark] = useState(() => {
-    try {
-      const saved = localStorage.getItem('theme');
-      if (saved === null) return true;
-      if (saved === "dark") return true;
-      if (saved === "light") return false;
-      return JSON.parse(saved);
-    } catch (e) {
-      return true;
-    }
-  });
 
   const [user, setUser] = useState(() => {
     try {
@@ -1094,10 +1093,6 @@ export const LanguageProvider = ({ children }) => {
       return null;
     }
   });
-
-  useEffect(() => {
-    localStorage.setItem('theme', JSON.stringify(isDark));
-  }, [isDark]);
 
   const login = (userData) => {
     localStorage.setItem('currentUser', JSON.stringify(userData));
@@ -1126,23 +1121,10 @@ export const LanguageProvider = ({ children }) => {
     }
   };
 
-  const toggleTheme = () => setIsDark(prev => !prev);
-
   const t = (key) => translations[language]?.[key] || translations["EN"][key] || key;
 
-  // Apply theme class to <html> for global CSS overrides
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.remove('light-theme');
-      document.documentElement.classList.add('dark-theme');
-    } else {
-      document.documentElement.classList.remove('dark-theme');
-      document.documentElement.classList.add('light-theme');
-    }
-  }, [isDark]);
-
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, isDark, toggleTheme, user, login, logout, updateUser }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, user, login, logout, updateUser }}>
       <div
         dir={language === "AR" ? "rtl" : "ltr"}
         style={{

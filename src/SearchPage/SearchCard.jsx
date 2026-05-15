@@ -1,45 +1,41 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { BedIcon, BathIcon, SquareIcon, SaveIcon } from "../components/Icons";
 import { useLanguage } from "../components/LanguageContext";
 
 export const SearchCard = ({ building, isSaved, onToggleSave }) => {
-    const { t, isDark } = useLanguage();
+    const { t } = useLanguage();
     const navigate = useNavigate();
 
-    const cardBg = isDark ? "bg-[#1a1a1a] border-white/5" : "bg-white border-black/8";
-    const titleColor = isDark ? "text-white" : "text-[#1a1a1a]";
-    const locationColor = isDark ? "text-white/40" : "text-black/50";
-    const specBg = isDark ? "bg-white/5" : "bg-black/5";
-    const specText = isDark ? "text-white/70" : "text-black/70";
-    const borderDiv = isDark ? "border-white/5" : "border-black/5";
-    const btnBg = isDark ? "bg-white/5 border-white/10 text-white/30" : "bg-black/5 border-black/10 text-black/30";
+    const cardBg = "bg-white border-black/8";
+    const titleColor = "text-[#1a1a1a]";
+    const locationColor = "text-black/50";
+    const specBg = "bg-black/5";
+    const specText = "text-black/70";
+    const borderDiv = "border-black/5";
+    const btnBg = "bg-black/5 border-black/10 text-black/30";
 
     const handleCardClick = () => {
         navigate(`/property/${building.id}`);
     };
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+        <div
             onClick={handleCardClick}
-            className={`group flex flex-col md:flex-row rounded-[32px] md:rounded-[40px] overflow-hidden border transition-all duration-500 cursor-pointer ${cardBg} hover:border-[#c9a227]/40`}
+            className={`group flex flex-col md:flex-row rounded-[32px] md:rounded-[40px] overflow-hidden border cursor-pointer ${cardBg} hover:border-[#c9a227]/40`}
         >
             {/* Картинка */}
             <div className="relative w-full md:w-[400px] h-[250px] md:h-[300px] overflow-hidden flex-shrink-0">
                 <img
                     src={building.image}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                    className="w-full h-full object-cover"
                     alt={building.name}
                 />
                 <div className="absolute top-6 left-6 flex flex-col gap-2">
-                    <div className="bg-[#c9a227] text-white text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-[0.1em] shadow-lg">
+                    <div className="bg-[#c9a227] text-white text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-[0.1em]">
                         {building.status === "Available" ? t('available') : building.status}
                     </div>
-                    <div className="bg-white/90 backdrop-blur-md text-black text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-[0.1em] shadow-lg">
+                    <div className="bg-white/90 backdrop-blur-md text-black text-[10px] font-black px-4 py-2 rounded-full uppercase tracking-[0.1em]">
                         {building.type?.toLowerCase() === "for sale" ? t('forSale') : 
                          building.type?.toLowerCase() === "for rent" ? t('forRent') : building.type}
                     </div>
@@ -49,7 +45,7 @@ export const SearchCard = ({ building, isSaved, onToggleSave }) => {
             {/* Инфо */}
             <div className="flex-1 p-6 md:p-10 flex flex-col justify-between">
                 <div>
-                    <h3 className={`text-2xl md:text-3xl font-bold mb-2 md:mb-3 group-hover:text-[#c9a227] transition-colors ${titleColor}`}>{building.name}</h3>
+                    <h3 className={`text-2xl md:text-3xl font-bold mb-2 md:mb-3 ${titleColor}`}>{building.name}</h3>
                     <p className={`text-sm mb-4 font-medium ${locationColor}`}>{building.location}</p>
 
                     {/* Характеристики */}
@@ -82,12 +78,12 @@ export const SearchCard = ({ building, isSaved, onToggleSave }) => {
                                 e.stopPropagation();
                                 onToggleSave(building.id);
                             }}
-                            className={`p-2.5 md:p-3 rounded-xl border transition-all duration-300 ${isSaved
+                            className={`p-2.5 md:p-3 rounded-xl border ${isSaved
                                 ? "bg-[#c9a227] border-[#c9a227] text-white"
                                 : `${btnBg} hover:text-red-500 hover:border-red-500/30`
                                 }`}
                         >
-                            <SaveIcon className={`w-4 h-4 md:w-5 md:h-5 transition-transform ${isSaved ? "scale-110" : "scale-100"}`} />
+                            <SaveIcon className={`w-4 h-4 md:w-5 md:h-5`} />
                         </button>
                     </div>
                     <div className="text-right">
@@ -103,6 +99,6 @@ export const SearchCard = ({ building, isSaved, onToggleSave }) => {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };

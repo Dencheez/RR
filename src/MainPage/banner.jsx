@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Search, ChevronDown, Map } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../components/LanguageContext';
-import { MapSearchForm } from "../SearchPage/MapSearchForm";
+import { Form } from "../components/Form";
 
 
 const Banner = () => {
   const navigate = useNavigate();
-  const { t, isDark } = useLanguage();
+  const { t } = useLanguage();
 
   const [action, setAction] = useState('buy');
   const [propType, setPropType] = useState('');
@@ -46,7 +46,7 @@ const Banner = () => {
     if (isNew) params.set('new', '1');
     if (fromOwner) params.set('fromOwner', '1');
     if (isCommercial) params.set('commercial', '1');
-    
+
     // Add advanced params
     if (houseType && houseType !== 'any') params.set('houseType', houseType);
     if (floorFrom) params.set('floorFrom', floorFrom);
@@ -77,7 +77,7 @@ const Banner = () => {
     if (isNew) params.set('new', '1');
     if (fromOwner) params.set('fromOwner', '1');
     if (isCommercial) params.set('commercial', '1');
-    
+
     // Add advanced params
     if (houseType && houseType !== 'any') params.set('houseType', houseType);
     if (floorFrom) params.set('floorFrom', floorFrom);
@@ -99,7 +99,7 @@ const Banner = () => {
     <section
       className="w-full relative flex items-end"
       style={{
-        paddingTop: '114px',
+        paddingTop: '25px',
         minHeight: '340px',
       }}
     >
@@ -107,7 +107,7 @@ const Banner = () => {
 
       <div className="relative z-10 w-full px-4 md:px-8 pb-0 flex justify-center">
         <div className="w-full max-w-[1300px]">
-          <MapSearchForm
+          <Form
             action={action} setAction={setAction}
             propType={propType} setPropType={setPropType}
             rooms={rooms} setRooms={setRooms}

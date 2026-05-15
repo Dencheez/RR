@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../components/LanguageContext';
 import LanguageSwitcher from '../components/language';
 import {
   User, Home, Bookmark, MoveRight, LogOut, Camera,
-  ChevronRight, Sun, Moon, MapPin, BedDouble, Bath, Maximize2
+  ChevronRight, MapPin, BedDouble, Bath, Maximize2
 } from 'lucide-react';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const { t, isDark, toggleTheme, user, logout, updateUser } = useLanguage();
+  const { t, user, logout, updateUser } = useLanguage();
   const [activeTab, setActiveTab] = useState('profile');
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
   const fileInputRef = useRef(null);
@@ -35,12 +34,12 @@ const ProfilePage = () => {
 
   if (!user) return null;
 
-  const bg = isDark ? "bg-[#0a0a0a]" : "bg-[#f7f5f0]";
-  const text = isDark ? "text-white" : "text-[#1a1a1a]";
-  const textMuted = isDark ? "text-white/50" : "text-black/50";
-  const border = isDark ? "border-white/10" : "border-black/10";
-  const cardBg = isDark ? "bg-white/5" : "bg-white";
-  const inputBg = isDark ? "bg-white/5 border-white/10 text-white focus:border-[#c9a227]" : "bg-black/5 border-black/10 text-black focus:border-[#c9a227]";
+  const bg = "bg-[#f7f5f0]";
+  const text = "text-[#1a1a1a]";
+  const textMuted = "text-black/50";
+  const border = "border-black/10";
+  const cardBg = "bg-white";
+  const inputBg = "bg-black/5 border-black/10 text-black focus:border-[#c9a227]";
 
   const handleLogout = () => {
     logout();
@@ -65,13 +64,13 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className={`min-h-screen flex ${bg} transition-colors duration-300`}>
+    <div className={`min-h-screen flex ${bg}`}>
       {/* Sidebar */}
-      <motion.div
+      <div
         className={`${isSidebarVisible ? 'flex' : 'hidden'} lg:flex w-full lg:w-[350px] shrink-0 border-r ${border} ${cardBg} h-screen sticky top-0 overflow-y-auto flex-col no-scrollbar z-20`}
       >
         {/* User Info Header */}
-        <button onClick={() => navigate('/')} className="transition-transform active:scale-95 px-8 py-6 text-xs font-black uppercase tracking-widest flex items-center hover:text-[#c9a227] transition-all">
+        <button onClick={() => navigate('/')} className="px-8 py-6 text-xs font-black uppercase tracking-widest flex items-center hover:text-[#c9a227]">
            <MoveRight size={16} className="rotate-180 mr-4" />
            Back to Home
         </button>
@@ -79,7 +78,7 @@ const ProfilePage = () => {
         <div className={`p-8 border-b ${border} flex flex-col items-center text-center`}>
           <div className="relative mb-6 group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
             <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleAvatarChange} />
-            <div className={`w-28 h-28 rounded-full border-2 border-[#c9a227] p-1 flex items-center justify-center overflow-hidden ${isDark ? 'bg-white/5' : 'bg-black/5'}`}>
+            <div className="w-28 h-28 rounded-full border-2 border-[#c9a227] p-1 flex items-center justify-center overflow-hidden bg-black/5">
               <div className="w-full h-full rounded-full overflow-hidden">
                 {user.avatar ? (
                   <img src={user.avatar} alt="avatar" className="w-full h-full object-cover" />
@@ -88,7 +87,7 @@ const ProfilePage = () => {
                 )}
               </div>
             </div>
-            <div className="absolute bottom-1 right-1 bg-[#c9a227] p-2 rounded-full text-white shadow-lg">
+            <div className="absolute bottom-1 right-1 bg-[#c9a227] p-2 rounded-full text-white">
               <Camera size={16} />
             </div>
           </div>
@@ -102,9 +101,9 @@ const ProfilePage = () => {
             <button
               key={tab.id}
               onClick={() => handleTabClick(tab.id)}
-              className={`flex items-center gap-4 px-6 py-4 rounded-2xl text-sm font-bold transition-all w-full text-left ${activeTab === tab.id
-                ? "bg-[#c9a227] text-white shadow-[0_10px_30px_rgba(201,162,39,0.2)] scale-[1.02]"
-                : `hover:bg-black/5 dark:hover:bg-white/5 ${textMuted} hover:text-[#c9a227]`
+              className={`flex items-center gap-4 px-6 py-4 rounded-2xl text-sm font-bold w-full text-left ${activeTab === tab.id
+                ? `bg-[#c9a227] text-white`
+                : `hover:bg-black/5 ${textMuted} hover:text-[#c9a227]`
                 }`}
             >
               <div className={`${activeTab === tab.id ? 'text-white' : 'text-[#c9a227]'}`}>
@@ -121,25 +120,22 @@ const ProfilePage = () => {
           <div className="flex items-center justify-between px-2">
             <span className={`text-[10px] font-black uppercase tracking-widest ${textMuted}`}>Settings</span>
             <div className="flex items-center gap-3">
-                <button onClick={toggleTheme} className={`p-2 rounded-lg border ${border} ${text}`}>
-                    {isDark ? <Sun size={16} /> : <Moon size={16} />}
-                </button>
                 <LanguageSwitcher />
             </div>
           </div>
 
           <button
             onClick={handleLogout}
-            className="w-full mt-2 flex items-center justify-center gap-2 px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-red-500 bg-red-500/5 hover:bg-red-500/10 border border-red-500/10 transition-colors"
+            className="w-full mt-2 flex items-center justify-center gap-2 px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-red-500 bg-red-500/5 hover:bg-red-500/10 border border-red-500/10"
           >
             <LogOut size={16} />
             Logout
           </button>
         </div>
-      </motion.div>
+      </div>
 
       {/* Main Content Area */}
-      <motion.div
+      <div
         className={`${!isSidebarVisible ? 'flex' : 'hidden'} lg:flex flex-1 h-screen overflow-y-auto p-6 md:p-10 lg:p-20 flex-col no-scrollbar`}
       >
         {/* Mobile Back Button */}
@@ -151,13 +147,9 @@ const ProfilePage = () => {
             Back to Menu
         </button>
 
-        <AnimatePresence mode="wait">
-          {activeTab === 'profile' && (
-            <motion.div
+        {activeTab === 'profile' && (
+            <div
               key="profile"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
               className="max-w-3xl space-y-10"
             >
               <div>
@@ -168,32 +160,29 @@ const ProfilePage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 <div className="space-y-3">
                   <label className={`block text-[10px] font-black uppercase tracking-widest ${textMuted}`}>Full Name</label>
-                  <input type="text" defaultValue={user.fullName || ''} className={`w-full rounded-2xl border px-6 py-5 text-sm font-bold outline-none transition-all ${inputBg}`} />
+                  <input type="text" defaultValue={user.fullName || ''} className={`w-full rounded-2xl border px-6 py-5 text-sm font-bold outline-none ${inputBg}`} />
                 </div>
                 <div className="space-y-3">
                   <label className={`block text-[10px] font-black uppercase tracking-widest ${textMuted}`}>Phone Number</label>
-                  <input type="tel" placeholder="+966 50 000 0000" className={`w-full rounded-2xl border px-6 py-5 text-sm font-bold outline-none transition-all ${inputBg}`} />
+                  <input type="tel" placeholder="+966 50 000 0000" className={`w-full rounded-2xl border px-6 py-5 text-sm font-bold outline-none ${inputBg}`} />
                 </div>
                 <div className="space-y-3 md:col-span-2">
                   <label className={`block text-[10px] font-black uppercase tracking-widest ${textMuted}`}>Email Address</label>
-                  <input type="email" readOnly defaultValue={user.email} className={`w-full rounded-2xl border px-6 py-5 text-sm font-bold outline-none transition-all opacity-60 cursor-not-allowed ${inputBg}`} />
+                  <input type="email" readOnly defaultValue={user.email} className={`w-full rounded-2xl border px-6 py-5 text-sm font-bold outline-none opacity-60 cursor-not-allowed ${inputBg}`} />
                 </div>
               </div>
 
               <div className={`pt-10 border-t ${border}`}>
-                <button className="bg-[#c9a227] text-white px-10 py-5 rounded-2xl text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl shadow-[#c9a227]/20">
+                <button className="bg-[#c9a227] text-white px-10 py-5 rounded-2xl text-xs font-black uppercase tracking-widest">
                   Save All Changes
                 </button>
               </div>
-            </motion.div>
+            </div>
           )}
 
           {activeTab === 'properties' && (
-            <motion.div
+            <div
               key="properties"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
               className="space-y-10"
             >
               <div>
@@ -203,10 +192,10 @@ const ProfilePage = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                 {dummyProperties.map(prop => (
-                  <div key={prop.id} className={`rounded-[32px] overflow-hidden border ${border} ${cardBg} group shadow-xl`}>
+                  <div key={prop.id} className={`rounded-[32px] overflow-hidden border ${border} ${cardBg} group`}>
                     <div className="h-56 relative overflow-hidden">
-                      <img src={prop.image} alt={prop.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                      <div className="absolute top-4 left-4 bg-green-500 text-white px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-lg">
+                      <img src={prop.image} alt={prop.name} className="w-full h-full object-cover" />
+                      <div className="absolute top-4 left-4 bg-green-500 text-white px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest">
                         {prop.status}
                       </div>
                     </div>
@@ -214,8 +203,8 @@ const ProfilePage = () => {
                       <h3 className={`text-lg font-bold mb-1 truncate ${text}`}>{prop.name}</h3>
                       <p className="text-[#c9a227] text-2xl font-black tracking-tight mb-6">{prop.price}</p>
                       <div className="flex gap-3">
-                        <button className="flex-1 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-[#c9a227] text-[#c9a227] hover:bg-[#c9a227] hover:text-white transition-all">Edit</button>
-                        <button className="flex-1 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-red-500/30 text-red-500 hover:bg-red-500/10 transition-all">Delete</button>
+                        <button className="flex-1 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-[#c9a227] text-[#c9a227] hover:bg-[#c9a227] hover:text-white">Edit</button>
+                        <button className="flex-1 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-red-500/30 text-red-500 hover:bg-red-500/10">Delete</button>
                       </div>
                     </div>
                   </div>
@@ -224,23 +213,20 @@ const ProfilePage = () => {
                 {/* Add New Property Card Placeholder */}
                 <div 
                     onClick={() => navigate('/#map-section')}
-                    className={`rounded-[32px] border-2 border-dashed ${border} flex flex-col items-center justify-center p-10 cursor-pointer hover:border-[#c9a227] transition-all group ${cardBg}`}
+                    className={`rounded-[32px] border-2 border-dashed ${border} flex flex-col items-center justify-center p-10 cursor-pointer hover:border-[#c9a227] group ${cardBg}`}
                 >
-                  <div className="w-16 h-16 rounded-full bg-[#c9a227]/10 flex items-center justify-center mb-6 text-[#c9a227] group-hover:scale-110 transition-transform">
+                  <div className="w-16 h-16 rounded-full bg-[#c9a227]/10 flex items-center justify-center mb-6 text-[#c9a227]">
                     <Home size={28} />
                   </div>
-                  <span className="font-black uppercase tracking-widest text-[10px] text-center px-4 leading-relaxed ${textMuted}">List Your New Property</span>
+                  <span className={`font-black uppercase tracking-widest text-[10px] text-center px-4 leading-relaxed ${textMuted}`}>List Your New Property</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           )}
 
           {activeTab === 'saved' && (
-            <motion.div
+            <div
               key="saved"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
               className="flex flex-col items-center justify-center min-h-[50vh] text-center"
             >
               <div className={`w-32 h-32 rounded-full border ${border} flex items-center justify-center mb-8 bg-[#c9a227]/5`}>
@@ -248,13 +234,12 @@ const ProfilePage = () => {
               </div>
               <h3 className={`text-2xl font-black mb-3 ${text}`}>No Collections Yet</h3>
               <p className={`text-sm max-w-[320px] leading-relaxed ${textMuted}`}>Save properties you like and they will appear here for quick access later.</p>
-              <button onClick={() => navigate('/')} className="mt-10 bg-[#c9a227] text-white px-10 py-5 rounded-2xl text-xs font-black uppercase tracking-widest shadow-xl shadow-[#c9a227]/20">
+              <button onClick={() => navigate('/')} className="mt-10 bg-[#c9a227] text-white px-10 py-5 rounded-2xl text-xs font-black uppercase tracking-widest">
                 Browse Properties
               </button>
-            </motion.div>
+            </div>
           )}
-        </AnimatePresence>
-      </motion.div>
+      </div>
     </div>
   );
 };

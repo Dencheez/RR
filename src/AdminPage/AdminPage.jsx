@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { Plus, Building, Users, Settings, Trash2, Edit2 } from 'lucide-react';
 import { useLanguage } from '../components/LanguageContext';
 import AddPropertyModal from '../components/AddPropertyModal';
-import Header from '../MainPage/header';
-import Footer from '../MainPage/Footer';
+import Header from '../components/header';
+import Footer from '../components/Footer';
 
 const AdminPage = () => {
-  const { t, isDark } = useLanguage();
+  const { t } = useLanguage();
   const [isAddPropertyOpen, setIsAddPropertyOpen] = useState(false);
 
-  const bg = isDark ? "bg-[#0a0a0a]" : "bg-[#f7f5f0]";
-  const text = isDark ? "text-white" : "text-[#1a1a1a]";
-  const cardBg = isDark ? "bg-white/5 border-white/10" : "bg-white border-black/5";
+  const bg = "bg-[#f7f5f0]";
+  const text = "text-[#1a1a1a]";
+  const cardBg = "bg-white border-black/5";
 
   const mockProperties = [
     { id: 1, title: "The Palms Villa", price: "SAR 3.2M", location: "Al Malqa District", category: "Villas", date: "2026-05-01" },
@@ -20,7 +20,7 @@ const AdminPage = () => {
   ];
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${bg} flex flex-col`}>
+    <div className={`min-h-screen ${bg} flex flex-col`}>
       <Header />
 
       <main className="flex-1 pt-40 pb-20 px-10 md:px-20 max-w-[1700px] mx-auto w-full">
@@ -29,14 +29,14 @@ const AdminPage = () => {
             <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${text}`}>
               {t('adminDashboard') || 'Admin Dashboard'}
             </h1>
-            <p className={`text-sm ${isDark ? 'text-white/50' : 'text-black/50'}`}>
+            <p className="text-sm text-black/50">
               Manage your properties, users, and site settings.
             </p>
           </div>
 
           <button
             onClick={() => setIsAddPropertyOpen(true)}
-            className="flex items-center gap-2 px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest bg-[#c9a227] text-white hover:bg-[#b08d22] transition-all shadow-[0_0_20px_rgba(201,162,39,0.3)]"
+            className="flex items-center gap-2 px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest bg-[#c9a227] text-white shadow-[0_0_20px_rgba(201,162,39,0.3)]"
           >
             <Plus size={16} strokeWidth={3} />
             {t('addPropertyBtn') || 'Add Property'}
@@ -52,10 +52,10 @@ const AdminPage = () => {
           ].map((stat, i) => (
             <div key={i} className={`p-8 rounded-[32px] border ${cardBg} flex items-center justify-between`}>
               <div>
-                <p className={`text-xs font-black uppercase tracking-widest mb-2 ${isDark ? 'text-white/50' : 'text-black/50'}`}>{stat.label}</p>
+                <p className="text-xs font-black uppercase tracking-widest mb-2 text-black/50">{stat.label}</p>
                 <p className={`text-3xl font-bold ${text}`}>{stat.value}</p>
               </div>
-              <div className={`p-4 rounded-full ${isDark ? 'bg-white/5 text-[#c9a227]' : 'bg-black/5 text-[#c9a227]'}`}>
+              <div className="p-4 rounded-full bg-black/5 text-[#c9a227]">
                 {stat.icon}
               </div>
             </div>
@@ -71,31 +71,31 @@ const AdminPage = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className={`border-b ${isDark ? 'border-white/5 bg-white/5' : 'border-black/5 bg-black/5'}`}>
-                  <th className={`p-6 text-xs font-black uppercase tracking-widest ${isDark ? 'text-white/50' : 'text-black/50'}`}>Title</th>
-                  <th className={`p-6 text-xs font-black uppercase tracking-widest ${isDark ? 'text-white/50' : 'text-black/50'}`}>Location</th>
-                  <th className={`p-6 text-xs font-black uppercase tracking-widest ${isDark ? 'text-white/50' : 'text-black/50'}`}>Category</th>
-                  <th className={`p-6 text-xs font-black uppercase tracking-widest ${isDark ? 'text-white/50' : 'text-black/50'}`}>Price</th>
-                  <th className={`p-6 text-xs font-black uppercase tracking-widest ${isDark ? 'text-white/50' : 'text-black/50'}`}>Actions</th>
+                <tr className="border-b border-black/5 bg-black/5">
+                  <th className="p-6 text-xs font-black uppercase tracking-widest text-black/50">Title</th>
+                  <th className="p-6 text-xs font-black uppercase tracking-widest text-black/50">Location</th>
+                  <th className="p-6 text-xs font-black uppercase tracking-widest text-black/50">Category</th>
+                  <th className="p-6 text-xs font-black uppercase tracking-widest text-black/50">Price</th>
+                  <th className="p-6 text-xs font-black uppercase tracking-widest text-black/50">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {mockProperties.map((prop) => (
-                  <tr key={prop.id} className={`border-b last:border-0 ${isDark ? 'border-white/5 hover:bg-white/[0.02]' : 'border-black/5 hover:bg-black/[0.02]'} transition-colors`}>
+                  <tr key={prop.id} className="border-b last:border-0 border-black/5 hover:bg-black/[0.02]">
                     <td className={`p-6 font-medium ${text}`}>{prop.title}</td>
-                    <td className={`p-6 text-sm ${isDark ? 'text-white/70' : 'text-black/70'}`}>{prop.location}</td>
+                    <td className="p-6 text-sm text-black/70">{prop.location}</td>
                     <td className={`p-6`}>
-                      <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${isDark ? 'bg-white/10 text-white' : 'bg-black/10 text-black'}`}>
+                      <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-black/10 text-black">
                         {prop.category}
                       </span>
                     </td>
                     <td className={`p-6 font-bold text-[#c9a227]`}>{prop.price}</td>
                     <td className="p-6">
                       <div className="flex gap-3">
-                        <button className={`p-2 rounded-full transition-colors ${isDark ? 'hover:bg-white/10 text-white/50 hover:text-white' : 'hover:bg-black/10 text-black/50 hover:text-black'}`}>
+                        <button className="p-2 rounded-full text-black/50 hover:text-black">
                           <Edit2 size={16} />
                         </button>
-                        <button className={`p-2 rounded-full transition-colors hover:bg-red-500/10 text-red-500`}>
+                        <button className={`p-2 rounded-full text-red-500`}>
                           <Trash2 size={16} />
                         </button>
                       </div>
