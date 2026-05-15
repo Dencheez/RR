@@ -27,28 +27,17 @@ const Header = () => {
 
   const isHome = location.pathname === '/';
 
+  const searchParams = new URLSearchParams(location.search);
+
   const bottomNavLinks = [
-    { label: t('navSale'), href: '/buy', icon: Home },
-    { label: t('navRent'), href: '/rent', icon: Key },
+    { label: t('navSale'), href: '/buy', action: 'buy', icon: Home },
+    { label: t('navRent'), href: '/rent', action: 'rent', icon: Key },
   ];
 
   const handleBottomLinkClick = (e, link) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
-    if (link.scroll) {
-      if (location.pathname !== '/') {
-        navigate('/');
-        setTimeout(() => {
-          const el = document.getElementById(link.scroll);
-          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 300);
-      } else {
-        const el = document.getElementById(link.scroll);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    } else {
-      navigate(link.href);
-    }
+    navigate(link.href);
   };
 
   const topBg = isScrolled
@@ -131,8 +120,8 @@ const Header = () => {
               {bottomNavLinks.map((link) => {
                 const Icon = link.icon;
                 const isActive =
-                  location.pathname + location.search === link.href ||
-                  (location.pathname.includes('/map') && link.href.startsWith('/map'));
+                  location.pathname === link.href ||
+                  ((location.pathname === '/search' || location.pathname === '/map') && searchParams.get('action') === link.action);
 
                 return (
                   <a

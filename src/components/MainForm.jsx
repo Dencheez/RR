@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "./LanguageContext";
 import { ChevronDown, MapPin, Search } from "lucide-react";
 
-const MainForm = () => {
+const MainForm = ({ initialAction = "buy" }) => {
     const { t } = useLanguage();
     const navigate = useNavigate();
 
     // State
-    const [action, setAction] = useState("buy");
+    const [action, setAction] = useState(initialAction);
     const [propType, setPropType] = useState("apartments");
     const [rooms, setRooms] = useState("");
     const [priceFrom, setPriceFrom] = useState("");
@@ -40,8 +40,8 @@ const MainForm = () => {
     const checkboxLabel = "flex items-center gap-2 text-[13px] cursor-pointer hover:text-blue-700 transition-colors py-1";
 
     return (
-        <div className="w-full max-w-[1200px] mx-auto px-4 mt-8 mb-12">
-            <div className="bg-[#ffcc66] p-6 rounded-[4px] shadow-lg">
+        <div className="w-full max-w-[1350px] mx-auto px-4 mt-8 mb-12">
+            <div className="bg-[#ffcc66] p-6 rounded-[4px]">
                 {/* Main Filter Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                     {/* Property Type */}
@@ -123,7 +123,7 @@ const MainForm = () => {
                 {/* Bottom Row: Checkboxes & Actions */}
                 <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#f0c040] pt-4">
                     <div className="flex flex-wrap gap-x-6 gap-y-2">
-                        <label className={checkboxLabel}>
+                        <label className={checkboxLabel + "items-center justify-center flex"}  >
                             <input
                                 type="checkbox"
                                 checked={hasPhoto}

@@ -1,17 +1,19 @@
 import React from 'react'
 import Header from '../components/header'
 import MainForm from '../components/MainForm'
-import Table from '../MainPage/Table'
+import RentTable from '../components/RentTable'
 import Footer from '../components/Footer'
 import RentLinks from '../components/RentLinks'
+import DownNav from '../components/DownNav'
 
 const RentPage = () => {
     return (
         <div>
             <Header />
-            <MainForm />
+            <DownNav />
+            <MainForm initialAction="rent" />
+            <RentTable />
             <RentLinks />
-            <Table />
             <Footer />
         </div>
     )

@@ -26,26 +26,26 @@ const propertyBuy = [
 ];
 
 const propertyRent = [
-    { id: 1, title: "Свободное назначение, офисы", price: "800 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/11/4d6b0c3867e3c-114d6b0c/1-full.jpg", location: "Алматы", photosCount: 5, address: "Бостандыкский р-н" },
-    { id: 2, title: "1-комн. квартира · 40 м² · 10/10 этаж", price: "2 000 ₸ за час", image: "https://photos-kr.kcdn.kz/content/22/4d6b0c3867e3c-224d6b0c/1-full.jpg", location: "Алматы", photosCount: 10, address: "мкр. Таугуль" },
-    { id: 3, title: "Свободное назначение, офисы", price: "1.2 млн ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/33/4d6b0c3867e3c-334d6b0c/1-full.jpg", location: "Алматы", photosCount: 8, address: "Медеуский р-н" },
-    { id: 4, title: "2-комн. квартира · 44 м² · 1/4 этаж", price: "220 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/44/4d6b0c3867e3c-444d6b0c/1-full.jpg", location: "Алматы", photosCount: 12, address: "мкр. Коктем" },
-    { id: 5, title: "1-комн. квартира · 47 м² · 5/14 этаж", price: "14 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/55/4d6b0c3867e3c-554d6b0c/1-full.jpg", location: "Алматы", photosCount: 15, address: "Тимирязева-Байзакова" },
-    { id: 6, title: "Часть дома · 2 комнаты · 35 м²", price: "160 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/66/4d6b0c3867e3c-664d6b0c/1-full.jpg", location: "Алматы", photosCount: 6, address: "р-н Татарки" },
-    { id: 7, title: "2-комн. квартира · 78 м² · 11/16 этаж", price: "490 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/77/4d6b0c3867e3c-774d6b0c/1-full.jpg", location: "Алматы", photosCount: 20, address: "ЖК Керемет" },
-    { id: 8, title: "2-комн. квартира · 50 м² · 3/3 этаж", price: "15 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/88/4d6b0c3867e3c-884d6b0c/1-full.jpg", location: "Алматы", photosCount: 14, address: "Сейфуллина-Райымбека" },
-    { id: 9, title: "2-комн. квартира · 60 м² · 2/5 этаж", price: "15 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/99/4d6b0c3867e3c-994d6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Самал" },
-    { id: 10, title: "3-комн. квартира · 40 м² · 3/14 этаж", price: "190 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/10/4d6b0c3867e3c-104d6b0c/1-full.jpg", location: "Алматы", photosCount: 9, address: "мкр. Жулдыз" },
-    { id: 11, title: "2-комн. квартира · 44 м² · 2/14 этаж", price: "12 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/21/4d6b0c3867e3c-214c6b0c/1-full.jpg", location: "Алматы", photosCount: 11, address: "мкр. Кулагер" },
-    { id: 12, title: "1-комн. квартира · 68 м² · 4 этаж мкр", price: "12 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/32/4d6b0c3867e3c-324d6b0c/1-full.jpg", location: "Алматы", photosCount: 13, address: "мкр. Айнабулак" },
-    { id: 13, title: "Дом · 5 комнат · 300 м² мкр Акжар", price: "100 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/43/4d6b0c3867e3c-434d6b0c/1-full.jpg", location: "Алматы", photosCount: 25, address: "мкр. Акжар" },
-    { id: 14, title: "Свободное назначение, офисы,", price: "4 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544d6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
-    { id: 15, title: "Свободное назначение, офисы,", price: "4 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544d6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
-    { id: 16, title: "Свободное назначение, офисы,", price: "4 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544d6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
-    { id: 17, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "50 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
-    { id: 18, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "50 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
-    { id: 19, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "50 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
-    { id: 20, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "50 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
+    { id: 1, title: "Свободное назначение, офисы", price: "800 млн ₸", image: "https://photos-kr.kcdn.kz/content/11/4d6b0c3867e3c-114d6b0c/1-full.jpg", location: "Алматы", photosCount: 5, address: "Бостандыкский р-н" },
+    { id: 2, title: "1-комн. квартира · 40 м² · 10/10 этаж", price: "22 млн ₸", image: "https://photos-kr.kcdn.kz/content/22/4d6b0c3867e3c-224d6b0c/1-full.jpg", location: "Алматы", photosCount: 10, address: "мкр. Таугуль" },
+    { id: 3, title: "Свободное назначение, офисы", price: "12 млн ₸", image: "https://photos-kr.kcdn.kz/content/33/4d6b0c3867e3c-334d6b0c/1-full.jpg", location: "Алматы", photosCount: 8, address: "Медеуский р-н" },
+    { id: 4, title: "2-комн. квартира · 44 м² · 1/4 этаж", price: "22 млн ₸", image: "https://photos-kr.kcdn.kz/content/44/4d6b0c3867e3c-444d6b0c/1-full.jpg", location: "Алматы", photosCount: 12, address: "мкр. Коктем" },
+    { id: 5, title: "1-комн. квартира · 47 м² · 5/14 этаж", price: "14 млн ₸", image: "https://photos-kr.kcdn.kz/content/55/4d6b0c3867e3c-554d6b0c/1-full.jpg", location: "Алматы", photosCount: 15, address: "Тимирязева-Байзакова" },
+    { id: 6, title: "Часть дома · 2 комнаты · 35 м²", price: "16 млн ₸", image: "https://photos-kr.kcdn.kz/content/66/4d6b0c3867e3c-664d6b0c/1-full.jpg", location: "Алматы", photosCount: 6, address: "р-н Татарки" },
+    { id: 7, title: "2-комн. квартира · 78 м² · 11/16 этаж", price: "49 млн ₸", image: "https://photos-kr.kcdn.kz/content/77/4d6b0c3867e3c-774d6b0c/1-full.jpg", location: "Алматы", photosCount: 20, address: "ЖК Керемет" },
+    { id: 8, title: "2-комн. квартира · 50 м² · 3/3 этаж", price: "15 млн ₸", image: "https://photos-kr.kcdn.kz/content/88/4d6b0c3867e3c-884d6b0c/1-full.jpg", location: "Алматы", photosCount: 14, address: "Сейфуллина-Райымбека" },
+    { id: 9, title: "2-комн. квартира · 60 м² · 2/5 этаж", price: "15 млн ₸", image: "https://photos-kr.kcdn.kz/content/99/4d6b0c3867e3c-994d6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Самал" },
+    { id: 10, title: "3-комн. квартира · 40 м² · 3/14 этаж", price: "19 млн ₸", image: "https://photos-kr.kcdn.kz/content/10/4d6b0c3867e3c-104d6b0c/1-full.jpg", location: "Алматы", photosCount: 9, address: "мкр. Жулдыз" },
+    { id: 11, title: "2-комн. квартира · 44 м² · 2/14 этаж", price: "12 млн ₸", image: "https://photos-kr.kcdn.kz/content/21/4d6b0c3867e3c-214c6b0c/1-full.jpg", location: "Алматы", photosCount: 11, address: "мкр. Кулагер" },
+    { id: 12, title: "1-комн. квартира · 68 м² · 4 этаж мкр", price: "12 млн ₸", image: "https://photos-kr.kcdn.kz/content/32/4d6b0c3867e3c-324d6b0c/1-full.jpg", location: "Алматы", photosCount: 13, address: "мкр. Айнабулак" },
+    { id: 13, title: "Дом · 5 комнат · 300 м² мкр Акжар", price: "100 млн ₸", image: "https://photos-kr.kcdn.kz/content/43/4d6b0c3867e3c-434d6b0c/1-full.jpg", location: "Алматы", photosCount: 25, address: "мкр. Акжар" },
+    { id: 14, title: "Свободное назначение, офисы,", price: "30 млн ₸", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544d6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
+    { id: 15, title: "Свободное назначение, офисы,", price: "25 млн ₸", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544d6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
+    { id: 16, title: "Свободное назначение, офисы,", price: "20 млн ₸", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544d6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
+    { id: 17, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "15 млн ₸", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
+    { id: 18, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "10 млн ₸", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
+    { id: 19, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "20 млн ₸", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
+    { id: 20, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "25 млн ₸", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
 ];
 
 // Размер страницы карусели (сколько колонок видно за раз)
@@ -157,11 +157,10 @@ const CardCarousel = ({ items }) => {
     );
 };
 
-function Table() {
+
+function BuyTable() {
     const { t } = useLanguage();
 
-    const saleLinks = ["Виллы", "Апартаменты", "Участки", "Коммерческая недвижимость", "Бизнес"];
-    const rentLinks = ["Виллы", "Апартаменты", "Участки", "Коммерческая недвижимость"];
 
     return (
         <div className="w-full max-w-[1300px] mx-auto py-6 font-sans text-sm relative">
@@ -174,12 +173,7 @@ function Table() {
                 {/* Sale Section */}
                 <section className="mb-0 pb-4 overflow-visible">
                     <div className="flex flex-wrap items-baseline gap-4 mb-3 px-4 border-b border-gray-100 py-2">
-                        <h2 className="text-[17px] font-normal">Продажа</h2>
-                        <div className="flex flex-wrap gap-x-4 gap-y-1">
-                            {saleLinks.map(link => (
-                                <a key={link} href="#" className="text-[#2a5885] text-[13px] hover:underline whitespace-nowrap">{link}</a>
-                            ))}
-                        </div>
+                        <h2 className="text-[17px] font-normal">Продажа жилья</h2>
                     </div>
 
                     <div className="px-5 overflow-visible">
@@ -190,12 +184,7 @@ function Table() {
                 {/* Rent Section */}
                 <section className="overflow-visible bg-[#fdf7e3] pt-3 pb-4">
                     <div className="flex flex-wrap items-baseline gap-4 mb-3 px-4 border-b border-yellow-100 py-2">
-                        <h2 className="text-[17px] font-normal">Аренда</h2>
-                        <div className="flex flex-wrap gap-x-4 gap-y-1">
-                            {rentLinks.map(link => (
-                                <a key={link} href="#" className="text-[#2a5885] text-[13px] hover:underline whitespace-nowrap">{link}</a>
-                            ))}
-                        </div>
+                        <h2 className="text-[17px] font-normal">Продажа коммерческой недвижимости</h2>
                     </div>
 
                     <div className="px-5 overflow-visible">
@@ -216,4 +205,4 @@ function Table() {
     );
 }
 
-export default Table;
+export default BuyTable;

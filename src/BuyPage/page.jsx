@@ -1,17 +1,19 @@
 import React from 'react'
 import Header from '../components/header'
 import MainForm from '../components/MainForm'
-import Table from '../MainPage/Table'
+import BuyTable from '../components/BuyTable'
 import Footer from '../components/Footer'
 import BuyLinks from '../components/BuyLinks'
+import DownNav from '../components/DownNav'
 
 const BuyPage = () => {
     return (
         <div>
             <Header />
-            <MainForm />
+            <DownNav />
+            <MainForm initialAction="buy" />
+            <BuyTable />
             <BuyLinks />
-            <Table />
             <Footer />
         </div>
     )

@@ -3,26 +3,26 @@ import { useLanguage } from "../components/LanguageContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const propertyBuy = [
-    { id: 1, title: "2-комн. квартира · 70.8 м² · 9/18 этаж", price: "65 млн ₸", image: "https://photos-kr.kcdn.kz/content/48/47a2707f7f738-4847a270/1-full.jpg", location: "Алматы", photosCount: 33, address: "Шевченко-Ауэзова" },
-    { id: 2, title: "1-комн. квартира · 38.7 м² · 4/12 этаж", price: "35 млн ₸", image: "https://photos-kr.kcdn.kz/content/8e/3c3b063857e3c-8e3c3b06/1-full.jpg", location: "Астана", photosCount: 12, address: "Мангилик Ел" },
-    { id: 3, title: "3-комн. квартира · 140 м² · 7/13 этаж", price: "~ 118.5 млн ₸", image: "https://photos-kr.kcdn.kz/content/13/4682084c00468-13468208/1-full.jpg", location: "Алматы", photosCount: 25, address: "Достык-Аль-Фараби" },
-    { id: 4, title: "3-комн. квартира · 95.4 м² · 5/10 этаж", price: "50 млн ₸", image: "https://photos-kr.kcdn.kz/content/62/3c5b0c3867e3c-623c5b0c/1-full.jpg", location: "Шымкент", photosCount: 18, address: "пр. Кунаева" },
-    { id: 5, title: "3-комн. квартира · 70 м² · 3/12 этаж", price: "~ 71 млн ₸", image: "https://photos-kr.kcdn.kz/content/21/4c6b0c3867e3c-214c6b0c/1-full.jpg", location: "Алматы", photosCount: 15, address: "Абая-Правды" },
-    { id: 6, title: "1-комн. квартира · 33 м² · 1/5 этаж", price: "20.5 млн ₸", image: "https://photos-kr.kcdn.kz/content/54/4c6b0c3867e3c-544c6b0c/1-full.jpg", location: "Караганда", photosCount: 8, address: "ул. Ленина" },
-    { id: 7, title: "3-комн. квартира · 93.6 м² · 2/12 этаж", price: "58 млн ₸", image: "https://photos-kr.kcdn.kz/content/77/4c6b0c3867e3c-774c6b0c/1-full.jpg", location: "Алматы", photosCount: 20, address: "Самал-2" },
-    { id: 8, title: "3-комн. квартира · 116 м² · 16/16 этаж", price: "64 млн ₸", image: "https://photos-kr.kcdn.kz/content/99/4c6b0c3867e3c-994c6b0c/1-full.jpg", location: "Астана", photosCount: 30, address: "Хайвилл" },
-    { id: 9, title: "3-комн. квартира · 77.63 м²", price: "~ 35.7 млн ₸", image: "https://photos-kr.kcdn.kz/content/11/4c6b0c3867e3c-114c6b0c/1-full.jpg", location: "Алматы", photosCount: 10, address: "мкр. Орбита" },
-    { id: 10, title: "2-комн. квартира · 45 м² · 2/4 этаж", price: "35 млн ₸", image: "https://photos-kr.kcdn.kz/content/22/4c6b0c3867e3c-224c6b0c/1-full.jpg", location: "Алматы", photosCount: 14, address: "Розыбакиева" },
-    { id: 11, title: "2-комн. квартира · 68 м² · 7/10 этаж", price: "45 млн ₸", image: "https://photos-kr.kcdn.kz/content/33/4c6b0c3867e3c-334c6b0c/1-full.jpg", location: "Атырау", photosCount: 22, address: "мкр. Нурсая" },
-    { id: 12, title: "1-комн. квартира · 31 м² · 4/5 этаж", price: "20 млн ₸", image: "https://photos-kr.kcdn.kz/content/44/4c6b0c3867e3c-444c6b0c/1-full.jpg", location: "Алматы", photosCount: 9, address: "мкр. Аксай" },
-    { id: 13, title: "2-комн. квартира · 65 м² · 8/9 этаж", price: "~ 35 млн ₸", image: "https://photos-kr.kcdn.kz/content/55/4c6b0c3867e3c-554c6b0c/1-full.jpg", location: "Актобе", photosCount: 11, address: "пр. Абилкайыр хана" },
-    { id: 14, title: "3-комн. квартира · 86.4 м² · 5/9 этаж", price: "52 млн ₸", image: "https://photos-kr.kcdn.kz/content/66/4c6b0c3867e3c-664c6b0c/1-full.jpg", location: "Алматы", photosCount: 21, address: "Гоголя-Муратбаева" },
-    { id: 15, title: "3-комн. квартира · 70 м² · 3/6 этаж", price: "44.5 млн ₸", image: "https://photos-kr.kcdn.kz/content/78/4c6b0c3867e3c-784c6b0c/1-full.jpg", location: "Павлодар", photosCount: 13, address: "ул. Торайгырова" },
-    { id: 16, title: "3-комн. квартира · 40.25 м² · 6/12 этаж", price: "~ 13.7 млн ₸", image: "https://photos-kr.kcdn.kz/content/89/4c6b0c3867e3c-894c6b0c/1-full.jpg", location: "Алматы", photosCount: 7, address: "мкр. Шанырак" },
-    { id: 17, title: "1-комн. квартира · 49.6 м²", price: "~ 36.3 млн ₸", image: "https://photos-kr.kcdn.kz/content/10/4c6b0c3867e3c-104c6b0c/1-full.jpg", location: "Костанай", photosCount: 19, address: "ул. Аль-Фараби" },
-    { id: 18, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "34 млн ₸", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
-    { id: 19, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "34 млн ₸", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
-    { id: 20, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "34 млн ₸", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
+    { id: 1, title: "2-комн. квартира · 70.8 м² · 9/18 этаж", price: "52 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/48/47a2707f7f738-4847a270/1-full.jpg", location: "Алматы", photosCount: 33, address: "Шевченко-Ауэзова" },
+    { id: 2, title: "1-комн. квартира · 38.7 м² · 4/12 этаж", price: "52 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/8e/3c3b063857e3c-8e3c3b06/1-full.jpg", location: "Астана", photosCount: 12, address: "Мангилик Ел" },
+    { id: 3, title: "3-комн. квартира · 140 м² · 7/13 этаж", price: "118 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/13/4682084c00468-13468208/1-full.jpg", location: "Алматы", photosCount: 25, address: "Достык-Аль-Фараби" },
+    { id: 4, title: "3-комн. квартира · 95.4 м² · 5/10 этаж", price: "52 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/62/3c5b0c3867e3c-623c5b0c/1-full.jpg", location: "Шымкент", photosCount: 18, address: "пр. Кунаева" },
+    { id: 5, title: "3-комн. квартира · 70 м² · 3/12 этаж", price: "52 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/21/4c6b0c3867e3c-214c6b0c/1-full.jpg", location: "Алматы", photosCount: 15, address: "Абая-Правды" },
+    { id: 6, title: "1-комн. квартира · 33 м² · 1/5 этаж", price: "200 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/54/4c6b0c3867e3c-544c6b0c/1-full.jpg", location: "Караганда", photosCount: 8, address: "ул. Ленина" },
+    { id: 7, title: "3-комн. квартира · 93.6 м² · 2/12 этаж", price: "58 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/77/4c6b0c3867e3c-774c6b0c/1-full.jpg", location: "Алматы", photosCount: 20, address: "Самал-2" },
+    { id: 8, title: "3-комн. квартира · 116 м² · 16/16 этаж", price: "64 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/99/4c6b0c3867e3c-994c6b0c/1-full.jpg", location: "Астана", photosCount: 30, address: "Хайвилл" },
+    { id: 9, title: "3-комн. квартира · 77.63 м²", price: " 350 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/11/4c6b0c3867e3c-114c6b0c/1-full.jpg", location: "Алматы", photosCount: 10, address: "мкр. Орбита" },
+    { id: 10, title: "2-комн. квартира · 45 м² · 2/4 этаж", price: "35 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/22/4c6b0c3867e3c-224c6b0c/1-full.jpg", location: "Алматы", photosCount: 14, address: "Розыбакиева" },
+    { id: 11, title: "2-комн. квартира · 68 м² · 7/10 этаж", price: "45 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/33/4c6b0c3867e3c-334c6b0c/1-full.jpg", location: "Атырау", photosCount: 22, address: "мкр. Нурсая" },
+    { id: 12, title: "1-комн. квартира · 31 м² · 4/5 этаж", price: "20 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/44/4c6b0c3867e3c-444c6b0c/1-full.jpg", location: "Алматы", photosCount: 9, address: "мкр. Аксай" },
+    { id: 13, title: "2-комн. квартира · 65 м² · 8/9 этаж", price: "30 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/55/4c6b0c3867e3c-554c6b0c/1-full.jpg", location: "Актобе", photosCount: 11, address: "пр. Абилкайыр хана" },
+    { id: 14, title: "3-комн. квартира · 86.4 м² · 5/9 этаж", price: "50 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/66/4c6b0c3867e3c-664c6b0c/1-full.jpg", location: "Алматы", photosCount: 21, address: "Гоголя-Муратбаева" },
+    { id: 15, title: "3-комн. квартира · 70 м² · 3/6 этаж", price: "440 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/78/4c6b0c3867e3c-784c6b0c/1-full.jpg", location: "Павлодар", photosCount: 13, address: "ул. Торайгырова" },
+    { id: 16, title: "3-комн. квартира · 40.25 м² · 6/12 этаж", price: " 137 000 в месяц", image: "https://photos-kr.kcdn.kz/content/89/4c6b0c3867e3c-894c6b0c/1-full.jpg", location: "Алматы", photosCount: 7, address: "мкр. Шанырак" },
+    { id: 17, title: "1-комн. квартира · 49.6 м²", price: " 36 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/10/4c6b0c3867e3c-104c6b0c/1-full.jpg", location: "Костанай", photosCount: 19, address: "ул. Аль-Фараби" },
+    { id: 18, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "30 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
+    { id: 19, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "30 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
+    { id: 20, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "30 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
 ];
 
 const propertyRent = [
@@ -119,7 +119,7 @@ const CardCarousel = ({ items }) => {
             {/* Стрелка влево */}
             <button
                 onClick={() => scroll("left")}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -translate-x-[14px]  w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 -translate-x-[14px]  w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
                 <ChevronLeft size={16} className="absolute z-10" />
             </button>
@@ -157,11 +157,10 @@ const CardCarousel = ({ items }) => {
     );
 };
 
-function Table() {
+
+function RentTable() {
     const { t } = useLanguage();
 
-    const saleLinks = ["Виллы", "Апартаменты", "Участки", "Коммерческая недвижимость", "Бизнес"];
-    const rentLinks = ["Виллы", "Апартаменты", "Участки", "Коммерческая недвижимость"];
 
     return (
         <div className="w-full max-w-[1300px] mx-auto py-6 font-sans text-sm relative">
@@ -174,12 +173,7 @@ function Table() {
                 {/* Sale Section */}
                 <section className="mb-0 pb-4 overflow-visible">
                     <div className="flex flex-wrap items-baseline gap-4 mb-3 px-4 border-b border-gray-100 py-2">
-                        <h2 className="text-[17px] font-normal">Продажа</h2>
-                        <div className="flex flex-wrap gap-x-4 gap-y-1">
-                            {saleLinks.map(link => (
-                                <a key={link} href="#" className="text-[#2a5885] text-[13px] hover:underline whitespace-nowrap">{link}</a>
-                            ))}
-                        </div>
+                        <h2 className="text-[17px] font-normal">Аренда жилья</h2>
                     </div>
 
                     <div className="px-5 overflow-visible">
@@ -190,12 +184,7 @@ function Table() {
                 {/* Rent Section */}
                 <section className="overflow-visible bg-[#fdf7e3] pt-3 pb-4">
                     <div className="flex flex-wrap items-baseline gap-4 mb-3 px-4 border-b border-yellow-100 py-2">
-                        <h2 className="text-[17px] font-normal">Аренда</h2>
-                        <div className="flex flex-wrap gap-x-4 gap-y-1">
-                            {rentLinks.map(link => (
-                                <a key={link} href="#" className="text-[#2a5885] text-[13px] hover:underline whitespace-nowrap">{link}</a>
-                            ))}
-                        </div>
+                        <h2 className="text-[17px] font-normal">Аренда коммерческой недвижимости</h2>
                     </div>
 
                     <div className="px-5 overflow-visible">
@@ -216,4 +205,4 @@ function Table() {
     );
 }
 
-export default Table;
+export default RentTable;
