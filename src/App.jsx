@@ -12,6 +12,8 @@ import AdminPage from './AdminPage/AdminPage';
 import ProfilePage from './ProfilePage/ProfilePage';
 import { LanguageProvider } from './components/LanguageContext';
 import Analytic from './AnalyticsPage/Analytic';
+import BuyPage from './BuyPage/page';
+import RentPage from './RentPage/page';
 import './index.css';
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
                 <Footer />
               </>
             } />
+            <Route path="/buy" element={<BuyPage />} />
+            <Route path="/rent" element={<RentPage />} />
             <Route path="/search" element={<SearchResult isMapView={false} />} />
             <Route path="/map" element={<SearchResult isMapView={true} />} />
             <Route path="/property/:id" element={<PropertyDetail />} />

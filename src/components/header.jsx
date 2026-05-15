@@ -28,8 +28,8 @@ const Header = () => {
   const isHome = location.pathname === '/';
 
   const bottomNavLinks = [
-    { label: t('navSale'), href: '/search?action=buy', icon: Home },
-    { label: t('navRent'), href: '/search?action=rent', icon: Key },
+    { label: t('navSale'), href: '/buy', icon: Home },
+    { label: t('navRent'), href: '/rent', icon: Key },
   ];
 
   const handleBottomLinkClick = (e, link) => {
