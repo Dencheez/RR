@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from './LanguageContext';
 
-const AuthModal = ({ isOpen, onClose }) => {
+const AuthModal = ({ isOpen, onClose, onSuccess }) => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const { t, login } = useLanguage();
@@ -34,7 +34,11 @@ const AuthModal = ({ isOpen, onClose }) => {
         console.log('Успешный вход:', user);
         login(user);
         onClose();
-        navigate('/profile');
+        if (onSuccess) {
+          onSuccess();
+        } else {
+          navigate('/profile');
+        }
       } else {
         setError(t('Invalid credentials') || 'Неверный email или пароль');
       }
@@ -53,7 +57,11 @@ const AuthModal = ({ isOpen, onClose }) => {
       // Auto login after registration
       login(newUser);
       onClose();
-      navigate('/profile');
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        navigate('/profile');
+      }
     }
   };
 

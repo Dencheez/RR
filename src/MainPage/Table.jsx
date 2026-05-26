@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { useLanguage } from "../components/LanguageContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
 const propertyBuy = [
     { id: 1, title: "2-комн. квартира · 70.8 м² · 9/18 этаж", price: "65 млн ₸", image: "https://photos-kr.kcdn.kz/content/48/47a2707f7f738-4847a270/1-full.jpg", location: "Алматы", photosCount: 33, address: "Шевченко-Ауэзова" },
     { id: 2, title: "1-комн. квартира · 38.7 м² · 4/12 этаж", price: "35 млн ₸", image: "https://photos-kr.kcdn.kz/content/8e/3c3b063857e3c-8e3c3b06/1-full.jpg", location: "Астана", photosCount: 12, address: "Мангилик Ел" },
@@ -52,13 +52,12 @@ const propertyRent = [
 const COLS_PER_PAGE = 10;
 
 const SmallCard = ({ item }) => {
-    const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <div
-            className="flex flex-col w-[110px] shrink-0 cursor-pointer group relative"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className="flex flex-col w-[110px] shrink-0 cursor-pointer relative bg-white transition-all duration-300 hover:scale-[1.15] hover:z-[100] hover:shadow-2xl rounded-sm group origin-center"
+            onClick={() => navigate(`/property/${item.id}`)}
         >
             <div className="relative w-full h-[75px] overflow-hidden rounded-sm bg-gray-100">
                 <img src={item.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -66,35 +65,11 @@ const SmallCard = ({ item }) => {
                     {item.price}
                 </div>
             </div>
-            <p className="text-[10px] text-[#333] mt-1 leading-[1.3] line-clamp-2 hover:text-[#2a5885]">
-                {item.title}
-            </p>
-
-            {/* Hover Popover */}
-            {isHovered && (
-                <div className="absolute top-0 left-0 z-[100] w-[260px] bg-white border border-gray-200 rounded-sm overflow-hidden pointer-events-none -translate-x-1/4 -translate-y-4">
-                    <div className="relative w-full h-[160px]">
-                        <img src={item.image} alt="" className="w-full h-full object-cover" />
-                        <div className="absolute top-1 left-1 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-sm">
-                            {item.location}
-                        </div>
-                        <div className="absolute top-1 right-1 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-sm">
-                            {item.photosCount} фото
-                        </div>
-                    </div>
-                    <div className="p-3">
-                        <div className="bg-[#444] text-white text-[13px] font-bold px-2 py-1 inline-block mb-2">
-                            {item.price}
-                        </div>
-                        <p className="text-[12px] text-[#333] font-bold mb-1 leading-tight">
-                            {item.title}
-                        </p>
-                        <p className="text-[11px] text-[#2a5885] hover:underline cursor-pointer">
-                            {item.address}
-                        </p>
-                    </div>
-                </div>
-            )}
+            <div className="bg-white pt-1 px-0.5 pb-1">
+                <p className="text-[10px] text-[#333] leading-[1.3] line-clamp-2 group-hover:text-[#2a5885]">
+                    {item.title}
+                </p>
+            </div>
         </div>
     );
 };
@@ -119,7 +94,7 @@ const CardCarousel = ({ items }) => {
             {/* Стрелка влево */}
             <button
                 onClick={() => scroll("left")}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -translate-x-[14px]  w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                className="absolute left-0 top-[120px] -translate-y-1/2 z-10 -translate-x-[14px]  w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
                 <ChevronLeft size={16} className="absolute z-10" />
             </button>
@@ -127,7 +102,7 @@ const CardCarousel = ({ items }) => {
             {/* Прокручиваемая область */}
             <div
                 ref={scrollRef}
-                className="overflow-x-auto"
+                className="overflow-x-auto pt-3 pb-12 -mt-3 -mb-12 max-w-full ml-9"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
                 <div className="flex flex-col gap-2 px-2">
@@ -149,7 +124,7 @@ const CardCarousel = ({ items }) => {
             {/* Стрелка вправо */}
             <button
                 onClick={() => scroll("right")}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 translate-x-[14px] w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                className="absolute right-0 top-[120px] -translate-y-1/2 z-20 translate-x-[14px] w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
                 <ChevronRight size={16} className="absolute z-10" />
             </button>
@@ -157,11 +132,24 @@ const CardCarousel = ({ items }) => {
     );
 };
 
+
+
 function Table() {
     const { t } = useLanguage();
 
-    const saleLinks = ["Виллы", "Апартаменты", "Участки", "Коммерческая недвижимость", "Бизнес"];
-    const rentLinks = ["Виллы", "Апартаменты", "Участки", "Коммерческая недвижимость"];
+    const saleLinks = [
+        { label: "Виллы", type: "villas" },
+        { label: "Апартаменты", type: "apartments" },
+        { label: "Участки", type: "land" },
+        { label: "Коммерческая недвижимость", type: "commercial" },
+    ];
+
+    const rentLinks = [
+        { label: "Виллы", type: "villas" },
+        { label: "Апартаменты", type: "apartments" },
+        { label: "Участки", type: "land" },
+        { label: "Коммерческая недвижимость", type: "commercial" }
+    ];
 
     return (
         <div className="w-full max-w-[1300px] mx-auto py-6 font-sans text-sm relative">
@@ -172,12 +160,14 @@ function Table() {
 
             <div className="border border-gray-200 overflow-visible">
                 {/* Sale Section */}
-                <section className="mb-0 pb-4 overflow-visible">
+                <section className="mb-0 pb-4 overflow-visible relative z-10 hover:z-50">
                     <div className="flex flex-wrap items-baseline gap-4 mb-3 px-4 border-b border-gray-100 py-2">
                         <h2 className="text-[17px] font-normal">Продажа</h2>
                         <div className="flex flex-wrap gap-x-4 gap-y-1">
                             {saleLinks.map(link => (
-                                <a key={link} href="#" className="text-[#2a5885] text-[13px] hover:underline whitespace-nowrap">{link}</a>
+                                <Link key={link.label} to={`/search?action=buy&type=${link.type}`} className="text-[#2a5885] text-[13px] hover:underline whitespace-nowrap">
+                                    {link.label}
+                                </Link>
                             ))}
                         </div>
                     </div>
@@ -188,12 +178,14 @@ function Table() {
                 </section>
 
                 {/* Rent Section */}
-                <section className="overflow-visible bg-[#fdf7e3] pt-3 pb-4">
+                <section className="overflow-visible bg-[#fdf7e3] pt-3 pb-4 relative z-10 hover:z-50">
                     <div className="flex flex-wrap items-baseline gap-4 mb-3 px-4 border-b border-yellow-100 py-2">
                         <h2 className="text-[17px] font-normal">Аренда</h2>
                         <div className="flex flex-wrap gap-x-4 gap-y-1">
                             {rentLinks.map(link => (
-                                <a key={link} href="#" className="text-[#2a5885] text-[13px] hover:underline whitespace-nowrap">{link}</a>
+                                <Link key={link.label} to={`/search?action=rent&type=${link.type}`} className="text-[#2a5885] text-[13px] hover:underline whitespace-nowrap">
+                                    {link.label}
+                                </Link>
                             ))}
                         </div>
                     </div>

@@ -19,6 +19,7 @@ const MainForm = ({ initialAction = "buy" }) => {
     const [hasPhoto, setHasPhoto] = useState(false);
     const [isNew, setIsNew] = useState(false);
     const [fromOwner, setFromOwner] = useState(false);
+    const [isCommercial, setIsCommercial] = useState(false);
 
     const onSearch = () => {
         const params = new URLSearchParams();
@@ -31,6 +32,7 @@ const MainForm = ({ initialAction = "buy" }) => {
         if (hasPhoto) params.set('hasPhoto', '1');
         if (isNew) params.set('new', '1');
         if (fromOwner) params.set('fromOwner', '1');
+        if (isCommercial) params.set('commercial', '1');
 
         navigate(`/search?${params.toString()}`);
     };
@@ -149,6 +151,14 @@ const MainForm = ({ initialAction = "buy" }) => {
                                 className="w-[18px] h-[18px] border-[#ccc] rounded-[2px]"
                             />
                             <span>новостройки</span>
+                        </label>
+                        <label className={checkboxLabel}>
+                            <input
+                                type="checkbox"
+                                checked={isCommercial}
+                                onChange={e => setIsCommercial(e.target.checked)}
+                                className="w-[15px] h-[15px]" />
+                            проверенные специалисты
                         </label>
                     </div>
 

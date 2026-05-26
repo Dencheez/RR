@@ -11,9 +11,9 @@ import PropertyDetail from './PropertyPage/PropertyDetail';
 import AdminPage from './AdminPage/AdminPage';
 import ProfilePage from './ProfilePage/ProfilePage';
 import { LanguageProvider } from './components/LanguageContext';
-import Analytic from './AnalyticsPage/Analytic';
 import BuyPage from './BuyPage/page';
 import RentPage from './RentPage/page';
+import AddProperty from './AddProperty/page';
 import './index.css';
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
             <Route path="/property/:id" element={<PropertyDetail />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/analytics" element={<Analytic />} />
+            <Route path="/add-property" element={<AddProperty />} />
           </Routes>
         </div>
       </Router>

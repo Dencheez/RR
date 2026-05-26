@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import LanguageSwitcher from "./language";
 import { useLanguage } from "./LanguageContext";
-import { User, CircleUserRound, Menu, X, Home, Key, Building2, Map, ChartNoAxesCombined } from "lucide-react";
+import { User, CircleUserRound, Menu, X, Home, Key, Building2, Map, ChartNoAxesCombined, Plus } from "lucide-react";
 import AuthModal from "./AuthModal";
-import AddPropertyModal from "./AddPropertyModal";
 
 const Header = () => {
   const { t, user } = useLanguage();
@@ -12,9 +11,18 @@ const Header = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
-  const [isAddPropertyOpen, setIsAddPropertyOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [authReason, setAuthReason] = useState(null);
   const base = import.meta.env.BASE_URL;
+
+  const handlePostAdClick = () => {
+    if (user) {
+      navigate('/add-property');
+    } else {
+      setAuthReason('addProperty');
+      setIsAuthOpen(true);
+    }
+  };
 
 
   useEffect(() => {
@@ -70,9 +78,9 @@ const Header = () => {
             <div className="hidden sm:block">
               <button
                 className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 min-h-[44px] border border-black/15 bg-black/5 text-black hover:bg-black/10"
-                onClick={() => setIsAddPropertyOpen(true)}
+                onClick={handlePostAdClick}
               >
-                Подать объявление
+                {t('addPropertyBtn') || 'Подать объявление'}
               </button>
             </div>
 
@@ -181,6 +189,18 @@ const Header = () => {
               );
             })}
 
+            {/* Подать объявление в мобайл-меню (iOS / Mobile-friendly) */}
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                handlePostAdClick();
+              }}
+              className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-[17px] font-medium min-h-[56px] text-black/80 hover:text-[#c9a227] hover:bg-[#c9a227]/8 transition-all duration-200"
+            >
+              <Plus size={22} className="text-[#c9a227] shrink-0" />
+              {t('addPropertyBtn') || 'Подать объявление'}
+            </button>
+
             <div className="my-4 h-px bg-black/5" />
 
             {/* Профиль в мобайл-меню */}
@@ -209,8 +229,21 @@ const Header = () => {
         </div>
       )}
 
-      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
-      <AddPropertyModal isOpen={isAddPropertyOpen} onClose={() => setIsAddPropertyOpen(false)} />
+      <AuthModal 
+        isOpen={isAuthOpen} 
+        onClose={() => {
+          setIsAuthOpen(false);
+          setAuthReason(null);
+        }} 
+        onSuccess={() => {
+          if (authReason === 'addProperty') {
+            navigate('/add-property');
+          } else {
+            navigate('/profile');
+          }
+          setAuthReason(null);
+        }}
+      />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../components/header'
+import Header from '../components/Header'
 import MainForm from '../components/MainForm'
 import BuyTable from '../components/BuyTable'
 import Footer from '../components/Footer'

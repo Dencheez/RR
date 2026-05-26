@@ -3,7 +3,6 @@ import { ChevronDown, MapPin, LayoutList, SlidersHorizontal, X, Search } from "l
 import { useLanguage } from "./LanguageContext";
 
 export const Form = ({
-    action, setAction,
     propType, setPropType,
     rooms, setRooms,
     locationQuery, setLocationQuery,
@@ -33,6 +32,7 @@ export const Form = ({
 }) => {
     const { t } = useLanguage();
     const [showAdvanced, setShowAdvanced] = useState(false);
+    const checkboxLabel = "flex items-center gap-2 text-[13px] cursor-pointer hover:text-blue-700 transition-colors py-1";
 
     // Styles
     const inp = "h-[32px] px-2 bg-white border border-[#ccc] rounded-[2px] text-[13px] outline-none focus:border-[#2a5885] transition-colors";
@@ -96,12 +96,12 @@ export const Form = ({
                 {/* Rooms */}
                 <div className="flex flex-col">
                     <span className={labelSmall}>Количество комнат</span>
-                    <div className="flex items-center gap-0.5">
+                    <div className="flex ">
                         {roomButtons.map(r => (
                             <button
                                 key={r}
                                 onClick={() => toggleRoom(r)}
-                                className={`w-8 h-[32px] text-[13px] font-bold border transition-all
+                                className={`w-8 h-[32px] text-[13px] justify-center items-center flex font-bold border transition-all
                                     ${rooms === r
                                         ? "bg-[#2a5885] text-white border-[#2a5885]"
                                         : "bg-white text-[#333] border-[#ccc] hover:border-[#2a5885] hover:text-[#2a5885]"
@@ -162,10 +162,20 @@ export const Form = ({
                     <input type="checkbox" checked={fromOwner} onChange={e => setFromOwner(e.target.checked)} className="w-[15px] h-[15px]" />
                     от хозяев
                 </label>
+                <label className={checkboxLabel}>
+                    <input
+                        type="checkbox"
+                        checked={isNew}
+                        onChange={(e) => setIsNew(e.target.checked)}
+                        className="w-[18px] h-[18px] border-[#ccc] rounded-[2px]"
+                    />
+                    <span>новостройки</span>
+                </label>
                 <label className={cbLabel}>
                     <input type="checkbox" checked={isCommercial} onChange={e => setIsCommercial(e.target.checked)} className="w-[15px] h-[15px]" />
                     проверенные специалисты
                 </label>
+
                 {/* Main Search Button */}
 
                 <button
@@ -176,116 +186,106 @@ export const Form = ({
                     Показать ({resultsCount ?? 0})
                 </button>
                 <div className="flex-1" />
-
-                <button
-                    onClick={() => setShowAdvanced(v => !v)}
-                    className="flex items-center gap-1.5 text-[13px] text-[black] font-bold hover:underline"
-                >
-                    <SlidersHorizontal size={14} />
-                    {showAdvanced ? "Меньше фильтров" : "Больше фильтров"}
-                </button>
             </div>
 
 
 
             {/* Advanced Filters */}
-            {showAdvanced && (
-                <div className="px-4 pb-6 pt-4 bg-[#fff9eb] border-t border-[#f0c040]">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {/* Column 1: Building */}
-                        <div>
-                            <h4 className="text-[14px] font-bold mb-3 text-[#333]">О доме</h4>
-                            <div className="space-y-3">
-                                <div>
-                                    <span className={labelSmall}>Тип постройки</span>
-                                    <select value={houseType} onChange={e => setHouseType(e.target.value)} className={sel}>
-                                        <option value="">Любой</option>
-                                        <option value="panel">Панельный</option>
-                                        <option value="brick">Кирпичный</option>
-                                        <option value="monolith">Монолитный</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <span className={labelSmall}>Год постройки</span>
-                                    <div className="flex items-center gap-1">
-                                        <input type="text" placeholder="От" value={yearFrom} onChange={e => setYearFrom(e.target.value)} className={`${inp} w-full`} />
-                                        <input type="text" placeholder="До" value={yearTo} onChange={e => setYearTo(e.target.value)} className={`${inp} w-full`} />
-                                    </div>
-                                </div>
+            <div className="px-4 pb-6 pt-4 bg-[#fff9eb] border-t border-[#f0c040]">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {/* Column 1: Building */}
+                    <div>
+                        <h4 className="text-[14px] font-bold mb-3 text-[#333]">О доме</h4>
+                        <div className="space-y-3">
+                            <div>
+                                <span className={labelSmall}>Тип постройки</span>
+                                <select value={houseType} onChange={e => setHouseType(e.target.value)} className={sel}>
+                                    <option value="">Любой</option>
+                                    <option value="panel">Панельный</option>
+                                    <option value="brick">Кирпичный</option>
+                                    <option value="monolith">Монолитный</option>
+                                </select>
                             </div>
-                        </div>
-
-                        {/* Column 2: Apartment specifics */}
-                        <div>
-                            <h4 className="text-[14px] font-bold mb-3 text-[#333]">Характеристики</h4>
-                            <div className="space-y-3">
-                                <div>
-                                    <span className={labelSmall}>Этаж</span>
-                                    <div className="flex items-center gap-1">
-                                        <input type="text" placeholder="От" value={floorFrom} onChange={e => setFloorFrom(e.target.value)} className={`${inp} w-full`} />
-                                        <input type="text" placeholder="До" value={floorTo} onChange={e => setFloorTo(e.target.value)} className={`${inp} w-full`} />
-                                    </div>
+                            <div>
+                                <span className={labelSmall}>Год постройки</span>
+                                <div className="flex items-center gap-1">
+                                    <input type="text" placeholder="От" value={yearFrom} onChange={e => setYearFrom(e.target.value)} className={`${inp} w-full`} />
+                                    <input type="text" placeholder="До" value={yearTo} onChange={e => setYearTo(e.target.value)} className={`${inp} w-full`} />
                                 </div>
-                                <div className="flex flex-col gap-1">
-                                    <label className={cbLabel}>
-                                        <input type="checkbox" checked={notFirstFloor} onChange={e => setNotFirstFloor(e.target.checked)} className="w-[14px] h-[14px]" />
-                                        не первый
-                                    </label>
-                                    <label className={cbLabel}>
-                                        <input type="checkbox" checked={notLastFloor} onChange={e => setNotLastFloor(e.target.checked)} className="w-[14px] h-[14px]" />
-                                        не последний
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Column 3: Areas */}
-                        <div>
-                            <h4 className="text-[14px] font-bold mb-3 text-[#333]">Площадь (м²)</h4>
-                            <div className="space-y-3">
-                                <div>
-                                    <span className={labelSmall}>Общая</span>
-                                    <div className="flex items-center gap-1">
-                                        <input type="text" placeholder="От" value={totalAreaFrom} onChange={e => setTotalAreaFrom(e.target.value)} className={`${inp} w-full`} />
-                                        <input type="text" placeholder="До" value={totalAreaTo} onChange={e => setTotalAreaTo(e.target.value)} className={`${inp} w-full`} />
-                                    </div>
-                                </div>
-                                <div>
-                                    <span className={labelSmall}>Кухня</span>
-                                    <div className="flex items-center gap-1">
-                                        <input type="text" placeholder="От" value={kitchenAreaFrom} onChange={e => setKitchenAreaFrom(e.target.value)} className={`${inp} w-full`} />
-                                        <input type="text" placeholder="До" value={kitchenAreaTo} onChange={e => setKitchenAreaTo(e.target.value)} className={`${inp} w-full`} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Column 4: More */}
-                        <div>
-                            <h4 className="text-[14px] font-bold mb-3 text-[#333]">Дополнительно</h4>
-                            <div className="space-y-3">
-                                <div>
-                                    <span className={labelSmall}>Жилой комплекс</span>
-                                    <input
-                                        type="text"
-                                        placeholder="Название ЖК"
-                                        value={residentialComplex}
-                                        onChange={e => setResidentialComplex(e.target.value)}
-                                        className={`${inp} w-full`}
-                                    />
-                                </div>
-                                <button
-                                    onClick={handleClear}
-                                    className="flex items-center gap-1.5 text-[13px] text-red-600 font-bold hover:underline mt-4"
-                                >
-                                    <X size={14} />
-                                    Очистить все фильтры
-                                </button>
                             </div>
                         </div>
                     </div>
+
+                    {/* Column 2: Apartment specifics */}
+                    <div>
+                        <h4 className="text-[14px] font-bold mb-3 text-[#333]">Характеристики</h4>
+                        <div className="space-y-3">
+                            <div>
+                                <span className={labelSmall}>Этаж</span>
+                                <div className="flex items-center gap-1">
+                                    <input type="text" placeholder="От" value={floorFrom} onChange={e => setFloorFrom(e.target.value)} className={`${inp} w-full`} />
+                                    <input type="text" placeholder="До" value={floorTo} onChange={e => setFloorTo(e.target.value)} className={`${inp} w-full`} />
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <label className={cbLabel}>
+                                    <input type="checkbox" checked={notFirstFloor} onChange={e => setNotFirstFloor(e.target.checked)} className="w-[14px] h-[14px]" />
+                                    не первый
+                                </label>
+                                <label className={cbLabel}>
+                                    <input type="checkbox" checked={notLastFloor} onChange={e => setNotLastFloor(e.target.checked)} className="w-[14px] h-[14px]" />
+                                    не последний
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Column 3: Areas */}
+                    <div>
+                        <h4 className="text-[14px] font-bold mb-3 text-[#333]">Площадь (м²)</h4>
+                        <div className="space-y-3">
+                            <div>
+                                <span className={labelSmall}>Общая</span>
+                                <div className="flex items-center gap-1">
+                                    <input type="text" placeholder="От" value={totalAreaFrom} onChange={e => setTotalAreaFrom(e.target.value)} className={`${inp} w-full`} />
+                                    <input type="text" placeholder="До" value={totalAreaTo} onChange={e => setTotalAreaTo(e.target.value)} className={`${inp} w-full`} />
+                                </div>
+                            </div>
+                            <div>
+                                <span className={labelSmall}>Кухня</span>
+                                <div className="flex items-center gap-1">
+                                    <input type="text" placeholder="От" value={kitchenAreaFrom} onChange={e => setKitchenAreaFrom(e.target.value)} className={`${inp} w-full`} />
+                                    <input type="text" placeholder="До" value={kitchenAreaTo} onChange={e => setKitchenAreaTo(e.target.value)} className={`${inp} w-full`} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Column 4: More */}
+                    <div>
+                        <h4 className="text-[14px] font-bold mb-3 text-[#333]">Дополнительно</h4>
+                        <div className="space-y-3">
+                            <div>
+                                <span className={labelSmall}>Жилой комплекс</span>
+                                <input
+                                    type="text"
+                                    placeholder="Название ЖК"
+                                    value={residentialComplex}
+                                    onChange={e => setResidentialComplex(e.target.value)}
+                                    className={`${inp} w-full`}
+                                />
+                            </div>
+                            <button
+                                onClick={handleClear}
+                                className="flex items-center gap-1.5 text-[13px] text-red-600 font-bold hover:underline mt-4"
+                            >
+                                <X size={14} />
+                                Очистить все фильтры
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            )}
+            </div>
 
             {/* Bottom View Switcher (Optional, if onToggleView is provided) */}
             {onToggleView && (

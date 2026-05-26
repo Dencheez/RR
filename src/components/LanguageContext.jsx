@@ -6,6 +6,7 @@ export const translations = {
   EN: {
     // Header
     login: "Login",
+    addPropertyBtn: "Post an ad",
     navLatest: "Latest Projects",
     navPremium: "Premium Selection",
     navMap: "Villas Map",
@@ -222,6 +223,7 @@ export const translations = {
   },
   RU: {
     login: "Войти",
+    addPropertyBtn: "Подать объявление",
     navLatest: "Проекты",
     navPremium: "Премиум",
     navMap: "Карта вилл",
@@ -428,6 +430,7 @@ export const translations = {
   },
   AR: {
     login: "تسجيل الدخول",
+    addPropertyBtn: "إضافة عقار",
     navLatest: "المشاريع المختارة",
     navPremium: "اختياراتنا الفاخرة",
     navMap: "خريطة الفيلات",
@@ -598,6 +601,7 @@ export const translations = {
   },
   ES: {
     login: "Acceso",
+    addPropertyBtn: "Publicar anuncio",
     navLatest: "Proyectos Recientes",
     navPremium: "Selección Premium",
     navMap: "Mapa de Villas",
@@ -719,6 +723,7 @@ export const translations = {
   },
   PT: {
     login: "Conectarse",
+    addPropertyBtn: "Publicar anúncio",
     navLatest: "Projetos Recentes",
     navPremium: "Seleção Premium",
     navMap: "Mapa de Villas",

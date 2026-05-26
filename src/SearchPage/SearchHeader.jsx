@@ -40,7 +40,7 @@ export const SearchHeader = ({ setModalType }) => {
   const base = import.meta.env.BASE_URL;
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-[110] border-b ${headerBg}`}>
+    <header className={` top-0 left-0 w-full z-[110] border-b ${headerBg}`}>
       <div className="max-w-[1700px] mx-auto px-4 md:px-10 h-[64px] md:h-[72px] flex items-center justify-between">
         <div className="flex-shrink-0">
           <Link to="/">

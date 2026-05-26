@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../components/LanguageContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -52,13 +53,12 @@ const propertyRent = [
 const COLS_PER_PAGE = 10;
 
 const SmallCard = ({ item }) => {
-    const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <div
-            className="flex flex-col w-[110px] shrink-0 cursor-pointer group relative"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            className="flex flex-col w-[110px] shrink-0 cursor-pointer relative bg-white transition-all hover:scale-[1.5] hover:z-[100] rounded-sm group origin-center"
+            onClick={() => navigate(`/property/${item.id}`)}
         >
             <div className="relative w-full h-[75px] overflow-hidden rounded-sm bg-gray-100">
                 <img src={item.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -66,35 +66,11 @@ const SmallCard = ({ item }) => {
                     {item.price}
                 </div>
             </div>
-            <p className="text-[10px] text-[#333] mt-1 leading-[1.3] line-clamp-2 hover:text-[#2a5885]">
-                {item.title}
-            </p>
-
-            {/* Hover Popover */}
-            {isHovered && (
-                <div className="absolute top-0 left-0 z-[100] w-[260px] bg-white border border-gray-200 rounded-sm overflow-hidden pointer-events-none -translate-x-1/4 -translate-y-4">
-                    <div className="relative w-full h-[160px]">
-                        <img src={item.image} alt="" className="w-full h-full object-cover" />
-                        <div className="absolute top-1 left-1 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-sm">
-                            {item.location}
-                        </div>
-                        <div className="absolute top-1 right-1 bg-black/50 text-white text-[10px] px-2 py-0.5 rounded-sm">
-                            {item.photosCount} фото
-                        </div>
-                    </div>
-                    <div className="p-3">
-                        <div className="bg-[#444] text-white text-[13px] font-bold px-2 py-1 inline-block mb-2">
-                            {item.price}
-                        </div>
-                        <p className="text-[12px] text-[#333] font-bold mb-1 leading-tight">
-                            {item.title}
-                        </p>
-                        <p className="text-[11px] text-[#2a5885] hover:underline cursor-pointer">
-                            {item.address}
-                        </p>
-                    </div>
-                </div>
-            )}
+            <div className="bg-white pt-1 px-0.5 pb-1">
+                <p className="text-[10px] text-[#333] leading-[1.3] line-clamp-2 group-hover:text-[#2a5885]">
+                    {item.title}
+                </p>
+            </div>
         </div>
     );
 };
@@ -115,11 +91,11 @@ const CardCarousel = ({ items }) => {
     const row2 = items.filter((_, i) => i % 2 === 1);
 
     return (
-        <div className="relative">
+        <div className="relative z-10 hover:z-[50]">
             {/* Стрелка влево */}
             <button
                 onClick={() => scroll("left")}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -translate-x-[14px]  w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                className="absolute left-0 top-[120px] -translate-y-1/2 z-10 -translate-x-[14px]  w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
                 <ChevronLeft size={16} className="absolute z-10" />
             </button>
@@ -127,7 +103,7 @@ const CardCarousel = ({ items }) => {
             {/* Прокручиваемая область */}
             <div
                 ref={scrollRef}
-                className="overflow-x-auto"
+                className="overflow-x-auto pt-3 pb-12 -mt-3 -mb-12 max-w-full ml-9"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
                 <div className="flex flex-col gap-2 px-2">
@@ -149,7 +125,7 @@ const CardCarousel = ({ items }) => {
             {/* Стрелка вправо */}
             <button
                 onClick={() => scroll("right")}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 translate-x-[14px] w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                className="absolute right-0 top-[120px] -translate-y-1/2 z-20 translate-x-[14px] w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
                 <ChevronRight size={16} className="absolute z-10" />
             </button>
