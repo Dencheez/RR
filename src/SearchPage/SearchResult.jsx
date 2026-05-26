@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import * as turf from '@turf/turf';
-import Header from "../components/Header";
+import Header from "../components/header";
 import { SearchCard } from "./SearchCard";
 import { Form } from "../components/Form";
 import { useLanguage } from "../components/LanguageContext";
