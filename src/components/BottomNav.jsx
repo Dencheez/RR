@@ -24,10 +24,10 @@ const BottomNav = () => {
                     <button
                         key={item.label}
                         onClick={() => navigate(item.href, { state: item.state })}
-                        className={`flex flex-col items-center justify-center w-full h-full ${isActive ? "text-blue-600" : "text-gray-500"}`}
+                        className={`flex flex-col items-center justify-center w-full h-full ${isActive ? "text-[#c9a227]" : "text-gray-500"}`}
                     >
                         {item.isPrimary ? (
-                            <div className="bg-blue-600 text-white p-3 rounded-xl -mt-8 shadow-lg">
+                            <div className="bg-[#c9a227] text-white p-3 rounded-xl -mt-8 shadow-lg">
                                 <Icon size={24} />
                             </div>
                         ) : (
