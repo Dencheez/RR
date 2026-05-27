@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useLanguage } from "../components/LanguageContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import HotOffers from "../components/HotOffers";
+
 const propertyBuy = [
     { id: 1, title: "2-комн. квартира · 70.8 м² · 9/18 этаж", price: "65 млн ₸", image: "https://photos-kr.kcdn.kz/content/48/47a2707f7f738-4847a270/1-full.jpg", location: "Алматы", photosCount: 33, address: "Шевченко-Ауэзова" },
     { id: 2, title: "1-комн. квартира · 38.7 м² · 4/12 этаж", price: "35 млн ₸", image: "https://photos-kr.kcdn.kz/content/8e/3c3b063857e3c-8e3c3b06/1-full.jpg", location: "Астана", photosCount: 12, address: "Мангилик Ел" },
@@ -102,7 +104,7 @@ const CardCarousel = ({ items }) => {
             {/* Прокручиваемая область */}
             <div
                 ref={scrollRef}
-                className="overflow-x-auto pt-3 pb-12 -mt-3 -mb-12 max-w-full ml-9"
+                className="overflow-x-auto pt-3 pb-12 -mt-3 -mb-12 max-w-full ml-9 hidden md:block"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
                 <div className="flex flex-col gap-2 px-2">
@@ -152,13 +154,16 @@ function Table() {
     ];
 
     return (
-        <div className="w-full max-w-[1300px] mx-auto py-6 font-sans text-sm relative">
+        <div className="w-full max-w-[1300px] mx-auto py-6 font-sans text-sm relative ">
             {/* Header */}
-            <div className="flex items-baseline gap-3 mb-4 px-4">
+            <div className="flex items-baseline gap-3 mb-4 px-4 hidden md:block">
                 <h1 className="text-[19px] font-bold text-[#2a5885]">Горячие предложения недвижимости в Казахстане</h1>
             </div>
 
-            <div className="border border-gray-200 overflow-visible">
+            <HotOffers />
+
+
+            <div className="border border-gray-200 overflow-visible  hidden md:block">
                 {/* Sale Section */}
                 <section className="mb-0 pb-4 overflow-visible relative z-10 hover:z-50">
                     <div className="flex flex-wrap items-baseline gap-4 mb-3 px-4 border-b border-gray-100 py-2">

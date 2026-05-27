@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "./LanguageContext";
 import { ChevronDown, MapPin, Search } from "lucide-react";
 
-const MainForm = ({ initialAction = "buy" }) => {
+import MobileGridMenu from "./MobileGridMenu";
+
+// Принимаем пропс initialType со страниц BuyPage и RentPage
+const MainForm = ({ initialAction = "buy", initialType = "" }) => {
     const { t } = useLanguage();
     const navigate = useNavigate();
 
-    // State
+    // Отслеживание мобильного экрана
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // State для десктопной формы
     const [action, setAction] = useState(initialAction);
-    const [propType, setPropType] = useState("apartments");
+    const [propType, setPropType] = useState(initialType || "apartments");
     const [rooms, setRooms] = useState("");
     const [priceFrom, setPriceFrom] = useState("");
     const [priceTo, setPriceTo] = useState("");
@@ -21,28 +35,70 @@ const MainForm = ({ initialAction = "buy" }) => {
     const [fromOwner, setFromOwner] = useState(false);
     const [isCommercial, setIsCommercial] = useState(false);
 
-    const onSearch = () => {
+    // Синхронизируем тип, если он прилетел из URL
+    useEffect(() => {
+        if (initialType) {
+            setPropType(initialType);
+        }
+    }, [initialType]);
+
+    // Функция генерации строки и редиректа на страницу поиска
+    const buildAndNavigateSearch = (updatedParams = {}) => {
         const params = new URLSearchParams();
-        params.set('action', action);
-        if (propType) params.set('type', propType);
+
+        // Берем либо новые переданные значения из мобилки, либо текущие из стейта
+        const finalAction = updatedParams.action !== undefined ? updatedParams.action : action;
+        const finalPropType = updatedParams.propType !== undefined ? updatedParams.propType : propType;
+        const finalIsNew = updatedParams.isNew !== undefined ? updatedParams.isNew : isNew;
+
+        params.set('action', finalAction);
+        if (finalPropType) params.set('type', finalPropType);
         if (rooms) params.set('rooms', rooms);
         if (priceFrom) params.set('priceFrom', priceFrom);
         if (priceTo) params.set('priceTo', priceTo);
         if (locationQuery) params.set('locationQuery', locationQuery);
         if (hasPhoto) params.set('hasPhoto', '1');
-        if (isNew) params.set('new', '1');
+        if (finalIsNew) params.set('new', '1');
         if (fromOwner) params.set('fromOwner', '1');
         if (isCommercial) params.set('commercial', '1');
 
         navigate(`/search?${params.toString()}`);
     };
 
+    // Обычный поиск по кнопке «Найти» на десктопе
+    const onSearch = () => {
+        buildAndNavigateSearch();
+    };
+
     const inputClasses = "h-[40px] px-3 bg-white border border-[#ccc] rounded-[2px] text-[14px] outline-none focus:border-[#2a5885] appearance-none w-full transition-colors";
     const labelClasses = "text-[12px] text-[#333] mb-1.5 block font-medium";
     const checkboxLabel = "flex items-center gap-2 text-[13px] cursor-pointer hover:text-blue-700 transition-colors py-1";
 
+    // ПРОВЕРКА ДЛЯ МОБИЛКИ
+    if (isMobile) {
+        // Если мы уже перешли на страницу поиска (есть initialType, например "new-buildings" или "commercial")
+        // то на мобилке форму и сетку вообще НЕ РЕНДЕРИМ, чтобы сразу шла таблица с карточками
+        if (initialType) {
+            return null;
+        }
+
+        // Если это главная страница (нет конкретного type), рендерим красивую сетку
+        // Передаем сеттеры и экшен отправки, чтобы кнопки сразу уводили на поиск со своими параметрами
+        return (
+            <div className="w-full max-w-[1350px] mx-auto px-4 mt-4 mb-6">
+                <MobileGridMenu
+                    setPropType={setPropType}
+                    setIsNew={setIsNew}
+                    setAction={setAction}
+                    onNavigate={(updatedFilters) => buildAndNavigateSearch(updatedFilters)}
+                />
+            </div>
+        );
+    }
+
+    // ОРИГИНАЛЬНАЯ ДЕСКТОПНАЯ ФОРМА (Остается без изменений)
     return (
-        <div className="w-full max-w-[1350px] mx-auto px-4 mt-8 mb-12">
+        <div className="w-full max-w-[1350px] mx-auto px-4 mt-4 md:mt-8 mb-12">
             <div className="bg-[#ffcc66] p-6 rounded-[4px]">
                 {/* Main Filter Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -125,7 +181,7 @@ const MainForm = ({ initialAction = "buy" }) => {
                 {/* Bottom Row: Checkboxes & Actions */}
                 <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#f0c040] pt-4">
                     <div className="flex flex-wrap gap-x-6 gap-y-2">
-                        <label className={checkboxLabel + "items-center justify-center flex"}  >
+                        <label className={checkboxLabel + " items-center justify-center flex"}>
                             <input
                                 type="checkbox"
                                 checked={hasPhoto}
@@ -157,8 +213,9 @@ const MainForm = ({ initialAction = "buy" }) => {
                                 type="checkbox"
                                 checked={isCommercial}
                                 onChange={e => setIsCommercial(e.target.checked)}
-                                className="w-[15px] h-[15px]" />
-                            проверенные специалисты
+                                className="w-[15px] h-[15px]"
+                            />
+                            <span className="ml-1">проверенные специалисты</span>
                         </label>
                     </div>
 

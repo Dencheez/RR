@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../components/LanguageContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -30,27 +30,27 @@ const propertyRent = [
     { id: 1, title: "Свободное назначение, офисы", price: "800 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/11/4d6b0c3867e3c-114d6b0c/1-full.jpg", location: "Алматы", photosCount: 5, address: "Бостандыкский р-н" },
     { id: 2, title: "1-комн. квартира · 40 м² · 10/10 этаж", price: "2 000 ₸ за час", image: "https://photos-kr.kcdn.kz/content/22/4d6b0c3867e3c-224d6b0c/1-full.jpg", location: "Алматы", photosCount: 10, address: "мкр. Таугуль" },
     { id: 3, title: "Свободное назначение, офисы", price: "1.2 млн ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/33/4d6b0c3867e3c-334d6b0c/1-full.jpg", location: "Алматы", photosCount: 8, address: "Медеуский р-н" },
-    { id: 4, title: "2-комн. квартира · 44 м² · 1/4 этаж", price: "220 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/44/4d6b0c3867e3c-444d6b0c/1-full.jpg", location: "Алматы", photosCount: 12, address: "мкр. Коктем" },
-    { id: 5, title: "1-комн. квартира · 47 м² · 5/14 этаж", price: "14 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/55/4d6b0c3867e3c-554d6b0c/1-full.jpg", location: "Алматы", photosCount: 15, address: "Тимирязева-Байзакова" },
+    { id: 4, title: "2-комн. квартира · 44 м² · 1/4 этаж", price: "220 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/44/4d6b0c3867e3c-444c6b0c/1-full.jpg", location: "Алматы", photosCount: 12, address: "мкр. Коктем" },
+    { id: 5, title: "1-комн. квартира · 47 м² · 5/14 этаж", price: "14 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/55/4d6b0c3867e3c-554c6b0c/1-full.jpg", location: "Алматы", photosCount: 15, address: "Тимирязева-Байзакова" },
     { id: 6, title: "Часть дома · 2 комнаты · 35 м²", price: "160 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/66/4d6b0c3867e3c-664d6b0c/1-full.jpg", location: "Алматы", photosCount: 6, address: "р-н Татарки" },
-    { id: 7, title: "2-комн. квартира · 78 м² · 11/16 этаж", price: "490 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/77/4d6b0c3867e3c-774d6b0c/1-full.jpg", location: "Алматы", photosCount: 20, address: "ЖК Керемет" },
+    { id: 7, title: "2-комн. квартира · 78 м² · 11/16 этаж", price: "490 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/77/4d6b0c3867e3c-774c6b0c/1-full.jpg", location: "Алматы", photosCount: 20, address: "ЖК Керемет" },
     { id: 8, title: "2-комн. квартира · 50 м² · 3/3 этаж", price: "15 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/88/4d6b0c3867e3c-884d6b0c/1-full.jpg", location: "Алматы", photosCount: 14, address: "Сейфуллина-Райымбека" },
-    { id: 9, title: "2-комн. квартира · 60 м² · 2/5 этаж", price: "15 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/99/4d6b0c3867e3c-994d6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Самал" },
+    { id: 9, title: "2-комн. квартира · 60 м² · 2/5 этаж", price: "15 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/99/4d6b0c3867e3c-994c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Самал" },
     { id: 10, title: "3-комн. квартира · 40 м² · 3/14 этаж", price: "190 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/10/4d6b0c3867e3c-104d6b0c/1-full.jpg", location: "Алматы", photosCount: 9, address: "мкр. Жулдыз" },
     { id: 11, title: "2-комн. квартира · 44 м² · 2/14 этаж", price: "12 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/21/4d6b0c3867e3c-214c6b0c/1-full.jpg", location: "Алматы", photosCount: 11, address: "мкр. Кулагер" },
     { id: 12, title: "1-комн. квартира · 68 м² · 4 этаж мкр", price: "12 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/32/4d6b0c3867e3c-324d6b0c/1-full.jpg", location: "Алматы", photosCount: 13, address: "мкр. Айнабулак" },
     { id: 13, title: "Дом · 5 комнат · 300 м² мкр Акжар", price: "100 000 ₸ за сутки", image: "https://photos-kr.kcdn.kz/content/43/4d6b0c3867e3c-434d6b0c/1-full.jpg", location: "Алматы", photosCount: 25, address: "мкр. Акжар" },
-    { id: 14, title: "Свободное назначение, офисы,", price: "4 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544d6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
-    { id: 15, title: "Свободное назначение, офисы,", price: "4 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544d6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
-    { id: 16, title: "Свободное назначение, офисы,", price: "4 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544d6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
+    { id: 14, title: "Свободное назначение, офисы,", price: "4 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544c6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
+    { id: 15, title: "Свободное назначение, офисы,", price: "4 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544c6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
+    { id: 16, title: "Свободное назначение, офисы,", price: "4 000 ₸ за месяц", image: "https://photos-kr.kcdn.kz/content/54/4d6b0c3867e3c-544c6b0c/1-full.jpg", location: "Алматы", photosCount: 4, address: "Турксибский р-н" },
     { id: 17, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "50 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
     { id: 18, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "50 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
     { id: 19, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "50 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
     { id: 20, title: "2-комн. квартира · 42.6 м² · 4/5 этаж", price: "50 000 ₸ в месяц", image: "https://photos-kr.kcdn.kz/content/20/4c6b0c3867e3c-204c6b0c/1-full.jpg", location: "Алматы", photosCount: 16, address: "мкр. Жетысу" },
 ];
 
-// Размер страницы карусели (сколько колонок видно за раз)
 const COLS_PER_PAGE = 10;
+
 const SmallCard = ({ item }) => {
     const navigate = useNavigate();
 
@@ -74,45 +74,38 @@ const SmallCard = ({ item }) => {
     );
 };
 
-// Карусель с двумя рядами карточек и стрелками
 const CardCarousel = ({ items }) => {
     const scrollRef = useRef(null);
 
     const scroll = (dir) => {
         if (!scrollRef.current) return;
-        // Ширина одной карточки (110px) + gap (8px) * COLS_PER_PAGE
         const pageWidth = (110 + 8) * COLS_PER_PAGE;
         scrollRef.current.scrollBy({ left: dir === "right" ? pageWidth : -pageWidth, behavior: "smooth" });
     };
 
-    // Разбиваем на 2 ряда: нечётные индексы в первый ряд, чётные во второй
     const row1 = items.filter((_, i) => i % 2 === 0);
     const row2 = items.filter((_, i) => i % 2 === 1);
 
     return (
         <div className="relative z-10 hover:z-[50]">
-            {/* Стрелка влево */}
             <button
                 onClick={() => scroll("left")}
-                className="absolute left-0 top-[120px] -translate-y-1/2 z-20 -translate-x-[14px]  w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                className="absolute left-0 top-[120px] -translate-y-1/2 z-20 -translate-x-[14px] w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
             >
                 <ChevronLeft size={16} className="absolute z-10" />
             </button>
 
-            {/* Прокручиваемая область */}
             <div
                 ref={scrollRef}
                 className="overflow-x-auto pt-3 pb-12 -mt-3 -mb-12 max-w-full ml-9"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
                 <div className="flex flex-col gap-2 px-2">
-                    {/* Ряд 1 */}
                     <div className="flex gap-2">
                         {row1.map((item) => (
                             <SmallCard key={item.id + "-r1"} item={item} />
                         ))}
                     </div>
-                    {/* Ряд 2 */}
                     <div className="flex gap-2">
                         {row2.map((item) => (
                             <SmallCard key={item.id + "-r2"} item={item} />
@@ -121,7 +114,6 @@ const CardCarousel = ({ items }) => {
                 </div>
             </div>
 
-            {/* Стрелка вправо */}
             <button
                 onClick={() => scroll("right")}
                 className="absolute right-0 top-[120px] -translate-y-1/2 z-20 translate-x-[14px] w-7 h-10 bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-700"
@@ -136,6 +128,21 @@ const CardCarousel = ({ items }) => {
 function RentTable() {
     const { t } = useLanguage();
 
+    // Отслеживаем мобилку
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Если мобильный экран — ничего не рендерим
+    if (isMobile) {
+        return null;
+    }
 
     return (
         <div className="w-full max-w-[1300px] mx-auto py-6 font-sans text-sm relative">

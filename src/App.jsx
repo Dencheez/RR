@@ -14,6 +14,7 @@ import { LanguageProvider } from './components/LanguageContext';
 import BuyPage from './BuyPage/page';
 import RentPage from './RentPage/page';
 import AddProperty from './AddProperty/page';
+import BottomNav from './components/BottomNav';
 import './index.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                 <InfoBlock />
                 <LinksBlock />
                 <Footer />
+                <BottomNav />
               </>
             } />
             <Route path="/buy" element={<BuyPage />} />

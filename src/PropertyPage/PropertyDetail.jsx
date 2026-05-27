@@ -161,13 +161,9 @@ export default function PropertyDetail() {
             {property.location && ` — ${property.location}`}
           </h1>
           <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
-            <button style={outBtn}>
-              <Bookmark size={14} style={{ marginRight: 5, color: "#1a73e8" }} />
-              <span style={{ color: "#1a73e8", fontSize: 13 }}>Оставить заметку</span>
-            </button>
             <button onClick={() => setSaved(!saved)} style={outBtn}>
-              <Heart size={14} style={{ marginRight: 5, color: saved ? "#e53935" : "#1a73e8", fill: saved ? "#e53935" : "none" }} />
-              <span style={{ color: "#1a73e8", fontSize: 13 }}>В Избранное</span>
+              <Heart size={14} style={{ marginRight: 5, color: saved ? "#e53935" : "#c9a227", fill: saved ? "#e53935" : "none" }} />
+              <span style={{ color: "#c9a227", fontSize: 13 }}>В Избранное</span>
             </button>
           </div>
         </div>
@@ -227,11 +223,11 @@ export default function PropertyDetail() {
               />
               {images.length > 1 && (
                 <>
-                  <button onClick={e => { e.stopPropagation(); setActiveImg(i => (i - 1 + images.length) % images.length); }} style={navBtn("left")}>
-                    <ChevronLeft size={22} color="#fff" />
+                  <button className="relative w-[100px] h-[100px]" onClick={e => { e.stopPropagation(); setActiveImg(i => (i - 1 + images.length) % images.length); }} style={navBtn("left")}>
+                    <ChevronLeft className="absolute text-[#fff]" />
                   </button>
-                  <button onClick={e => { e.stopPropagation(); setActiveImg(i => (i + 1) % images.length); }} style={navBtn("right")}>
-                    <ChevronRight size={22} color="#fff" />
+                  <button className="relative w-[100px] h-[100px]" onClick={e => { e.stopPropagation(); setActiveImg(i => (i + 1) % images.length); }} style={navBtn("right")}>
+                    <ChevronRight className="absolute text-[#fff]" />
                   </button>
                   <div style={{ position: "absolute", bottom: 10, right: 14, background: "rgba(0,0,0,.55)", color: "#fff", fontSize: 12, borderRadius: 4, padding: "2px 8px" }}>
                     {activeImg + 1} / {images.length}
@@ -333,13 +329,13 @@ const outBtn = {
 const navBtn = side => ({
   position: "absolute", top: "50%", transform: "translateY(-50%)",
   [side]: 10, background: "rgba(0,0,0,.45)", border: "none",
-  borderRadius: "50%", width: 36, height: 36, cursor: "pointer",
+  borderRadius: "50%", width: 50, height: 50, cursor: "pointer",
   display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2
 });
 
 const lbNav = side => ({
   position: "absolute", top: "50%", transform: "translateY(-50%)",
   [side]: -52, background: "rgba(255,255,255,.15)", border: "none",
-  borderRadius: "50%", width: 44, height: 44, cursor: "pointer",
+  borderRadius: "50%", width: 50, height: 50, cursor: "pointer",
   display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2
 });

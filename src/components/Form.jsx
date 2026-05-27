@@ -71,7 +71,8 @@ export const Form = ({
     };
 
     return (
-        <div className="w-full bg-[#ffcc66] rounded-[4px] shadow-sm overflow-hidden">
+        /* Изменено здесь: добавили hidden md:block, чтобы форма пропадала на смартфонах */
+        <div className="hidden md:block w-full bg-[#ffcc66] rounded-[4px] shadow-sm overflow-hidden">
             {/* Main Row */}
             <div className="p-4 flex flex-wrap items-end gap-4">
                 {/* Property Type */}

@@ -6,6 +6,8 @@ import Footer from '../components/Footer'
 import BuyLinks from '../components/BuyLinks'
 import DownNav from '../components/DownNav'
 
+import BottomNav from '../components/BottomNav'
+
 const BuyPage = () => {
     return (
         <div>
@@ -15,6 +17,7 @@ const BuyPage = () => {
             <BuyTable />
             <BuyLinks />
             <Footer />
+            <BottomNav />
         </div>
     )
 }

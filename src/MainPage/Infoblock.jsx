@@ -1,53 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const InfoBlock = () => {
     const navigate = useNavigate();
 
     const sections = [
         {
-            title: "Новости",
-            count: 9687,
+            title: "News", // Сменили на английский для международного контекста KSA
             featured: {
-                title: "Какие дома в Алматы снесут по реновации: опубликованы адреса",
-                desc: "Под снос попадают двухэтажки и частный сектор",
-                image: "https://krisha-photos.fastly.net/content/2024/05/6641e7d23d8c1995.jpg?w=320",
+                title: "Riyadh's New Residential Megaprojects: Vision 2030 Update",
+                desc: "New master-planned communities launching in the northern suburbs",
+                image: "https://saudihelplinegroup.com/wp-content/uploads/2024/11/World-Expo-2030-640x503.jpeg.webp",
                 link: "#"
             },
             links: [
-                { text: "В каких ЖК Шымкента безопасно покупать квартиру", link: "#" },
-                { text: "На что казахстанцы тратят пенсионные в 2026 году", link: "#" },
-                { text: "В Казахстане предложили повысить налоги для владельцев нескольких квартир", link: "#" }
-            ]
-        },
-        {
-            title: "Статьи",
-            count: 2435,
-            featured: {
-                title: "Когда можно не платить за услуги КСК",
-                desc: "Что такое зачёт за ремонт и как им воспользоваться",
-                image: "https://krisha-photos.fastly.net/content/2024/05/6641e7d23d8c1996.jpg?w=320",
-                link: "#"
-            },
-            links: [
-                { text: "Срок аренды истёк: что дальше?", link: "#" },
-                { text: "Нужно ли менять документы на квартиру перед продажей", link: "#" },
-                { text: "Ипотека на новостройки – 2026: условия всех банков", link: "#" }
-            ]
-        },
-        {
-            title: "PR",
-            count: 269,
-            featured: {
-                title: "Как выглядит семейная жизнь в ритме мегаполиса: концепция жилого комплекса TUMAR",
-                desc: "Алматы продолжает активно расти, а вместе с ним меняются и требования горожа...",
-                image: "https://krisha-photos.fastly.net/content/2024/05/6641e7d23d8c1997.jpg?w=320",
-                link: "#"
-            },
-            links: [
-                { text: "MONOLIT GROUP: квартиры от 8.9 млн тенге рядом с Алматы", link: "#" },
-                { text: "Команда Tetris Construction Group: «Мы строим только то, где сами хотели бы жить и работать»", link: "#" },
-                { text: "Park Residence Apartments — уникальный проект в Шымкенте от ведущего строительного холдинга OTAU GROUP", link: "#" }
+                { text: "Mortgage rates in KSA for 2026: What you need to know", link: "#" },
+                { text: "How foreign investors can purchase property in Riyadh", link: "#" },
+                { text: "The growth of luxury villas in Al Malqa and Hittin districts", link: "#" }
             ]
         }
     ];
