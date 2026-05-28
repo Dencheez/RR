@@ -27,7 +27,7 @@ const BottomNav = () => {
                         className={`flex flex-col items-center justify-center w-full h-full ${isActive ? "text-[#c9a227]" : "text-gray-500"}`}
                     >
                         {item.isPrimary ? (
-                            <div className="bg-[#c9a227] text-white p-3 rounded-xl -mt-8 shadow-lg">
+                            <div className="bg-[#c9a227] text-white p-3 rounded-full">
                                 <Icon size={24} />
                             </div>
                         ) : (
