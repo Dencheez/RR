@@ -18,8 +18,8 @@ const DownNav = () => {
     ];
 
     return (
-        <nav className="border-b border-[#eee] bg-white hidden xl:block">
-            <div className="max-w-[1200px] mx-auto px-4 h-[44px] flex items-center gap-6">
+        <nav className=" border-[#eee] bg-white hidden xl:block">
+            <div className="max-w-[1375px] mx-auto px-4 h-[0] flex justify-start gap-6">
                 {navLinks.map((link, idx) => {
                     const params = new URLSearchParams();
                     params.set('action', action);

@@ -3,7 +3,6 @@ import Header from '../components/header'
 import MainForm from '../components/MainForm'
 import RentTable from '../components/RentTable'
 import Footer from '../components/Footer'
-import RentLinks from '../components/RentLinks'
 import DownNav from '../components/DownNav'
 
 const RentPage = () => {
@@ -13,7 +12,6 @@ const RentPage = () => {
             <DownNav />
             <MainForm initialAction="rent" />
             <RentTable />
-            <RentLinks />
             <Footer />
         </div>
     )
