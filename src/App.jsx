@@ -30,7 +30,7 @@ function App() {
           <Route path="/rent" element={<PageWithNav><RentPage /></PageWithNav>} />
           <Route path="/search" element={<PageWithNav><SearchResult isMapView={false} /></PageWithNav>} />
           <Route path="/map" element={<PageWithNav><SearchResult isMapView={true} /></PageWithNav>} />
-          <Route path="/property/:id" element={<PageWithNav><PropertyDetail /></PageWithNav>} />
+          <Route path="/property/:id" element={<PropertyDetail />} />
           <Route path="/profile" element={<PageWithNav><ProfilePage /></PageWithNav>} />
           <Route path="/add-property" element={<PageWithNav><AddProperty /></PageWithNav>} />
 

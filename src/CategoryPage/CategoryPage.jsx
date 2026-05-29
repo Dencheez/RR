@@ -24,7 +24,12 @@ const CategoryPage = () => {
     };
 
     const handleCategoryClick = (item) => {
-        setSelectedCategory(item);
+        // Если режим 'buy', переходим сразу. Если 'rent', открываем вложенное меню.
+        if (mode === 'buy') {
+            navigate(`/search?type=${item.value}&action=${mode}`);
+        } else {
+            setSelectedCategory(item);
+        }
     };
 
     const handleBack = () => {
@@ -42,7 +47,7 @@ const CategoryPage = () => {
                     <ArrowLeft size={20} />
                     <h1 className="text-[24px] font-bold text-gray-900">
                         {selectedCategory
-                            ? `${mode === 'rent' ? 'Арендовать' : 'Купить'} ${selectedCategory.label.toLowerCase()}`
+                            ? `Арендовать ${selectedCategory.label.toLowerCase()}`
                             : (mode === 'buy' ? 'Купить' : 'Арендовать')}
                     </h1>
                 </button>
@@ -68,15 +73,16 @@ const CategoryPage = () => {
             <div className="flex-grow divide-y divide-gray-100 px-4">
                 {selectedCategory ? (
                     <>
+                        {/* Показываем подменю только если мы в режиме аренды */}
                         <button
-                            onClick={() => navigate(`/search?type=${selectedCategory.value}&term=monthly&action=${mode}`)}
+                            onClick={() => navigate(`/search?type=${selectedCategory.value}&term=monthly&action=rent`)}
                             className="w-full flex items-center justify-between py-5 text-[16px] text-gray-800"
                         >
                             <span>Помесячно</span>
                             <ArrowRight size={20} className="text-gray-400" />
                         </button>
                         <button
-                            onClick={() => navigate(`/search?type=${selectedCategory.value}&term=daily&action=${mode}`)}
+                            onClick={() => navigate(`/search?type=${selectedCategory.value}&term=daily&action=rent`)}
                             className="w-full flex items-center justify-between py-5 text-[16px] text-gray-800"
                         >
                             <span>Посуточно</span>

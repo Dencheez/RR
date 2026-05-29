@@ -7,6 +7,8 @@ import { Form } from "../components/Form";
 import { useLanguage } from "../components/LanguageContext";
 import PropertyMap from "./PropertyMap";
 import { Flame, ArrowUpDown } from "lucide-react";
+import { MobileFilterHeader } from "../components/MobileFilterHeader";
+import { MobileFilterModal } from "../components/MobileFilter";
 
 export default function SearchResult({ isMapView, hideForm }) {
   const [searchParams] = useSearchParams();
@@ -46,6 +48,15 @@ export default function SearchResult({ isMapView, hideForm }) {
   const [sortBy, setSortBy] = useState("sortNew");
   const [polygonFilter, setPolygonFilter] = useState(null);
 
+  const handleClear = () => {
+    setPropType(''); setRooms(''); setPriceFrom(''); setPriceTo('');
+    setLocationQuery(''); setHasPhoto(false); setIsNew(false);
+    setFromOwner(false); setIsCommercial(false); setHouseType('');
+    setFloorFrom(''); setFloorTo(''); setYearFrom(''); setYearTo('');
+    setNotFirstFloor(false); setNotLastFloor(false); setTotalAreaFrom('');
+    setTotalAreaTo(''); setKitchenAreaFrom(''); setKitchenAreaTo('');
+    setResidentialComplex('');
+  };
   // Sync state with URL parameters when they change
   useEffect(() => {
     setAction(searchParams.get('action') || 'buy');
@@ -315,11 +326,20 @@ export default function SearchResult({ isMapView, hideForm }) {
     { id: 108, title: "Duplex • 210 m²", price: "45 000 000", location: "Al Aqiq District", image: "https://brickwoodhomes.com.au/wp-content/uploads/2024/03/IMG-20211123-WA0003.jpg" },
   ];
 
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+
+  const activeFiltersCount = [
+    rooms, priceFrom, priceTo, hasPhoto, isNew, fromOwner,
+    houseType, floorFrom, floorTo, yearFrom, yearTo,
+    notFirstFloor, notLastFloor, totalAreaFrom, totalAreaTo,
+    kitchenAreaFrom, kitchenAreaTo
+  ].filter(v => v && v !== false && v !== '').length;
+
   return (
     <div className={`min-h-screen font-sans ${pageBg}`}>
       <Header />
 
-      <main className="max-w-[1440px] mx-auto px-4 md:px-10 pt-28 pb-20">
+      <main className="max-w-[1440px] mx-auto px-4 md:px-10 pb-20">
 
         {/* TOP SEARCH FORM */}
         {!hideForm && (
@@ -353,6 +373,40 @@ export default function SearchResult({ isMapView, hideForm }) {
           />
         )}
 
+        <div className="md:hidden">
+          <MobileFilterHeader
+            isMapView={isMapView}
+            onToggleView={handleToggleView}
+            onOpenFilters={() => setIsFilterModalOpen(true)}
+            activeFiltersCount={activeFiltersCount}
+          />
+        </div>
+        {isFilterModalOpen && (
+          <MobileFilterModal
+            onClose={() => setIsFilterModalOpen(false)}
+            resultsCount={filteredBuildings.length}
+            handleClear={handleClear}
+            action={action} setAction={setAction}
+            propType={propType} setPropType={setPropType}
+            rooms={rooms} setRooms={setRooms}
+            priceFrom={priceFrom} setPriceFrom={setPriceFrom}
+            priceTo={priceTo} setPriceTo={setPriceTo}
+            hasPhoto={hasPhoto} setHasPhoto={setHasPhoto}
+            isNew={isNew} setIsNew={setIsNew}
+            fromOwner={fromOwner} setFromOwner={setFromOwner}
+            houseType={houseType} setHouseType={setHouseType}
+            floorFrom={floorFrom} setFloorFrom={setFloorFrom}
+            floorTo={floorTo} setFloorTo={setFloorTo}
+            yearFrom={yearFrom} setYearFrom={setYearFrom}
+            yearTo={yearTo} setYearTo={setYearTo}
+            notFirstFloor={notFirstFloor} setNotFirstFloor={setNotFirstFloor}
+            notLastFloor={notLastFloor} setNotLastFloor={setNotLastFloor}
+            totalAreaFrom={totalAreaFrom} setTotalAreaFrom={setTotalAreaFrom}
+            totalAreaTo={totalAreaTo} setTotalAreaTo={setTotalAreaTo}
+            kitchenAreaFrom={kitchenAreaFrom} setKitchenAreaFrom={setKitchenAreaFrom}
+            kitchenAreaTo={kitchenAreaTo} setKitchenAreaTo={setKitchenAreaTo}
+          />
+        )}
         <div className="flex flex-col lg:flex-row gap-10 mt-10">
 
           {/* MAIN CONTENT COLUMN */}
@@ -456,14 +510,14 @@ export default function SearchResult({ isMapView, hideForm }) {
 
           {/* RIGHT SIDEBAR: Hot Offers (Hidden on Map View) */}
           {!isMapView && (
-            <div className="w-full lg:w-[320px] shrink-0">
+            <div className="w-full lg:w-[320px] shrink-0 hidden md:flex">
               <div className=" top-28 p-6 rounded-3xl border bg-white border-black/5">
                 <div className="flex items-center gap-2 mb-6">
                   <Flame className="text-[#c9a227]" size={20} />
                   <h2 className={`text-xl font-black uppercase tracking-tight ${titleColor}`}>{t('hotOffers')}</h2>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-6 ">
                   {hotOffers.map(offer => (
                     <div
                       key={offer.id}

@@ -5,12 +5,10 @@ import { ChevronDown, MapPin, Search } from "lucide-react";
 
 import MobileGridMenu from "./MobileGridMenu";
 
-// Принимаем пропс initialType со страниц BuyPage и RentPage
 const MainForm = ({ initialAction = "buy", initialType = "" }) => {
     const { t } = useLanguage();
     const navigate = useNavigate();
 
-    // Отслеживание мобильного экрана
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
     useEffect(() => {
@@ -74,16 +72,11 @@ const MainForm = ({ initialAction = "buy", initialType = "" }) => {
     const labelClasses = "text-[12px] text-[#333] mb-1.5 block font-medium";
     const checkboxLabel = "flex items-center gap-2 text-[13px] cursor-pointer hover:text-blue-700 transition-colors py-1";
 
-    // ПРОВЕРКА ДЛЯ МОБИЛКИ
     if (isMobile) {
-        // Если мы уже перешли на страницу поиска (есть initialType, например "new-buildings" или "commercial")
-        // то на мобилке форму и сетку вообще НЕ РЕНДЕРИМ, чтобы сразу шла таблица с карточками
         if (initialType) {
             return null;
         }
 
-        // Если это главная страница (нет конкретного type), рендерим красивую сетку
-        // Передаем сеттеры и экшен отправки, чтобы кнопки сразу уводили на поиск со своими параметрами
         return (
             <div className="w-full max-w-[1350px] mx-auto px-4 mt-4 mb-6">
                 <MobileGridMenu
@@ -94,11 +87,8 @@ const MainForm = ({ initialAction = "buy", initialType = "" }) => {
                 />
             </div>
         );
-    }
-
-    // ОРИГИНАЛЬНАЯ ДЕСКТОПНАЯ ФОРМА (Остается без изменений)
-    return (
-        <div className="w-full max-w-[1350px] mx-auto px-4 mt-4 md:mt-8 mb-12">
+    } return (
+        <div className="w-full max-w-[1350px] mx-auto  mt-4 md:mt-8 mb-12">
             <div className="bg-[#ffcc66] p-6 rounded-[4px]">
                 {/* Main Filter Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
