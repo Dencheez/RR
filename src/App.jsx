@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/Footer';
@@ -15,26 +16,30 @@ import BuyPage from './BuyPage/page';
 import RentPage from './RentPage/page';
 import AddProperty from './AddProperty/page';
 import CategoryPage from './CategoryPage/CategoryPage';
+import AuthModal from './components/AuthModal';
 
 function App() {
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+
   return (
     <LanguageProvider>
       <Router>
+        {/* Модальное окно доступно всегда */}
+        <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+
         <Routes>
-          {/* 1. СТРАНИЦА КАТЕГОРИЙ: Удаляем первый пустой вариант и оставляем только правильный */}
           <Route path="/select-category" element={<CategoryPage />} />
 
-          {/* 2. ВСЕ ОСТАЛЬНЫЕ СТРАНИЦЫ */}
-          <Route path="/" element={<PageWithNav><MainForm /><Table /><InfoBlock /><LinksBlock /></PageWithNav>} />
-          <Route path="/buy" element={<PageWithNav><BuyPage /></PageWithNav>} />
-          <Route path="/rent" element={<PageWithNav><RentPage /></PageWithNav>} />
-          <Route path="/search" element={<PageWithNav><SearchResult isMapView={false} /></PageWithNav>} />
-          <Route path="/map" element={<PageWithNav><SearchResult isMapView={true} /></PageWithNav>} />
+          {/* Передаем setIsAuthOpen в каждый PageWithNav */}
+          <Route path="/" element={<PageWithNav setIsAuthOpen={setIsAuthOpen}><MainForm /><Table /><InfoBlock /><LinksBlock /></PageWithNav>} />
+          <Route path="/buy" element={<PageWithNav setIsAuthOpen={setIsAuthOpen}><BuyPage /></PageWithNav>} />
+          <Route path="/rent" element={<PageWithNav setIsAuthOpen={setIsAuthOpen}><RentPage /></PageWithNav>} />
+          <Route path="/search" element={<PageWithNav setIsAuthOpen={setIsAuthOpen}><SearchResult isMapView={false} /></PageWithNav>} />
+          <Route path="/map" element={<PageWithNav setIsAuthOpen={setIsAuthOpen}><SearchResult isMapView={true} /></PageWithNav>} />
           <Route path="/property/:id" element={<PropertyDetail />} />
-          <Route path="/profile" element={<PageWithNav><ProfilePage /></PageWithNav>} />
-          <Route path="/add-property" element={<PageWithNav><AddProperty /></PageWithNav>} />
+          <Route path="/profile" element={<PageWithNav setIsAuthOpen={setIsAuthOpen}><ProfilePage /></PageWithNav>} />
+          <Route path="/add-property" element={<PageWithNav setIsAuthOpen={setIsAuthOpen}><AddProperty /></PageWithNav>} />
 
-          {/* 3. Страница без всего */}
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </Router>
@@ -42,13 +47,13 @@ function App() {
   );
 }
 
-// Вспомогательный компонент, чтобы не писать одно и то же 10 раз
-const PageWithNav = ({ children }) => (
+// Теперь компонент PageWithNav корректно принимает и передает функцию дальше
+const PageWithNav = ({ children, setIsAuthOpen }) => (
   <div className="flex flex-col min-h-screen">
     <Header />
     <div className="flex-grow">{children}</div>
     <Footer />
-    <BottomNav />
+    <BottomNav setIsAuthOpen={setIsAuthOpen} />
   </div>
 );
 

@@ -110,12 +110,12 @@ export default function PropertyDetail() {
             </>
           )}
           {/* Top actions */}
-          <div className="absolute top-3 right-3 flex gap-2">
-            <button onClick={() => setSaved(!saved)} className="bg-white/90 rounded-full w-9 h-9 flex items-center justify-center shadow">
-              <Heart size={18} className={saved ? "fill-red-500 text-red-500" : "text-gray-500"} />
+          <div className="absolute top-72 right-3 flex gap-2">
+            <button onClick={() => setSaved(!saved)} className="bg-white/90 rounded-full w-9 h-9 flex items-center justify-center shadow relative z-0 action:">
+              <Heart size={18} className={saved ? "fill-red-500 text-red-500" : "text-gray-500 absolute z-10"} />
             </button>
             <button className="bg-white/90 rounded-full w-9 h-9 flex items-center justify-center shadow">
-              <Share2 size={17} className="text-gray-500" />
+              <Share2 size={17} className="text-gray-500 absolute z-10" />
             </button>
           </div>
           {/* Agent logo */}
