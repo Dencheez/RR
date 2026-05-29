@@ -1,10 +1,21 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Home, Heart, Plus, Mail, User } from "lucide-react";
+import { useLanguage } from "./LanguageContext";
 
 const BottomNav = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const { user } = useLanguage();
+
+    const handleProtectedClick = (path, state) => {
+        if (!user) {
+            setIsAuthOpen(true); // Если не залогинен, открываем вход
+        } else {
+            navigate(path, { state });
+        }
+    };
+
 
     const menuItems = [
         { label: "Главная", href: "/", icon: Home },

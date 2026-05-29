@@ -450,21 +450,6 @@ const AddProperty = () => {
                   {/* Building Type and Year Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-semibold text-black/80 mb-2">Тип строения</label>
-                      <select
-                        value={formData.buildingType}
-                        onChange={(e) => setFormData(prev => ({ ...prev, buildingType: e.target.value }))}
-                        className="w-full px-4 py-3 rounded-2xl border border-black/10 focus:border-[#c9a227] outline-none font-medium text-black"
-                      >
-                        <option value="Монолитный">Монолитный</option>
-                        <option value="Кирпичный">Кирпичный</option>
-                        <option value="Панельный">Панельный</option>
-                        <option value="Блочный">Блочный</option>
-                        <option value="Иное">Иное</option>
-                      </select>
-                    </div>
-
-                    <div>
                       <label className="block text-sm font-semibold text-black/80 mb-2">Год постройки (сдачи в эксплуатацию) *</label>
                       <input
                         type="text"

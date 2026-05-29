@@ -5,7 +5,7 @@ import LanguageSwitcher from '../components/language';
 import { useLocation } from 'react-router-dom';
 import {
   User, Home, Bookmark, MoveRight, LogOut, Camera,
-  ChevronRight, MapPin, BedDouble, Bath, Maximize2
+  ChevronRight,
 } from 'lucide-react';
 
 const ProfilePage = () => {
