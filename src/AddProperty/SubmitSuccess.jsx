@@ -109,7 +109,6 @@ const SubmitSuccess = () => {
                         </div>
                     </div>
                 </div>
-                <Footer />
             </div>
         );
     }

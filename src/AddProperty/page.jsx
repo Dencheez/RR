@@ -258,7 +258,7 @@ const AddProperty = () => {
   // If user is not logged in, render authentication wall
   if (!user) {
     return (
-      <div className="min-h-screen flex flex-col justify-between bg-[#fcfbfa]">
+      <div className="min-h-screen flex flex-col justify-between bg-[#fcfbfa] md:py-10">
         <Header />
         <div className="flex-1 flex flex-col items-center justify-center py-20 px-4">
           <Usercheck />
@@ -272,7 +272,7 @@ const AddProperty = () => {
   // If submission was successful
   if (submitSuccess) {
     return (
-      <div className="min-h-screen flex flex-col justify-between bg-[#fcfbfa]">
+      <div className="min-h-screen flex flex-col justify-between bg-[#fcfbfa] md:py-10">
         <Header />
         <SubmitSuccess
           categories={categories}
@@ -287,7 +287,7 @@ const AddProperty = () => {
 
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fcfbfa]">
+    <div className="min-h-screen flex flex-col bg-[#fcfbfa] md:py-10">
       <Header />
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
@@ -336,7 +336,7 @@ const AddProperty = () => {
                             key={subItem.id}
                             onClick={() => {
                               setChosenSubcategory(subItem);
-                              setStep(2); // Jump to Details form
+                              setStep(2);
                             }}
                             className="w-full flex items-center justify-between px-5 py-4 text-left text-black/80 font-medium hover:bg-black/5 hover:text-black border-b border-black/5 last:border-0 transition-all duration-200"
                           >
@@ -514,33 +514,10 @@ const AddProperty = () => {
                     </div>
                     {formErrors.areaTotal && <p className="text-red-500 text-xs mt-1 font-semibold">{formErrors.areaTotal}</p>}
                   </div>
-
-                  {/* Dormitory selection */}
-                  <div>
-                    <label className="block text-sm font-semibold text-black/80 mb-2">Бывшее общежитие</label>
-                    <div className="flex gap-2">
-                      {["Да", "Нет"].map((opt) => {
-                        const isSelected = formData.dormitory === opt;
-                        return (
-                          <button
-                            key={opt}
-                            type="button"
-                            onClick={() => setFormData(prev => ({ ...prev, dormitory: opt }))}
-                            className={`px-8 py-2.5 rounded-xl text-sm font-semibold border transition-all duration-200 ${isSelected
-                              ? "bg-[#c9a227] border-[#c9a227] text-white shadow-md shadow-[#c9a227]/20"
-                              : "border-black/10 text-black/75 hover:bg-black/5 hover:border-black/20"
-                              }`}
-                          >
-                            {opt}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
                 </div>
 
                 {/* Location block */}
-                <div className="bg-white rounded-3xl p-6 border border-black/5 shadow-sm space-y-6">
+                <div className="bg-white rounded-3xl p-6 border border-black/5 space-y-6">
                   <h3 className="text-xl font-bold border-b border-black/5 pb-4 mb-4">Расположение</h3>
 
                   {/* District select */}
@@ -609,7 +586,7 @@ const AddProperty = () => {
                         required
                         value={formData.street}
                         onChange={(e) => setFormData(prev => ({ ...prev, street: e.target.value }))}
-                        placeholder="мкр Тастак-2"
+                        placeholder="Эр-Рияд"
                         className="w-full px-4 py-3 rounded-2xl border border-black/10 focus:border-[#c9a227] outline-none font-medium"
                       />
                       {formErrors.street && <p className="text-red-500 text-xs mt-1 font-semibold">{formErrors.street}</p>}
@@ -622,7 +599,7 @@ const AddProperty = () => {
                         required
                         value={formData.houseNumber}
                         onChange={(e) => setFormData(prev => ({ ...prev, houseNumber: e.target.value }))}
-                        placeholder="14Б"
+                        placeholder="14"
                         className="w-full px-4 py-3 rounded-2xl border border-black/10 focus:border-[#c9a227] outline-none font-medium"
                       />
                       {formErrors.houseNumber && <p className="text-red-500 text-xs mt-1 font-semibold">{formErrors.houseNumber}</p>}
@@ -639,17 +616,6 @@ const AddProperty = () => {
                       />
                     </div>
                   </div>
-
-                  {/* Hide house number checkbox */}
-                  <label className="flex items-center gap-3 select-none cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={formData.hideHouseNumber}
-                      onChange={(e) => setFormData(prev => ({ ...prev, hideHouseNumber: e.target.checked }))}
-                      className="w-5 h-5 rounded border-black/10 text-[#c9a227] focus:ring-[#c9a227] cursor-pointer"
-                    />
-                    <span className="text-sm font-semibold text-black/75">Скрыть номер дома</span>
-                  </label>
 
                   {/* Map marker choice section */}
                   <div className="space-y-3">
@@ -751,7 +717,7 @@ const AddProperty = () => {
                   {/* Security checkboxes */}
                   <div className="grid grid-cols-[180px_1fr] gap-4 py-4 border-b border-black/5 items-start">
                     <span className="text-sm font-semibold text-black/70 pt-1">Безопасность</span>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-3 max-md:grid-cols-1">
                       {["Решетки на окнах", "Охрана", "Домофон", "Кодовый замок", "Сигнализация", "Видеонаблюдение", "Видеодомофон", "Консьерж"].map((item) => (
                         <label key={item} className="flex items-center gap-2.5 cursor-pointer select-none">
                           <input type="checkbox" checked={formData.security.includes(item)} onChange={() => setFormData(prev => ({ ...prev, security: prev.security.includes(item) ? prev.security.filter(s => s !== item) : [...prev.security, item] }))} className="w-4.5 h-4.5 rounded border-black/15 text-[#c9a227] focus:ring-[#c9a227]" />
@@ -764,8 +730,8 @@ const AddProperty = () => {
                   {/* Misc checkboxes */}
                   <div className="grid grid-cols-[180px_1fr] gap-4 py-4 items-start">
                     <span className="text-sm font-semibold text-black/70 pt-1">Разное</span>
-                    <div className="grid grid-cols-2 gap-3">
-                      {["Пластиковые окна", "Неугловая", "Улучшенная", "Комнаты изолированы", "Кухня-студия", "Встроенная кухня", "Новая сантехника", "Кладовка", "Счётчики", "Тихий двор", "Кондиционер", "Удобно под коммерцию"].map((item) => (
+                    <div className="grid grid-cols-2 gap-3 max-md:grid-cols-1">
+                      {["Пластиковые окна", "Неугловая", "Комнаты изолированы", "Кухня-студия", "Встроенная кухня", "Новая сантехника", "Кладовка", "Счётчики", "Тихий двор", "Кондиционер", "Удобно под коммерцию"].map((item) => (
                         <label key={item} className="flex items-center gap-2.5 cursor-pointer select-none">
                           <input type="checkbox" checked={formData.misc.includes(item)} onChange={() => setFormData(prev => ({ ...prev, misc: prev.misc.includes(item) ? prev.misc.filter(s => s !== item) : [...prev.misc, item] }))} className="w-4.5 h-4.5 rounded border-black/15 text-[#c9a227] focus:ring-[#c9a227]" />
                           <span className="text-sm text-black/80">{item}</span>
@@ -856,7 +822,6 @@ const AddProperty = () => {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 };

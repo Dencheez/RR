@@ -21,7 +21,7 @@ const ProfileSidebar = ({ user, activeTab, onTabClick, onLogout, fileInputRef, o
                 <div className="relative mb-6 group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
                     <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={onAvatarChange} />
                     <div className="w-28 h-28 rounded-full border-2 border-[#c9a227] p-1 flex items-center justify-center overflow-hidden bg-black/5">
-                        {user?.avatar ? <img src={user.avatar} alt="avatar" className="w-full h-full object-cover " /> : <User size={48} className="text-[#c9a227] mt-4 ml-6" />}
+                        {user?.avatar ? <img src={user.avatar} alt="avatar" className="w-full h-full object-cover " /> : <User size={48} className="text-[#c9a227]" />}
                     </div>
                     <div className="absolute bottom-1 right-1 bg-[#c9a227] p-2 rounded-full text-white"><Camera size={16} /></div>
                 </div>
