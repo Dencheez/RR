@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import * as turf from '@turf/turf';
-import Header from "../components/header";
+
 import { SearchCard } from "./SearchCard";
 import { Form } from "../components/Form";
 import { useLanguage } from "../components/LanguageContext";
@@ -336,8 +336,7 @@ export default function SearchResult({ isMapView, hideForm }) {
   ].filter(v => v && v !== false && v !== '').length;
 
   return (
-    <div className={`min-h-screen font-sans ${pageBg}`}>
-      <Header />
+    <div className={`font-sans ${pageBg}`}>
 
       <main className="max-w-[1440px] mx-auto px-4 md:px-10 pb-20">
 

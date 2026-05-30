@@ -42,7 +42,7 @@ const ProfilePage = () => {
   }, [location.state]);
 
   return (
-    <div className="min-h-screen flex bg-[#f7f5f0]">
+    <div className="flex-1 flex bg-[#f7f5f0]">
       {/* Сайдбар: виден, когда isSidebarVisible === true */}
       {isSidebarVisible && (
         <ProfileSidebar
@@ -59,8 +59,7 @@ const ProfilePage = () => {
         />
       )}
 
-      {/* Основной контент: виден, когда сайдбар скрыт (на мобилке) или всегда (на десктопе) */}
-      <div className={`${!isSidebarVisible ? 'flex' : 'hidden'} lg:flex flex-1 h-screen overflow-y-auto p-10 lg:p-20 flex-col`}>
+      <div className={`${!isSidebarVisible ? 'flex' : 'hidden'} lg:flex flex-1 overflow-y-auto p-10 lg:p-20 flex-col`}>
         <button
           onClick={() => setIsSidebarVisible(true)}
           className="lg:hidden mb-8 text-[#c9a227] font-black uppercase text-[10px]"

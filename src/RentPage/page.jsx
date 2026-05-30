@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../components/header'
 import MainForm from '../components/MainForm'
 import RentTable from '../components/RentTable'
 import DownNav from '../components/DownNav'
@@ -7,7 +6,6 @@ import DownNav from '../components/DownNav'
 const RentPage = () => {
     return (
         <div>
-            <Header />
             <DownNav />
             <MainForm initialAction="rent" />
             <RentTable />

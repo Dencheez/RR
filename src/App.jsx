@@ -49,7 +49,7 @@ function App() {
 
 // Теперь компонент PageWithNav корректно принимает и передает функцию дальше
 const PageWithNav = ({ children, setIsAuthOpen }) => (
-  <div className="flex flex-col min-h-screen">
+  <div className="flex flex-col min-h-screen pb-[70px] md:pb-0">
     <Header />
     <div className="flex-grow">{children}</div>
     <Footer />

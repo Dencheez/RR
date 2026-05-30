@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/header";
-import Footer from "../components/Footer";
 import Usercheck from "./Usercheck";
 import AuthModal from "../components/AuthModal";
 import SubmitSuccess from "./SubmitSuccess";
@@ -258,12 +256,10 @@ const AddProperty = () => {
   // If user is not logged in, render authentication wall
   if (!user) {
     return (
-      <div className="min-h-screen flex flex-col justify-between bg-[#fcfbfa] md:py-10">
-        <Header />
+      <div className="flex-1 flex flex-col justify-between bg-[#fcfbfa]">
         <div className="flex-1 flex flex-col items-center justify-center py-20 px-4">
           <Usercheck />
         </div>
-        <Footer />
         <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
       </div>
     );
@@ -272,23 +268,20 @@ const AddProperty = () => {
   // If submission was successful
   if (submitSuccess) {
     return (
-      <div className="min-h-screen flex flex-col justify-between bg-[#fcfbfa] md:py-10">
-        <Header />
+      <div className="flex-1 flex flex-col justify-between bg-[#fcfbfa]">
         <SubmitSuccess
           categories={categories}
           chosenCategory={chosenCategory}
           chosenSubcategory={chosenSubcategory}
           resetAll={resetAll}
         />
-        <Footer />
       </div>
     );
   }
 
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fcfbfa] md:py-10">
-      <Header />
+    <div className="flex-1 flex flex-col bg-[#fcfbfa]">
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
         <h1 className="text-3xl font-extrabold text-black mb-8 leading-tight">Подать объявление</h1>

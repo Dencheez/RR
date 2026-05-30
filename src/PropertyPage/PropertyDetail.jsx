@@ -125,7 +125,7 @@ export default function PropertyDetail() {
         </div>
 
         {/* Content */}
-        <div className="px-4 pt-4 pb-32">
+        <div className="px-4 pt-4 pb-40">
           {/* Price */}
           <div className="text-[22px] font-bold text-gray-900 mb-1">
             {isSale ? "от " : ""}{property.price?.toLocaleString()} SAR
@@ -237,7 +237,10 @@ export default function PropertyDetail() {
         </div>
 
         {/* Fixed bottom CTA */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-3 z-50 flex gap-2">
+        <div 
+          className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-3 z-50 flex gap-2"
+          style={{ paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))' }}
+        >
           <button className="flex-1 bg-[#2a81dd] text-white text-[14px] font-semibold py-3 rounded-xl">Заказать звонок</button>
           <button onClick={() => setPhoneRevealed(true)}
             className="flex-1 bg-green-500 text-white text-[14px] font-semibold py-3 rounded-xl flex items-center justify-center gap-2">
