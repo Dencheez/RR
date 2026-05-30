@@ -18,7 +18,7 @@ export const MobileFilterModal = ({
     const updateRooms = setRooms || _setRooms;
 
     const [activeModal, setActiveModal] = useState(null); // 'sort', 'region', null
-    
+
     const sortOptions = ['Не выбрано', 'Новые', 'Дешевые', 'Дорогие'];
     const [sortBy, setSortBy] = useState('Не выбрано');
 
@@ -42,14 +42,13 @@ export const MobileFilterModal = ({
             {options.map(opt => {
                 const isSelected = value === opt;
                 return (
-                    <button 
+                    <button
                         key={opt}
                         onClick={() => onChange(isSelected ? '' : opt)}
-                        className={`px-4 py-2 rounded-lg border text-[14px] font-medium transition-colors ${
-                            isSelected 
-                            ? 'border-[#2a81dd] text-[#2a81dd] bg-[#2a81dd]/5' 
+                        className={`px-4 py-2 rounded-lg border text-[14px] font-medium transition-colors ${isSelected
+                            ? 'border-[#2a81dd] text-[#2a81dd] bg-[#2a81dd]/5'
                             : 'border-gray-200 text-gray-700 bg-white'
-                        }`}
+                            }`}
                     >
                         {opt}
                     </button>
@@ -62,18 +61,18 @@ export const MobileFilterModal = ({
         <div className="mb-4">
             {label && <div className="text-[15px] font-medium text-gray-900 mb-2">{label}</div>}
             <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-white">
-                <input 
-                    type="number" 
-                    placeholder="От" 
-                    value={fromVal} 
+                <input
+                    type="number"
+                    placeholder="От"
+                    value={fromVal}
                     onChange={e => setFromVal && setFromVal(e.target.value)}
                     className="w-1/2 p-3 text-[15px] outline-none placeholder:text-gray-400"
                 />
                 <div className="w-[1px] h-8 bg-gray-200"></div>
-                <input 
-                    type="number" 
-                    placeholder="До" 
-                    value={toVal} 
+                <input
+                    type="number"
+                    placeholder="До"
+                    value={toVal}
                     onChange={e => setToVal && setToVal(e.target.value)}
                     className="w-1/2 p-3 text-[15px] outline-none placeholder:text-gray-400"
                 />
@@ -85,10 +84,10 @@ export const MobileFilterModal = ({
         <label className={`flex items-center justify-between py-4 cursor-pointer ${hasBorder ? 'border-b border-gray-100' : ''}`}>
             <span className="text-[15px] text-gray-900">{label}</span>
             <div className="relative flex items-center justify-center w-[22px] h-[22px] border border-gray-300 rounded bg-white overflow-hidden">
-                <input 
-                    type="checkbox" 
-                    checked={checked || false} 
-                    onChange={e => onChange && onChange(e.target.checked)} 
+                <input
+                    type="checkbox"
+                    checked={checked || false}
+                    onChange={e => onChange && onChange(e.target.checked)}
                     className="appearance-none absolute inset-0 outline-none checked:bg-[#2a81dd] checked:border-[#2a81dd] transition-colors cursor-pointer"
                 />
                 {checked && <svg className="w-3.5 h-3.5 text-white z-10 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
@@ -121,12 +120,12 @@ export const MobileFilterModal = ({
                         <label key={opt} className="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer">
                             <span className="text-[15px] text-gray-900">{opt}</span>
                             {sortBy === opt && <Check size={20} className="text-[#2a81dd]" />}
-                            <input 
-                                type="radio" 
-                                name="sort" 
-                                value={opt} 
-                                checked={sortBy === opt} 
-                                onChange={() => { setSortBy(opt); setActiveModal(null); }} 
+                            <input
+                                type="radio"
+                                name="sort"
+                                value={opt}
+                                checked={sortBy === opt}
+                                onChange={() => { setSortBy(opt); setActiveModal(null); }}
                                 className="hidden"
                             />
                         </label>
@@ -148,12 +147,12 @@ export const MobileFilterModal = ({
                         <label key={opt} className="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer">
                             <span className="text-[15px] text-gray-900">{opt}</span>
                             {region === opt && <Check size={20} className="text-[#2a81dd]" />}
-                            <input 
-                                type="radio" 
-                                name="region" 
-                                value={opt} 
-                                checked={region === opt} 
-                                onChange={() => { setRegion(opt); setActiveModal(null); }} 
+                            <input
+                                type="radio"
+                                name="region"
+                                value={opt}
+                                checked={region === opt}
+                                onChange={() => { setRegion(opt); setActiveModal(null); }}
                                 className="hidden"
                             />
                         </label>
@@ -182,15 +181,15 @@ export const MobileFilterModal = ({
 
                     <div className="py-4">
                         <div className="text-[15px] font-medium text-gray-900 mb-3">Количество комнат</div>
-                        <ButtonGroup 
-                            options={['1', '2', '3', '4', '5+']} 
-                            value={currentRooms} 
-                            onChange={updateRooms} 
+                        <ButtonGroup
+                            options={['1', '2', '3', '4', '5+']}
+                            value={currentRooms}
+                            onChange={updateRooms}
                         />
                     </div>
 
-                    <RangeInput 
-                        label="Цена, ₸" 
+                    <RangeInput
+                        label="Цена, ₸"
                         fromVal={priceFrom || ''} setFromVal={setPriceFrom}
                         toVal={priceTo || ''} setToVal={setPriceTo}
                     />
@@ -199,106 +198,106 @@ export const MobileFilterModal = ({
                         <CheckboxRow label="С фото" checked={hasPhoto} onChange={setHasPhoto} />
                         <CheckboxRow label="От хозяев" checked={fromOwner} onChange={setFromOwner} />
                         <CheckboxRow label="Новостройки" checked={isNew} onChange={setIsNew} />
-                        <CheckboxRow label="От Крыша Агентов" checked={false} onChange={()=>{}} hasBorder={false} />
+                        <CheckboxRow label="От Крыша Агентов" checked={false} onChange={() => { }} hasBorder={false} />
                     </div>
                 </div>
 
                 <div className="bg-white px-4 pb-4 mt-2 border-t border-gray-100 pt-2">
                     <SectionTitle title="О доме" />
-                    <RangeInput 
-                        label="Этаж" 
+                    <RangeInput
+                        label="Этаж"
                         fromVal={floorFrom || ''} setFromVal={setFloorFrom}
                         toVal={floorTo || ''} setToVal={setFloorTo}
                     />
                     <CheckboxRow label="Не первый этаж" checked={notFirstFloor} onChange={setNotFirstFloor} />
-                    
+
                     <div className="mt-4">
-                        <RangeInput 
-                            label="Год постройки (сдачи в эксплуатацию)" 
+                        <RangeInput
+                            label="Год постройки (сдачи в эксплуатацию)"
                             fromVal={yearFrom || ''} setFromVal={setYearFrom}
                             toVal={yearTo || ''} setToVal={setYearTo}
                         />
                     </div>
-                    
+
                     <CheckboxRow label="Не последний этаж" checked={notLastFloor} onChange={setNotLastFloor} />
-                    
-                    <LinkRow label="Жилой комплекс" value="" onClick={() => {}} />
-                    
+
+                    <LinkRow label="Жилой комплекс" value="" onClick={() => { }} />
+
                     <div className="mt-4">
-                        <RangeInput 
-                            label="Количество этажей" 
-                            fromVal={''} setFromVal={()=>{}}
-                            toVal={''} setToVal={()=>{}}
+                        <RangeInput
+                            label="Количество этажей"
+                            fromVal={''} setFromVal={() => { }}
+                            toVal={''} setToVal={() => { }}
                         />
                     </div>
-                    
+
                     <div className="mt-4 pb-4">
                         <div className="text-[15px] font-medium text-gray-900 mb-3">Тип строения</div>
-                        <ButtonGroup 
-                            options={['Кирпичный', 'Панельный', 'Монолитный', 'Иной']} 
-                            value={houseType || ''} 
-                            onChange={setHouseType} 
+                        <ButtonGroup
+                            options={['Кирпичный', 'Панельный', 'Монолитный', 'Иной']}
+                            value={houseType || ''}
+                            onChange={setHouseType}
                         />
                     </div>
                 </div>
 
                 <div className="bg-white px-4 pb-4 mt-2 border-t border-gray-100 pt-2 mb-6">
                     <SectionTitle title="О квартире" />
-                    
-                    <RangeInput 
-                        label="Общая площадь, м²" 
+
+                    <RangeInput
+                        label="Общая площадь, м²"
                         fromVal={totalAreaFrom || ''} setFromVal={setTotalAreaFrom}
                         toVal={totalAreaTo || ''} setToVal={setTotalAreaTo}
                     />
-                    
-                    <RangeInput 
-                        label="Площадь кухни, м²" 
+
+                    <RangeInput
+                        label="Площадь кухни, м²"
                         fromVal={kitchenAreaFrom || ''} setFromVal={setKitchenAreaFrom}
                         toVal={kitchenAreaTo || ''} setToVal={setKitchenAreaTo}
                     />
-                    
+
                     <div className="mt-4 border-b border-gray-100 pb-4">
                         <div className="text-[15px] font-medium text-gray-900 mb-3">Бывшее общежитие</div>
-                        <ButtonGroup 
-                            options={['Да', 'Нет']} 
-                            value={''} 
-                            onChange={()=>{}} 
+                        <ButtonGroup
+                            options={['Да', 'Нет']}
+                            value={''}
+                            onChange={() => { }}
                         />
                     </div>
-                    
-                    <CheckboxRow label="Возможен обмен" checked={false} onChange={()=>{}} />
-                    
+
+                    <CheckboxRow label="Возможен обмен" checked={false} onChange={() => { }} />
+
                     <div className="mt-4 border-b border-gray-100 pb-4">
                         <div className="text-[15px] font-medium text-gray-900 mb-3">В залоге</div>
-                        <ButtonGroup 
-                            options={['Да', 'Нет']} 
-                            value={''} 
-                            onChange={()=>{}} 
+                        <ButtonGroup
+                            options={['Да', 'Нет']}
+                            value={''}
+                            onChange={() => { }}
                         />
                     </div>
-                    
+
                     <div className="mt-4 border-b border-gray-100 pb-4">
                         <div className="text-[15px] font-medium text-gray-900 mb-3">Санузел</div>
-                        <ButtonGroup 
-                            options={['Раздельный', 'Совмещенный', '2 с/у и более', 'Нет']} 
-                            value={bathroom || ''} 
-                            onChange={setBathroom} 
+                        <ButtonGroup
+                            options={['Раздельный', 'Совмещенный', '2 с/у и более', 'Нет']}
+                            value={bathroom || ''}
+                            onChange={setBathroom}
                         />
                     </div>
-                    
+
                     <div className="mt-4 border-b border-gray-100 pb-4">
                         <div className="text-[15px] font-medium text-gray-900 mb-3">Телефон</div>
-                        <ButtonGroup 
-                            options={['Отдельный', 'Блокиратор', 'Есть возможность подключения', 'Нет']} 
-                            value={''} 
-                            onChange={()=>{}} 
+                        <ButtonGroup
+                            options={['Отдельный', 'Блокиратор', 'Есть возможность подключения', 'Нет']}
+                            value={''}
+                            onChange={() => { }}
                         />
                     </div>
-                    
+
                     <SectionTitle title="Текст в объявлениях" />
-                    <input 
-                        type="text" 
-                        placeholder="Поиск по тексту в объявлениях" 
+                    <input
+                        type="text"
+                        placeholder="Поиск по тексту в объявлениях"
                         className="w-full p-3 border border-gray-200 rounded-lg text-[15px] outline-none focus:border-[#2a81dd] placeholder:text-gray-400"
                     />
                 </div>
@@ -317,14 +316,14 @@ export const MobileFilterModal = ({
                         <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#2a81dd]"></div>
                     </div>
                 </div>
-                
-                <button 
-                    onClick={onClose} 
+
+                <button
+                    onClick={onClose}
                     className="w-full bg-[#2a81dd] text-white py-3.5 rounded-xl font-bold text-[16px] active:bg-[#1d65b0] transition-colors"
                 >
-                    Показать {resultsCount || '43000'} объявлений
+                    Показать {resultsCount > 0} объявлений
                 </button>
             </div>
         </div>
     );
-};
+};

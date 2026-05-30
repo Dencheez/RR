@@ -38,11 +38,7 @@ export const MobileFilterHeader = ({
                 >
                     <div className="relative flex items-center">
                         <SlidersHorizontal size={16} className="text-[#c9a227]" />
-                        {activeFiltersCount > 0 && (
-                            <span className="absolute -top-2 -right-2.5 min-w-[16px] h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center px-0.5 leading-none">
-                                {activeFiltersCount}
-                            </span>
-                        )}
+
                     </div>
                     <span>Фильтр</span>
                 </button>
